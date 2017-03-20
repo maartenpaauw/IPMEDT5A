@@ -6,8 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Demo extends Model
 {
+    protected $with = ['shoe'];
+
     public function shoe()
     {
-        return $this->hasOne(Shoe::class);
+        return $this->hasOne(Shoe::class, 'id', 'shoe_id');
     }
 }
