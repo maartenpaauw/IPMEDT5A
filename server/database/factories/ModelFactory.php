@@ -32,7 +32,7 @@ $factory->define(\IPMEDT5A\Models\Shoe::class, function (Faker\Generator $faker)
 
 $factory->define(\IPMEDT5A\Models\Product::class, function (\Faker\Generator $faker) use ($factory) {
     return [
-        'shoe_id' => $factory->create(\IPMEDT5A\Models\Shoe::class)->id,
+        'shoe_id' => \IPMEDT5A\Models\Shoe::inRandomOrder()->first()->id,
         'size_id' => \IPMEDT5A\Models\Size::inRandomOrder()->first()->id,
         'sku'     => $faker->ean13,
         'price'   => $faker->randomFloat(2, 50, 900),
@@ -49,28 +49,28 @@ $factory->define(\IPMEDT5A\Models\Tag::class, function (\Faker\Generator $faker)
 
 $factory->define(\IPMEDT5A\Models\Demo::class, function (\Faker\Generator $faker) use ($factory) {
     return [
-        'shoe_id' => $factory->create(\IPMEDT5A\Models\Shoe::class)->id,
+        'shoe_id' => \IPMEDT5A\Models\Shoe::inRandomOrder()->first()->id,
         'uuid'    => $faker->uuid,
     ];
 });
 
 $factory->define(\IPMEDT5A\Models\Shelf::class, function (\Faker\Generator $faker) use ($factory) {
     return [
-        'demo_id' => $factory->create(\IPMEDT5A\Models\Demo::class)->id,
+        'demo_id' => \IPMEDT5A\Models\Demo::inRandomOrder()->first()->id,
     ];
 });
 
 $factory->define(\IPMEDT5A\Models\Statistic::class, function (\Faker\Generator $faker) use ($factory) {
     return [
         'action_id' => \IPMEDT5A\Models\Action::where('name', 'demo_oppakken')->first()->id,
-        'shelf_id'  => $factory->create(\IPMEDT5A\Models\Shelf::class)->id,
+        'shelf_id'  => \IPMEDT5A\Models\Shelf::inRandomOrder()->first()->id,
         'tag_id'    => null
     ];
 });
 
-$factory->state(\IPMEDT5A\Models\Statistic::class, 'tag_scannen', function(\Faker\Generator $faker) use ($factory) {
+$factory->state(\IPMEDT5A\Models\Statistic::class, 'maat_scannen', function(\Faker\Generator $faker) use ($factory) {
     return [
-        'action_id' => \IPMEDT5A\Models\Action::where('name', 'tag_scannen')->first()->id,
-        'tag_id'    => $factory->create(\IPMEDT5A\Models\Tag::class)->id
+        'action_id' => \IPMEDT5A\Models\Action::where('name', 'maat_scannen')->first()->id,
+        'tag_id'    => \IPMEDT5A\Models\Tag::inRandomOrder()->first()->id
     ];
 });
