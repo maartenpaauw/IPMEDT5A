@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'Laravel',
+    'name' => 'IPMEDT5A',
 
     /*
     |--------------------------------------------------------------------------
@@ -77,7 +77,7 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'nl',
 
     /*
     |--------------------------------------------------------------------------
@@ -171,12 +171,16 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
+        IPMEDT5A\Providers\AppServiceProvider::class,
+        IPMEDT5A\Providers\AuthServiceProvider::class,
+        // IPMEDT5A\Providers\BroadcastServiceProvider::class,
+        IPMEDT5A\Providers\EventServiceProvider::class,
+        IPMEDT5A\Providers\RouteServiceProvider::class,
 
+        /*
+         * Vendor packages
+         */
+//        \Dingo\Api\Provider\LaravelServiceProvider::class
     ],
 
     /*
@@ -226,6 +230,10 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        /*
+         * Vendor packages
+         */
+//        'API' => \Dingo\Api\Facade\API::class,
     ],
 
 ];

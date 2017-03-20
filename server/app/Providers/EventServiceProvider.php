@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace IPMEDT5A\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
@@ -13,8 +13,8 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\SomeEvent' => [
-            'App\Listeners\EventListener',
+        'IPMEDT5A\Events\SomeEvent' => [
+            'IPMEDT5A\Listeners\EventListener',
         ],
     ];
 

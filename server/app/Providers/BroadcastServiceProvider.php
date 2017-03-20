@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace IPMEDT5A\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Broadcast;

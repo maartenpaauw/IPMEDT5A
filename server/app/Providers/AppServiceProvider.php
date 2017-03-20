@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Providers;
+namespace IPMEDT5A\Providers;
 
+use Barryvdh\LaravelIdeHelper\IdeHelperServiceProvider;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Support\Facades\Schema;
 
@@ -25,6 +26,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // IDE Helper
+        if ($this->app->environment() !== 'production') {
+            $this->app->register(IdeHelperServiceProvider::class);
+        }
     }
 }
