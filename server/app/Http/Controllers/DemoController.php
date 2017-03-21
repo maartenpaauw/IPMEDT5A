@@ -46,7 +46,7 @@ class DemoController extends Controller
      */
     public function show(Demo $demo)
     {
-        return Demo::find($demo);
+        return $demo;
     }
 
     /**

@@ -49,7 +49,7 @@ class TestDataCommand extends Command
         ]);
 
         factory(Shoe::class, 10)->create();
-        factory(Product::class, 5)->create();
+        factory(Product::class, 50)->create();
         factory(Tag::class, 5)->create();
         factory(Demo::class, 3)->create();
         factory(Shelf::class, 3)->create();

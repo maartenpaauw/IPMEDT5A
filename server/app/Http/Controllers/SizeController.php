@@ -46,7 +46,7 @@ class SizeController extends Controller
      */
     public function show(Size $size)
     {
-        return Size::find($size);
+        return $size;
     }
 
     /**

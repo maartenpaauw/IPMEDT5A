@@ -46,7 +46,7 @@ class ShoeController extends Controller
      */
     public function show(Shoe $shoe)
     {
-        return Shoe::find($shoe);
+        return $shoe;
     }
 
     /**

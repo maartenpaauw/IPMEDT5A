@@ -46,7 +46,7 @@ class ShelfController extends Controller
      */
     public function show(Shelf $shelf)
     {
-        return Shelf::find($shelf);
+        return $shelf;
     }
 
     /**

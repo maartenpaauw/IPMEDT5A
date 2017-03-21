@@ -46,7 +46,7 @@ class ActionController extends Controller
      */
     public function show(Action $action)
     {
-        return Action::find($action);
+        return $action;
     }
 
     /**

@@ -46,7 +46,7 @@ class StatisticController extends Controller
      */
     public function show(Statistic $statistic)
     {
-        return Statistic::find($statistic);
+        return $statistic;
     }
 
     /**
