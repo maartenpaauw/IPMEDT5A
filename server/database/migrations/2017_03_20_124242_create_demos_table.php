@@ -18,7 +18,7 @@ class CreateDemosTable extends Migration
             $table->integer('shoe_id')->unsigned();
 
             // TODO: even hier naar kijken.
-            $table->uuid('uuid');
+            $table->uuid('uuid')->index();
             $table->timestamps();
 
             $table->foreign('shoe_id')

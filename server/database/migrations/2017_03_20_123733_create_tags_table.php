@@ -18,7 +18,7 @@ class CreateTagsTable extends Migration
             $table->integer('size_id')->unsigned();
 
             // TODO: even hier naar kijken.
-            $table->uuid('uuid');
+            $table->uuid('uuid')->index();
             $table->timestamps();
 
             $table->foreign('size_id')
