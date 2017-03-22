@@ -21,7 +21,7 @@ module.exports = module.exports.toString();
 /***/ 135:
 /***/ (function(module, exports) {
 
-module.exports = "<h1>\n  {{title}}\n</h1>\n\n<!--<a routerLink=\"/test\" routerLinkActive=\"active\">Heroes</a>-->\n\n<!--<router-outlet></router-outlet>-->\n"
+module.exports = "<h1>\n  {{title}}\n</h1>"
 
 /***/ }),
 
