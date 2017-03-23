@@ -13,15 +13,19 @@ use Illuminate\Http\Request;
 |
 */
 
+// API
 $api = app(\Dingo\Api\Routing\Router::class);
 
+// Version 1 routes
 $api->version('v1', function ($api)
 {
     // API
     $api->group(['middleware' => ['api.auth', 'api']], function ($api)
     {
+        // Except front end routes.
         $except = ['except' => ['create', 'edit']];
 
+        // Resource routes.
         $api->resource('actions',    \IPMEDT5A\Http\Controllers\ActionController::class, $except);
         $api->resource('demos',      \IPMEDT5A\Http\Controllers\DemoController::class, $except);
         $api->resource('products',   \IPMEDT5A\Http\Controllers\ProductController::class, $except);
