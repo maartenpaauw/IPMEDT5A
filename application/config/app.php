@@ -180,7 +180,7 @@ return [
         /*
          * Vendor packages
          */
-//        \Dingo\Api\Provider\LaravelServiceProvider::class
+        \Dingo\Api\Provider\LaravelServiceProvider::class
     ],
 
     /*

@@ -5,6 +5,13 @@ namespace IPMEDT5A\Http\Controllers;
 use IPMEDT5A\Models\Product;
 use Illuminate\Http\Request;
 
+/**
+ * Class ProductController
+ *
+ * @package IPMEDT5A\Http\Controllers
+ *
+ * @Resource("Products")
+ */
 class ProductController extends Controller
 {
     /**

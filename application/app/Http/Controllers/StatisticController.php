@@ -5,6 +5,13 @@ namespace IPMEDT5A\Http\Controllers;
 use IPMEDT5A\Models\Statistic;
 use Illuminate\Http\Request;
 
+/**
+ * Class StatisticController
+ *
+ * @package IPMEDT5A\Http\Controllers
+ *
+ * Resource("Statistics")
+ */
 class StatisticController extends Controller
 {
     /**

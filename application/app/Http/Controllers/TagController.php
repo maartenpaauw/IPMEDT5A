@@ -5,6 +5,13 @@ namespace IPMEDT5A\Http\Controllers;
 use IPMEDT5A\Models\Tag;
 use Illuminate\Http\Request;
 
+/**
+ * Class TagController
+ *
+ * @package IPMEDT5A\Http\Controllers
+ *
+ * @Resource("Tags")
+ */
 class TagController extends Controller
 {
     /**

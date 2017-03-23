@@ -5,6 +5,13 @@ namespace IPMEDT5A\Http\Controllers;
 use IPMEDT5A\Models\Shelf;
 use Illuminate\Http\Request;
 
+/**
+ * Class ShelfController
+ *
+ * @package IPMEDT5A\Http\Controllers
+ *
+ * @Resource("Shelves")
+ */
 class ShelfController extends Controller
 {
     /**

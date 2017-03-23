@@ -5,6 +5,13 @@ namespace IPMEDT5A\Http\Controllers;
 use IPMEDT5A\Models\Action;
 use Illuminate\Http\Request;
 
+/**
+ * Class ActionController
+ *
+ * @package IPMEDT5A\Http\Controllers
+ *
+ * @Resource("Actions")
+ */
 class ActionController extends Controller
 {
     /**

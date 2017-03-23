@@ -5,6 +5,13 @@ namespace IPMEDT5A\Http\Controllers;
 use IPMEDT5A\Models\Shoe;
 use Illuminate\Http\Request;
 
+/**
+ * Class ShoeController
+ *
+ * @package IPMEDT5A\Http\Controllers
+ *
+ * @Resource("Shoes")
+ */
 class ShoeController extends Controller
 {
     /**

@@ -5,6 +5,13 @@ namespace IPMEDT5A\Http\Controllers;
 use IPMEDT5A\Models\Size;
 use Illuminate\Http\Request;
 
+/**
+ * Class SizeController
+ *
+ * @package IPMEDT5A\Http\Controllers
+ *
+ * @Resource("Sizes")
+ */
 class SizeController extends Controller
 {
     /**
