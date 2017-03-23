@@ -25,16 +25,6 @@ class SizeController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,17 +44,6 @@ class SizeController extends Controller
     public function show(Size $size)
     {
         return $size;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \IPMEDT5A\Models\Size  $size
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Size $size)
-    {
-        //
     }
 
     /**

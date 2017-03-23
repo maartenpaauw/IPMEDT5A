@@ -25,16 +25,6 @@ class TagController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,17 +44,6 @@ class TagController extends Controller
     public function show(Tag $tag)
     {
         return $tag;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \IPMEDT5A\Models\Tag  $tag
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Tag $tag)
-    {
-        //
     }
 
     /**

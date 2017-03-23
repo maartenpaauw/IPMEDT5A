@@ -25,16 +25,6 @@ class StatisticController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -54,17 +44,6 @@ class StatisticController extends Controller
     public function show(Statistic $statistic)
     {
         return $statistic;
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \IPMEDT5A\Models\Statistic  $statistic
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Statistic $statistic)
-    {
-        //
     }
 
     /**
