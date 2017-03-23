@@ -3,8 +3,9 @@ import {Http, Headers, RequestOptions, Response} from "@angular/http";
 
 import {url} from "../../../constants";
 
-import {Observable} from "rxjs";
 import {login} from "../../interfaces/login.interface";
+
+import {Observable} from "rxjs";
 
 @Injectable()
 export class LoginService {

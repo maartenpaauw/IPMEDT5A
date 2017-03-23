@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {LoginService} from "../services/login/login.service";
 import {Router} from "@angular/router";
+import {LoginGuard} from "../guards/login.guard";
 
 @Component({
   selector: 'app-login-form',
@@ -15,9 +16,13 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
-              private router: Router) { }
+              private loginGuard: LoginGuard) { }
 
   ngOnInit() {
+    if (LoginGuard.check()) {
+      this.loginGuard.redirect();
+    }
+
     this.loginForm = this.formBuilder.group({
       'email': [null, [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
       'password': [null, Validators.required]
@@ -29,7 +34,8 @@ export class LoginFormComponent implements OnInit {
     console.log(value);
     this.loginService.login(value).subscribe(
       (res: any) => {
-        this.router.navigateByUrl('/');
+        //TODO: route aanpassen.
+        this.loginGuard.redirect();
       },
       (err: number) => {
         if (err === 401) {
