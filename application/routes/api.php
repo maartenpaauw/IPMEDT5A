@@ -30,6 +30,7 @@ $api->version('v1', function ($api)
         $api->resource('sizes',      \IPMEDT5A\Http\Controllers\SizeController::class, $except);
         $api->resource('statistics', \IPMEDT5A\Http\Controllers\StatisticController::class, $except);
         $api->resource('tags',       \IPMEDT5A\Http\Controllers\TagController::class, $except);
+        $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class, $except);
     });
 
     // Authenticate
