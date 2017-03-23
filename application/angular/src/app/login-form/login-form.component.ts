@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FormGroup, FormBuilder, Validators} from "@angular/forms";
+import {LoginService} from "../services/login/login.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-login-form',
@@ -9,8 +11,11 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 export class LoginFormComponent implements OnInit {
 
   public loginForm: FormGroup;
+  public msg: string;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(private formBuilder: FormBuilder,
+              private loginService: LoginService,
+              private router: Router) { }
 
   ngOnInit() {
     this.loginForm = this.formBuilder.group({
@@ -22,5 +27,17 @@ export class LoginFormComponent implements OnInit {
   private submitForm(value: Object)
   {
     console.log(value);
+    this.loginService.login(value).subscribe(
+      (res: any) => {
+        this.router.navigateByUrl('/');
+      },
+      (err: number) => {
+        if (err === 401) {
+          this.msg = 'Login gegevens incorrect!';
+        } else if (err === 500) {
+          this.msg = 'Probeer het later nog eens!';
+        }
+      }
+    );
   }
 }

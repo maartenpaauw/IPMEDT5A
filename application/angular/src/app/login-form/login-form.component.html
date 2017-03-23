@@ -1,3 +1,5 @@
+<span *ngIf="msg" [innerText]="msg"></span>
+
 <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
   <div class="form-group" [ngClass]="{'has-danger': !loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
     <label class="form-control-label" for="email">Email address</label>
