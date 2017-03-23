@@ -4,6 +4,7 @@ import { environment } from './environments/environment';
 import { AppModule } from './app/app.module';
 
 import { hmrBootstrap } from './hmr';
+import {bootloader} from "./bootloader";
 
 if (environment.production) {
   enableProdMode();
@@ -21,5 +22,5 @@ if (environment.hmr) {
     console.log('Are you using the --hmr flag for ng serve?');
   }
 } else {
-  bootstrap();
+  bootloader(bootstrap);
 }
