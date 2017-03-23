@@ -26,9 +26,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        // IDE Helper
-        if ($this->app->environment() !== 'production') {
+        if ($this->app->environment() !== 'production')
+        {
+            // IDE Helper
             $this->app->register(IdeHelperServiceProvider::class);
+
+            // Dingo API
+            config(['api.debug' => true]);
         }
     }
 }
