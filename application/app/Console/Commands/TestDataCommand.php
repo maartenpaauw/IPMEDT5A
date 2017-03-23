@@ -44,18 +44,19 @@ class TestDataCommand extends Command
      */
     public function handle()
     {
-        Artisan::call('migrate:refresh', [
-            '--seed' => true
-        ]);
+        if ($this->confirm('Do you wish to continue?') && app()->environment() == "local")
+        {
+            Artisan::call('migrate:refresh', [
+                '--seed' => true
+            ]);
 
-        factory(Shoe::class, 10)->create();
-        factory(Product::class, 50)->create();
-        factory(Tag::class, 5)->create();
-        factory(Demo::class, 3)->create();
-        factory(Shelf::class, 3)->create();
-        factory(Statistic::class, 100)->create();
-        factory(Statistic::class, 100)->states(['maat_scannen'])->create();
-
-        return true;
+            factory(Shoe::class, 10)->create();
+            factory(Product::class, 50)->create();
+            factory(Tag::class, 5)->create();
+            factory(Demo::class, 3)->create();
+            factory(Shelf::class, 3)->create();
+            factory(Statistic::class, 100)->create();
+            factory(Statistic::class, 100)->states(['maat_scannen'])->create();
+        }
     }
 }
