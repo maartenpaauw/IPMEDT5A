@@ -182,7 +182,8 @@ return [
          */
         \Dingo\Api\Provider\LaravelServiceProvider::class,
         \Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        \anlutro\LaravelSettings\ServiceProvider::class
+        \anlutro\LaravelSettings\ServiceProvider::class,
+        \Barryvdh\Cors\ServiceProvider::class,
     ],
 
     /*
