@@ -18,7 +18,7 @@ $api = app(\Dingo\Api\Routing\Router::class);
 $api->version('v1', function ($api)
 {
     // API
-    $api->group(['middleware' => 'api.auth'], function ($api)
+    $api->group(['middleware' => ['api.auth', 'api']], function ($api)
     {
         $except = ['except' => ['create', 'edit']];
 

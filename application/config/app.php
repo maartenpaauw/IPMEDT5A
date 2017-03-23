@@ -182,7 +182,6 @@ return [
          */
         \Dingo\Api\Provider\LaravelServiceProvider::class,
         \Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class,
-        \anlutro\LaravelSettings\ServiceProvider::class,
         \Barryvdh\Cors\ServiceProvider::class,
     ],
 
@@ -239,7 +238,6 @@ return [
         'API' => \Dingo\Api\Facade\API::class,
         'JWTAuth' => \Tymon\JWTAuth\Facades\JWTAuth::class,
         'JWTFactory' => \Tymon\JWTAuth\Facades\JWTFactory::class,
-        'Setting' => \anlutro\LaravelSettings\Facade::class
     ],
 
 ];
