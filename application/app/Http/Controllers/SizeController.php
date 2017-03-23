@@ -21,7 +21,7 @@ class SizeController extends Controller
      */
     public function index()
     {
-        return Size::all();
+        return Size::paginate(25);
     }
 
     /**

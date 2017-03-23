@@ -21,7 +21,7 @@ class ActionController extends Controller
      */
     public function index()
     {
-        return Action::all();
+        return Action::paginate(25);
     }
 
     /**

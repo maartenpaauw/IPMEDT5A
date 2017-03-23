@@ -21,7 +21,7 @@ class DemoController extends Controller
      */
     public function index()
     {
-        return Demo::all();
+        return Demo::paginate(25);
     }
 
     /**

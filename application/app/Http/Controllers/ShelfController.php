@@ -21,7 +21,7 @@ class ShelfController extends Controller
      */
     public function index()
     {
-        return Shelf::all();
+        return Shelf::paginate(25);
     }
 
     /**

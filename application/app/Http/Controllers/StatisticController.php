@@ -21,7 +21,7 @@ class StatisticController extends Controller
      */
     public function index()
     {
-        return Statistic::all();
+        return Statistic::paginate(25);
     }
 
     /**

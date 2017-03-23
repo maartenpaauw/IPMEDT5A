@@ -21,7 +21,7 @@ class ShoeController extends Controller
      */
     public function index()
     {
-        return Shoe::all();
+        return Shoe::paginate(25);
     }
 
     /**
