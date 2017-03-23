@@ -41,6 +41,13 @@ class UserTableSeeder extends Seeder
                 'password'   => Hash::make(env('USER_PASSWORD', 'secret')),
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now()
+            ],
+            [
+                'name'       => 'Jan Elijzen',
+                'email'      => 'info@example.com',
+                'password'   => Hash::make(env('USER_PASSWORD', 'secret')),
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now()
             ]
         ]);
     }
