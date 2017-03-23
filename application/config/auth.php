@@ -67,7 +67,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => IPMEDT5A\User::class,
+            'model' => IPMEDT5A\Models\User::class,
         ],
 
         // 'users' => [
