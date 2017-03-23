@@ -1,7 +1,10 @@
 import {Routes, RouterModule} from "@angular/router";
 import {NgModule} from "@angular/core";
 
-import {LoginFormComponent} from "../login-form/login-form.component";
+import {IdlePreload, IdlePreloadModule} from "./idle.preload.module";
+
+import {LoginFormComponent} from "../components/login-form/login-form.component";
+
 import {LoginGuard} from "../guards/login.guard";
 
 const routes: Routes = [
@@ -11,7 +14,11 @@ const routes: Routes = [
     // },
     {
         path: 'login',
-        component: LoginFormComponent,
+        component: LoginFormComponent
+    },
+    {
+        path: 'sizes',
+        loadChildren: './sizes.module#SizesModule',
         canActivate: [
             LoginGuard
         ]
@@ -20,7 +27,10 @@ const routes: Routes = [
 
 @NgModule({
     imports: [
-        RouterModule.forRoot(routes)
+        IdlePreloadModule.forRoot(),
+        RouterModule.forRoot(routes, {
+            preloadingStrategy: IdlePreload
+        })
     ]
 })
 
