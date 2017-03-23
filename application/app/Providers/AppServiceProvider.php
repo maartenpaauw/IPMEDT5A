@@ -30,9 +30,6 @@ class AppServiceProvider extends ServiceProvider
         {
             // IDE Helper
             $this->app->register(IdeHelperServiceProvider::class);
-
-            // Dingo API
-            config(['api.debug' => true]);
         }
     }
 }

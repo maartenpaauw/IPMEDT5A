@@ -180,7 +180,8 @@ return [
         /*
          * Vendor packages
          */
-        \Dingo\Api\Provider\LaravelServiceProvider::class
+        \Dingo\Api\Provider\LaravelServiceProvider::class,
+        \Tymon\JWTAuth\Providers\JWTAuthServiceProvider::class
     ],
 
     /*
@@ -233,7 +234,9 @@ return [
         /*
          * Vendor packages
          */
-//        'API' => \Dingo\Api\Facade\API::class,
+        'API' => \Dingo\Api\Facade\API::class,
+        'JWTAuth' => \Tymon\JWTAuth\Facades\JWTAuth::class,
+        'JWTFactory' => \Tymon\JWTAuth\Facades\JWTFactory::class
     ],
 
 ];
