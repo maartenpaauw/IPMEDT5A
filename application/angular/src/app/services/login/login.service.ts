@@ -4,6 +4,7 @@ import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {url} from "../../../constants";
 
 import {Observable} from "rxjs";
+import {login} from "../../interfaces/login.interface";
 
 @Injectable()
 export class LoginService {
@@ -22,9 +23,9 @@ export class LoginService {
   public login(data: Object): Observable<boolean | number> {
     return this.http.post(`${url}authenticate`, data, this.options)
       .map((res: Response) => res.json())
-      .map((res: Object) => {
-        if (res['token'].length > 0) {
-          localStorage.setItem('token', res['token']);
+      .map((res: login) => {
+        if (res.token.length > 0) {
+          localStorage.setItem('token', res.token);
           return true;
         }
 
