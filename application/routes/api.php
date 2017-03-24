@@ -35,6 +35,9 @@ $api->version('v1', function ($api)
         $api->resource('statistics', \IPMEDT5A\Http\Controllers\StatisticController::class, $except);
         $api->resource('tags',       \IPMEDT5A\Http\Controllers\TagController::class, $except);
         $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class, $except);
+
+        // Extra routes
+        $api->post('settings/toggle/{setting}', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
     });
 
 

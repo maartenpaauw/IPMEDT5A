@@ -12,6 +12,13 @@ class Setting extends Model
     protected $fillable = ['key', 'value'];
 
     /**
+     * @var array
+     */
+    protected $casts = [
+        'value' => 'boolean'
+    ];
+
+    /**
      * Get the route key for the model.
      *
      * @return string

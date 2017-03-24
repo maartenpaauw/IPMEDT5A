@@ -15,9 +15,9 @@ class SettingController extends Controller
      */
     public function index()
     {
-        $settings =  Setting::paginate(25);
+        $settings =  Setting::all();
 
-        return $this->response->paginator($settings, new SettingTransformer);
+        return $this->response->collection($settings, new SettingTransformer);
     }
 
     /**
@@ -68,6 +68,18 @@ class SettingController extends Controller
     public function destroy(Setting $setting)
     {
         $setting->delete();
+
+        return $this->response->item($setting, new SettingTransformer);
+    }
+
+    /**
+     * @param Setting $setting
+     * @return \Dingo\Api\Http\Response
+     */
+    public function toggle(Setting $setting)
+    {
+        $setting->value = !$setting->value;
+        $setting->save();
 
         return $this->response->item($setting, new SettingTransformer);
     }
