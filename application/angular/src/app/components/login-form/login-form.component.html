@@ -1,0 +1,17 @@
+<span *ngIf="msg" [innerText]="msg"></span>
+
+<form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
+  <div class="form-group" [ngClass]="{'has-danger': !loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
+    <label class="form-control-label" for="email">Email address</label>
+    <input type="email" class="form-control form-control-danger" id="email" aria-describedby="email-help" placeholder="Enter email" [formControl]="loginForm.controls['email']">
+    <div class="form-control-feedback" *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched">Shucks, check the formatting of that and try again.</div>
+    <small id="email-help" class="form-text text-muted">Vul hier je e-mailadres in.</small>
+  </div>
+  <div class="form-group" [ngClass]="{'has-danger': !loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
+    <label class="form-control-label" for="password">Password</label>
+    <input type="password" class="form-control form-control-danger" id="password" aria-describedby="password-help" placeholder="Password" [formControl]="loginForm.controls['password']">
+    <div class="form-control-feedback" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">Shucks, check the formatting of that and try again.</div>
+    <small id="password-help" class="form-text text-muted">Vul hier je wachtwoord in.</small>
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Submit</button>
+</form>

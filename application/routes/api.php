@@ -37,6 +37,7 @@ $api->version('v1', function ($api)
         $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class, $except);
     });
 
+
     // Authenticate
     $api->post('authenticate',       ['as' => 'authenticate.user',  'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticate']);
     $api->post('authenticate/shelf', ['as' => 'authenticate.shelf', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateShelf']);
