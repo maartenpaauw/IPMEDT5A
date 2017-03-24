@@ -12,8 +12,8 @@
             <div class="navbar-nav">
                 <a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/dashboard" *ngIf="loggedIn">Dashboard <span class="sr-only">(current)</span></a>
                 <a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/settings" *ngIf="loggedIn">Settings</a>
-                <a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/login" *ngIf="!loggedIn">Login</a>
-                <a class="nav-item nav-link" (click)="logout()" *ngIf="loggedIn">Logout</a>
+                <a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}" routerLink="/login" *ngIf="!loggedIn">Inloggen</a>
+                <a class="nav-item nav-link" (click)="logout()" *ngIf="loggedIn">Uitloggen</a>
             </div>
         </div>
     </div>
