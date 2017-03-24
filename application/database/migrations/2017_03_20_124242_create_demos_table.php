@@ -15,15 +15,15 @@ class CreateDemosTable extends Migration
     {
         Schema::create('demos', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('shoe_id')->unsigned();
+            $table->integer('product_id')->unsigned();
 
             // TODO: even hier naar kijken.
             $table->uuid('uuid')->index();
             $table->timestamps();
 
-            $table->foreign('shoe_id')
+            $table->foreign('product_id')
                 ->references('id')
-                ->on('shoes')
+                ->on('products')
             ;
         });
     }

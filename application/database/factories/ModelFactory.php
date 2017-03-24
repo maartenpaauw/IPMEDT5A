@@ -49,8 +49,8 @@ $factory->define(\IPMEDT5A\Models\Tag::class, function (\Faker\Generator $faker)
 
 $factory->define(\IPMEDT5A\Models\Demo::class, function (\Faker\Generator $faker) use ($factory) {
     return [
-        'shoe_id' => \IPMEDT5A\Models\Shoe::inRandomOrder()->first()->id,
-        'uuid'    => $faker->uuid,
+        'product_id' => \IPMEDT5A\Models\Product::inRandomOrder()->first()->id,
+        'uuid'       => $faker->uuid,
     ];
 });
 
