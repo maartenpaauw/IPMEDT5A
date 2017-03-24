@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
+import {Router} from "@angular/router";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 
 import {url} from "../../../constants";
 
 import {Login} from "../../interfaces/login.interface";
+import {User} from "../../interfaces/user.interface";
 
 import {Observable} from "rxjs";
-import {User} from "../../interfaces/user.interface";
 
 @Injectable()
 export class LoginService {
@@ -26,7 +27,8 @@ export class LoginService {
     return new RequestOptions({ headers });
   }
 
-  constructor(private http: Http) { }
+  constructor(private http: Http,
+              private router: Router) { }
 
   public login(data: Object): Observable<boolean | number> {
     return this.http.post(`${url}authenticate`, data, LoginService.headers(false, true))
@@ -46,6 +48,11 @@ export class LoginService {
           return Observable.throw(error.status);
         }
       });
+  }
+
+  public logout() : void {
+      localStorage.removeItem('token');
+      this.router.navigateByUrl('/login');
   }
 
   public check(): Observable<boolean | number> {

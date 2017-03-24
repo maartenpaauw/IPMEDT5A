@@ -10,11 +10,17 @@ import { AppComponent } from './components/app/app.component';
 import { LoginFormComponent } from './components/login-form/login-form.component';
 import {LoginService} from "./services/login/login.service";
 import {LoginGuard} from "./guards/login.guard";
+import { HeaderComponent } from './components/header/header.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginFormComponent
+    LoginFormComponent,
+    HeaderComponent,
+    FooterComponent,
+    MenuComponent,
   ],
   imports: [
     BrowserModule,
