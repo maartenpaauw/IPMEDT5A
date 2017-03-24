@@ -14,6 +14,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -28,7 +30,8 @@ import { MenuComponent } from './components/menu/menu.component';
     ReactiveFormsModule,
     HttpModule,
     RoutingModule,
-    RouterModule
+    RouterModule,
+    NgbModule.forRoot()
   ],
   providers: [
     LoginService,
