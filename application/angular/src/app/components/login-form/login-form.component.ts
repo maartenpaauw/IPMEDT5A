@@ -4,6 +4,7 @@ import {FormGroup, FormBuilder, Validators} from "@angular/forms";
 import {LoginService} from "../../services/login/login.service";
 
 import {LoginGuard} from "../../guards/login.guard";
+import {Title} from "@angular/platform-browser";
 
 @Component({
   selector: 'app-login-form',
@@ -17,12 +18,15 @@ export class LoginFormComponent implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
-              private loginGuard: LoginGuard) { }
+              private loginGuard: LoginGuard,
+              private titleService: Title) { }
 
   ngOnInit() {
     if (LoginGuard.check()) {
       this.loginGuard.redirect();
     }
+
+    this.titleService.setTitle('Inloggen — IPMEDT5A');
 
     this.loginForm = this.formBuilder.group({
       'email': [null, [Validators.required, Validators.pattern(/^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/)]],
