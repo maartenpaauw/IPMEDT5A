@@ -1,3 +1,14 @@
-<p>
-  footer works!
-</p>
+<footer class="container-fluid bg-primary">
+  <div class="container py-5">
+    <div class="row">
+      <div class="row text-white">
+        <div class="col">
+          <p>Copyright &copy; {{ year }} — IPMEDT5A — MAF Leiden.</p>
+          <small>
+            <a class="text-white pr-4" *ngFor="let student of students" [href]="'mailto:' + student.email" [innerText]="student.naam" [title]="'Mail naar ' + student.naam"></a>
+          </small>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {Student} from "../../interfaces/student.interface";
+import {students} from "../../../constants";
 
 @Component({
   selector: 'app-footer',
@@ -7,9 +9,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
 
+  private year: number;
+  private students: Array<Student> = students;
+
   constructor() { }
 
   ngOnInit() {
+    this.year = new Date().getFullYear();
   }
 
 }
