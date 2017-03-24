@@ -71,4 +71,22 @@ class ShelfController extends Controller
     {
         //
     }
+
+    /**
+     * @param $mac_address
+     * @return \Dingo\Api\Http\Response
+     */
+    public function connect($mac_address)
+    {
+        $shelf = new Shelf();
+        $shelf->mac_address = $mac_address;
+        $shelf->save();
+
+        return $this->response->item($shelf, new ShelfTransformer);
+    }
+
+    public function is_connected($mac_address)
+    {
+
+    }
 }

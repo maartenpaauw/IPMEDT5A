@@ -37,11 +37,12 @@ $api->version('v1', function ($api)
         $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class, $except);
 
         // Extra routes
-        $api->post('settings/toggle/{setting}', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
+        $api->post('settings/toggle/{setting}',     ['as' => 'actions.toggle', 'uses'  => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
+        $api->post('shelves/connect/{mac_address}', ['as' => 'shelves.connect', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@connect']);
     });
-
 
     // Authenticate
     $api->post('authenticate',       ['as' => 'authenticate.user',  'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticate']);
+    $api->post('authenticate/check', ['as' => 'authenticate.check', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateCheck']);
     $api->post('authenticate/shelf', ['as' => 'authenticate.shelf', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateShelf']);
 });

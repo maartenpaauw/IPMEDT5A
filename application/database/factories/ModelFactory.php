@@ -56,7 +56,8 @@ $factory->define(\IPMEDT5A\Models\Demo::class, function (\Faker\Generator $faker
 
 $factory->define(\IPMEDT5A\Models\Shelf::class, function (\Faker\Generator $faker) use ($factory) {
     return [
-        'demo_id' => \IPMEDT5A\Models\Demo::inRandomOrder()->first()->id,
+        'mac_address' => $faker->macAddress,
+        'demo_id'     => \IPMEDT5A\Models\Demo::inRandomOrder()->first()->id,
     ];
 });
 

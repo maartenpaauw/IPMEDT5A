@@ -1,5 +1,7 @@
 import {Injectable} from "@angular/core";
 import {CanActivate, Router} from "@angular/router";
+import {LoginService} from "../services/login/login.service";
+import {Observable, Subscription} from "rxjs";
 
 @Injectable()
 export class LoginGuard implements CanActivate {
@@ -8,14 +10,11 @@ export class LoginGuard implements CanActivate {
         return !!localStorage.getItem('token');
     }
 
-    constructor(private router: Router) {}
+    constructor(private router: Router,
+                private loginService: LoginService) {}
 
-    canActivate(): boolean {
-        if (localStorage.getItem('token')) {
-            return true;
-        }
-        this.redirect('/login');
-        return false;
+    canActivate(): Observable<boolean> {
+        return this.loginService.check();
     }
 
     public redirect(url:string = '/'): void {

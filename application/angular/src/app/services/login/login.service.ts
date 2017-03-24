@@ -3,28 +3,35 @@ import {Http, Headers, RequestOptions, Response} from "@angular/http";
 
 import {url} from "../../../constants";
 
-import {login} from "../../interfaces/login.interface";
+import {Login} from "../../interfaces/login.interface";
 
 import {Observable} from "rxjs";
+import {User} from "../../interfaces/user.interface";
 
 @Injectable()
 export class LoginService {
 
-  private options: RequestOptions;
-
-  constructor(private http: Http) {
+  private static headers(auth: boolean = false, json: boolean = false): RequestOptions {
 
     const headers = new Headers();
 
-    headers.append('Content-Type', 'multipart/json');
+    if (auth) {
+      headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+    }
 
-    this.options = new RequestOptions({ headers });
+    if (json) {
+      headers.append('Content-Type', 'multipart/json');
+    }
+
+    return new RequestOptions({ headers });
   }
 
+  constructor(private http: Http) { }
+
   public login(data: Object): Observable<boolean | number> {
-    return this.http.post(`${url}authenticate`, data, this.options)
+    return this.http.post(`${url}authenticate`, data, LoginService.headers(false, true))
       .map((res: Response) => res.json())
-      .map((res: login) => {
+      .map((res: Login) => {
         if (res.token.length > 0) {
           localStorage.setItem('token', res.token);
           return true;
@@ -39,5 +46,22 @@ export class LoginService {
           return Observable.throw(error.status);
         }
       });
+  }
+
+  public check(): Observable<boolean | number> {
+    return this.http.post(`${url}authenticate/check`, null, LoginService.headers(true))
+        .map((res: Response) => res.json())
+        .map((res: User) => {
+          if (res.user) {
+            return true;
+          }
+
+          return false;
+        }).
+        catch((error: any) => {
+          if (error.status <= 400) {
+            return Observable.throw(error.status);
+          }
+        });
   }
 }
