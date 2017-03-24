@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Shelf;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\ShelfTransformer;
 
 /**
  * Class ShelfController
@@ -21,7 +22,9 @@ class ShelfController extends Controller
      */
     public function index()
     {
-        return Shelf::paginate(25);
+        $shelves = Shelf::all();
+
+        return $this->response->collection($shelves, new ShelfTransformer);
     }
 
     /**
@@ -43,7 +46,7 @@ class ShelfController extends Controller
      */
     public function show(Shelf $shelf)
     {
-        return $shelf;
+        return $this->response->item($shelf, new ShelfTransformer);
     }
 
     /**

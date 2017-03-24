@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Action;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\ActionTransformer;
 
 /**
  * Class ActionController
@@ -21,7 +22,9 @@ class ActionController extends Controller
      */
     public function index()
     {
-        return Action::paginate(25);
+        $actions = Action::all();
+
+        return $this->response->collection($actions, new ActionTransformer);
     }
 
     /**
@@ -43,7 +46,7 @@ class ActionController extends Controller
      */
     public function show(Action $action)
     {
-        return $action;
+        return $this->response->item($action, new ActionTransformer);
     }
 
     /**

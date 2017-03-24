@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Size;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\SizeTransformer;
 
 /**
  * Class SizeController
@@ -21,7 +22,9 @@ class SizeController extends Controller
      */
     public function index()
     {
-        return Size::paginate(25);
+        $sizes = Size::all();
+
+        return $this->response->collection($sizes, new SizeTransformer);
     }
 
     /**
@@ -43,7 +46,7 @@ class SizeController extends Controller
      */
     public function show(Size $size)
     {
-        return $size;
+        return $this->response->item($size, new SizeTransformer);
     }
 
     /**

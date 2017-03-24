@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Demo;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\DemoTransformer;
 
 /**
  * Class DemoController
@@ -21,7 +22,9 @@ class DemoController extends Controller
      */
     public function index()
     {
-        return Demo::paginate(25);
+        $demos = Demo::all();
+
+        return $this->response->collection($demos, new DemoTransformer);
     }
 
     /**
@@ -43,7 +46,7 @@ class DemoController extends Controller
      */
     public function show(Demo $demo)
     {
-        return $demo;
+        return $this->response->item($demo, new DemoTransformer);
     }
 
     /**

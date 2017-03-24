@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Product;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\ProductTransformer;
 
 /**
  * Class ProductController
@@ -21,7 +22,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return Product::paginate(25);
+        $products = Product::all();
+
+        return $this->response->collection($products, new ProductTransformer);
     }
 
     /**
@@ -43,7 +46,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return $product;
+        return $this->response->item($product, new ProductTransformer);
     }
 
     /**

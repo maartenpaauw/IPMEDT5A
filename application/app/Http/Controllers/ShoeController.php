@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Shoe;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\ShoeTransformer;
 
 /**
  * Class ShoeController
@@ -21,7 +22,9 @@ class ShoeController extends Controller
      */
     public function index()
     {
-        return Shoe::paginate(25);
+        $shoes = Shoe::all();
+
+        return $this->response->collection($shoes, new ShoeTransformer);
     }
 
     /**
@@ -43,7 +46,7 @@ class ShoeController extends Controller
      */
     public function show(Shoe $shoe)
     {
-        return $shoe;
+        return $this->response->item($shoe, new ShoeTransformer);
     }
 
     /**

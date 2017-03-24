@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Statistic;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\StatisticTransformer;
 
 /**
  * Class StatisticController
@@ -21,7 +22,9 @@ class StatisticController extends Controller
      */
     public function index()
     {
-        return Statistic::paginate(25);
+        $statistics = Statistic::paginate();
+
+        return $this->response->collection($statistics, new StatisticTransformer);
     }
 
     /**
@@ -43,7 +46,7 @@ class StatisticController extends Controller
      */
     public function show(Statistic $statistic)
     {
-        return $statistic;
+        return $this->response->item($statistic, new StatisticTransformer);
     }
 
     /**

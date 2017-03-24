@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Tag;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\TagTransformer;
 
 /**
  * Class TagController
@@ -21,7 +22,9 @@ class TagController extends Controller
      */
     public function index()
     {
-        return Tag::paginate(25);
+        $tags = Tag::all();
+
+        return $this->response->collection($tags, new TagTransformer);
     }
 
     /**
@@ -43,7 +46,7 @@ class TagController extends Controller
      */
     public function show(Tag $tag)
     {
-        return $tag;
+        return $this->response->item($tag, new TagTransformer);
     }
 
     /**
