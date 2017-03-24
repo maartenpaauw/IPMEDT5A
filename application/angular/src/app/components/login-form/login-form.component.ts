@@ -32,7 +32,6 @@ export class LoginFormComponent implements OnInit {
 
   private submitForm(value: Object)
   {
-    console.log(value);
     this.loginService.login(value).subscribe(
       (res: any) => {
         //TODO: route aanpassen.

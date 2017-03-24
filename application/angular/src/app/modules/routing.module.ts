@@ -6,23 +6,40 @@ import {IdlePreload, IdlePreloadModule} from "./idle.preload.module";
 import {LoginFormComponent} from "../components/login-form/login-form.component";
 
 import {LoginGuard} from "../guards/login.guard";
+import {NotFoundComponent} from "../components/not-found/not-found.component";
 
 const routes: Routes = [
-    // {
-    //     path: '',
-    //     pathMatch: 'full'
-    // },
+    {
+        path: '',
+        pathMatch: 'full',
+        redirectTo: '/login'
+    },
+    {
+        path: 'dashboard',
+        loadChildren: './dashboard.module#DashboardModule',
+        canActivate: [
+            LoginGuard
+        ]
+    },
+    {
+        path: 'settings',
+        loadChildren: './settings.module#SettingsModule',
+        canActivate: [
+            LoginGuard
+        ]
+    },
     {
         path: 'login',
         component: LoginFormComponent
     },
     {
-        path: 'sizes',
-        loadChildren: './sizes.module#SizesModule',
-        canActivate: [
-            LoginGuard
-        ]
-    }
+        path: '404',
+        component: NotFoundComponent
+    },
+    {
+        path: '**',
+        redirectTo: '/404'
+    },
 ];
 
 @NgModule({

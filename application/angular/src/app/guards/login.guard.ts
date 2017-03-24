@@ -13,11 +13,21 @@ export class LoginGuard implements CanActivate {
     constructor(private router: Router,
                 private loginService: LoginService) {}
 
-    canActivate(): Observable<boolean> {
-        return this.loginService.check();
+    canActivate(): boolean {
+        this.loginService.check().subscribe(
+            (res) => {
+                return true;
+            },
+            (err) => {
+                this.redirect('/login');
+                return false;
+            }
+        );
+
+        return true;
     }
 
-    public redirect(url:string = '/'): void {
+    public redirect(url:string = '/dashboard'): void {
         this.router.navigateByUrl(url);
     }
 }
