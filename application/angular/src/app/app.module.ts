@@ -16,7 +16,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import {LoginService} from "./services/login/login.service";
 import {LoginGuard} from "./guards/login.guard";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -34,6 +34,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HttpModule,
     RoutingModule,
     RouterModule,
+    ChartsModule,
     NgbModule.forRoot()
   ],
   providers: [
