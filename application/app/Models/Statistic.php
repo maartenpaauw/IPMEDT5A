@@ -8,6 +8,8 @@ class Statistic extends Model
 {
     protected $with = ['action', 'shelf', 'tag'];
 
+    protected $fillable = ['action_id', 'shelf_id', 'tag_id'];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
