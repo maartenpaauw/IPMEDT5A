@@ -13,8 +13,9 @@ class ActionTableSeeder extends Seeder
     public function run()
     {
         $actions = [
-            'demo_oppakken',
-            'maat_scannen'
+            'demo_opgepakt',
+            'maat_gescanned',
+            'knop_ingedrukt'
         ];
 
         foreach ($actions as $action) {
