@@ -12,7 +12,7 @@ class SizeTableSeeder extends Seeder
      */
     public function run()
     {
-        $sizes = range(30, 50);
+        $sizes = range(30, 50, 0.5);
 
         foreach ($sizes as $size)
         {
