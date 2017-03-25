@@ -15,7 +15,7 @@ class CreateStatisticsTable extends Migration
     {
         Schema::create('statistics', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('action_id')->unsigned();
+            $table->integer('action_id')->unsigned()->index();
             $table->integer('shelf_id')->unsigned()->nullable();
             $table->integer('tag_id')->unsigned()->nullable();
             $table->timestamps();

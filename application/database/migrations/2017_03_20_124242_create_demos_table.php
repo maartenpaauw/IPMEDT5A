@@ -16,8 +16,6 @@ class CreateDemosTable extends Migration
         Schema::create('demos', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('product_id')->unsigned();
-
-            // TODO: even hier naar kijken.
             $table->uuid('uuid')->index();
             $table->timestamps();
 

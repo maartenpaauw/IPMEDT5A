@@ -16,7 +16,7 @@ class CreateShelvesTable extends Migration
         Schema::create('shelves', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('demo_id')->unsigned()->nullable();
-            $table->macAddress('mac_address')->unique();
+            $table->macAddress('mac_address')->unique()->index();
             $table->timestamps();
 
             $table->foreign('demo_id')

@@ -12,4 +12,14 @@ class Demo extends Model
     {
         return $this->hasOne(Product::class, 'id', 'product_id');
     }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
 }
