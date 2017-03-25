@@ -2,12 +2,13 @@ import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {SettingsComponent} from "../components/settings/settings.component";
 import {LoginGuard} from "../guards/login.guard";
+import {SchappenComponent} from "../components/schappen/schappen.component";
+
 
 @NgModule({
     declarations: [
-        SettingsComponent
+        SchappenComponent
     ],
     providers: [
     ],
@@ -17,7 +18,7 @@ import {LoginGuard} from "../guards/login.guard";
         RouterModule.forChild([
             {
                 path: '',
-                component: SettingsComponent,
+                component: SchappenComponent,
                 pathMatch: 'full',
                 canActivate: [
                     LoginGuard
@@ -26,4 +27,4 @@ import {LoginGuard} from "../guards/login.guard";
         ])
     ]
 })
-export class SettingsModule {}
+export class SchappenModule {}

@@ -22,8 +22,22 @@ const routes: Routes = [
         ]
     },
     {
+        path: 'voorraad',
+        loadChildren: './voorraad.module#VoorraadModule',
+        canActivate: [
+            LoginGuard
+        ]
+    },
+    {
         path: 'settings',
         loadChildren: './settings.module#SettingsModule',
+        canActivate: [
+            LoginGuard
+        ]
+    },
+    {
+        path: 'schappen',
+        loadChildren: './schappen.module#SchappenModule',
         canActivate: [
             LoginGuard
         ]

@@ -17,6 +17,7 @@ import {LoginService} from "./services/login/login.service";
 import {LoginGuard} from "./guards/login.guard";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,7 +25,7 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

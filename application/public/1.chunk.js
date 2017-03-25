@@ -1,6 +1,6 @@
-webpackJsonp([0,6],{
+webpackJsonp([1,6],{
 
-/***/ 563:
+/***/ 562:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -9,8 +9,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_router__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__angular_common__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ng_bootstrap_ng_bootstrap__ = __webpack_require__(214);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_settings_settings_component__ = __webpack_require__(565);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SettingsModule", function() { return SettingsModule; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__components_dashboard_dashboard_component__ = __webpack_require__(564);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__guards_login_guard__ = __webpack_require__(49);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DashboardModule", function() { return DashboardModule; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -22,15 +23,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var SettingsModule = (function () {
-    function SettingsModule() {
+
+var DashboardModule = (function () {
+    function DashboardModule() {
     }
-    return SettingsModule;
+    return DashboardModule;
 }());
-SettingsModule = __decorate([
+DashboardModule = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["b" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_4__components_settings_settings_component__["a" /* SettingsComponent */]
+            __WEBPACK_IMPORTED_MODULE_4__components_dashboard_dashboard_component__["a" /* DashboardComponent */]
         ],
         providers: [],
         imports: [
@@ -39,24 +41,27 @@ SettingsModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_1__angular_router__["a" /* RouterModule */].forChild([
                 {
                     path: '',
-                    component: __WEBPACK_IMPORTED_MODULE_4__components_settings_settings_component__["a" /* SettingsComponent */],
-                    pathMatch: 'full'
+                    component: __WEBPACK_IMPORTED_MODULE_4__components_dashboard_dashboard_component__["a" /* DashboardComponent */],
+                    pathMatch: 'full',
+                    canActivate: [
+                        __WEBPACK_IMPORTED_MODULE_5__guards_login_guard__["a" /* LoginGuard */]
+                    ]
                 }
             ])
         ]
     })
-], SettingsModule);
+], DashboardModule);
 
-//# sourceMappingURL=settings.module.js.map
+//# sourceMappingURL=dashboard.module.js.map
 
 /***/ }),
 
-/***/ 565:
+/***/ 564:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(1);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return SettingsComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return DashboardComponent; });
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -67,27 +72,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 
-var SettingsComponent = (function () {
-    function SettingsComponent() {
+var DashboardComponent = (function () {
+    function DashboardComponent() {
     }
-    SettingsComponent.prototype.ngOnInit = function () {
+    DashboardComponent.prototype.ngOnInit = function () {
     };
-    return SettingsComponent;
+    return DashboardComponent;
 }());
-SettingsComponent = __decorate([
+DashboardComponent = __decorate([
     __webpack_require__.i(__WEBPACK_IMPORTED_MODULE_0__angular_core__["T" /* Component */])({
-        selector: 'app-settings',
-        template: __webpack_require__(569),
-        styles: [__webpack_require__(567)]
+        selector: 'app-dashboard',
+        template: __webpack_require__(568),
+        styles: [__webpack_require__(566)]
     }),
     __metadata("design:paramtypes", [])
-], SettingsComponent);
+], DashboardComponent);
 
-//# sourceMappingURL=settings.component.js.map
+//# sourceMappingURL=dashboard.component.js.map
 
 /***/ }),
 
-/***/ 567:
+/***/ 566:
 /***/ (function(module, exports, __webpack_require__) {
 
 exports = module.exports = __webpack_require__(24)();
@@ -105,12 +110,12 @@ module.exports = module.exports.toString();
 
 /***/ }),
 
-/***/ 569:
+/***/ 568:
 /***/ (function(module, exports) {
 
-module.exports = "<p>\n  settings works!\n</p>\n"
+module.exports = "<p>\n  dashboard works!\n</p>\n"
 
 /***/ })
 
 });
-//# sourceMappingURL=0.chunk.js.map
+//# sourceMappingURL=1.chunk.js.map

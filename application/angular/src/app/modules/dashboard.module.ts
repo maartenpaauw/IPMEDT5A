@@ -4,10 +4,12 @@ import {CommonModule} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {DashboardComponent} from "../components/dashboard/dashboard.component";
 import {LoginGuard} from "../guards/login.guard";
+import {OverzichtComponent} from "../components/overzicht/overzicht.component";
 
 @NgModule({
     declarations: [
-        DashboardComponent
+        DashboardComponent,
+        OverzichtComponent
     ],
     providers: [
     ],
