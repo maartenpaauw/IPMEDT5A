@@ -2,14 +2,13 @@ import {NgModule} from "@angular/core";
 import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
-import {DashboardComponent} from "../components/dashboard/dashboard.component";
+import {VoorraadComponent} from "../components/voorraad/voorraad.component";
 import {LoginGuard} from "../guards/login.guard";
-import {OverzichtComponent} from "../components/overzicht/overzicht.component";
+
 
 @NgModule({
     declarations: [
-        DashboardComponent,
-        OverzichtComponent
+        VoorraadComponent
     ],
     providers: [
     ],
@@ -19,7 +18,7 @@ import {OverzichtComponent} from "../components/overzicht/overzicht.component";
         RouterModule.forChild([
             {
                 path: '',
-                component: DashboardComponent,
+                component: VoorraadComponent,
                 pathMatch: 'full',
                 canActivate: [
                     LoginGuard
@@ -28,4 +27,4 @@ import {OverzichtComponent} from "../components/overzicht/overzicht.component";
         ])
     ]
 })
-export class DashboardModule {}
+export class VoorraadModule {}
