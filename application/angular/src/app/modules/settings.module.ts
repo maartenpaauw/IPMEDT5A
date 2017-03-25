@@ -3,6 +3,7 @@ import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {SettingsComponent} from "../components/settings/settings.component";
+import {LoginGuard} from "../guards/login.guard";
 
 @NgModule({
     declarations: [
@@ -17,7 +18,10 @@ import {SettingsComponent} from "../components/settings/settings.component";
             {
                 path: '',
                 component: SettingsComponent,
-                pathMatch: 'full'
+                pathMatch: 'full',
+                canActivate: [
+                    LoginGuard
+                ]
             }
         ])
     ]
