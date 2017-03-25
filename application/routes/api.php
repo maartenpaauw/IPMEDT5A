@@ -36,9 +36,17 @@ $api->version('v1', function ($api)
         $api->resource('tags',       \IPMEDT5A\Http\Controllers\TagController::class, $except);
         $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class, $except);
 
-        // Extra routes
-        $api->post('settings/toggle/{setting}',     ['as' => 'actions.toggle', 'uses'  => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
-        $api->post('shelves/connect/{mac_address}', ['as' => 'shelves.connect', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@connect']);
+        // Settings
+        $api->post('settings/toggle/{setting}/',                ['as' => 'actions.toggle',                 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
+
+        // Shelves
+        $api->post('shelves/{mac_address}/connect/',           ['as' => 'shelves.connect',                'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@connect']);
+        $api->post('shelves/{mac_address}/button_pressed/',    ['as' => 'shelves.actions.button_pressed', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@buttonPressed']);
+        $api->post('shelves/{mac_address}/tags/{tag_uuid}/',   ['as' => 'shelves.tags.scanned',           'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@tagScanned']);
+        $api->post('shelves/{mac_address}/demos/{demo_uuid}/', ['as' => 'shelves.demos.scanned',          'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
+
+        // Statistics
+        $api->post('statistics/demo_opgepakt/{mac_address}/',  ['as' => 'statistics.demos.opgepakt',      'uses' => '\IPMEDT5A\Http\Controllers\StatisticsController@demoOpgepakt']);
     });
 
     // Authenticate
