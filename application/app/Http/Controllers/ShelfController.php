@@ -2,9 +2,13 @@
 
 namespace IPMEDT5A\Http\Controllers;
 
-use IPMEDT5A\Models\Shelf;
 use Illuminate\Http\Request;
+use IPMEDT5A\Models\Action;
+use IPMEDT5A\Models\Shelf;
+use IPMEDT5A\Models\Statistic;
+use IPMEDT5A\Models\Tag;
 use IPMEDT5A\Transformers\ShelfTransformer;
+use IPMEDT5A\Transformers\StatisticTransformer;
 
 /**
  * Class ShelfController
@@ -85,8 +89,63 @@ class ShelfController extends Controller
         return $this->response->item($shelf, new ShelfTransformer);
     }
 
-    public function is_connected($mac_address)
+    /**
+     * @param Shelf $shelf
+     * @return \Dingo\Api\Http\Response
+     */
+    public function demoPickedUp(Shelf $shelf)
     {
+        $statistic = Statistic::create([
+            'action_id' => Action::demoOpgepakt()->id,
+            'shelf_id'  => $shelf->id
+        ]);
 
+        return $this->response->item($statistic, new StatisticTransformer);
+    }
+
+    /**
+     * @param Shelf $shelf
+     * @param $new_demo_uuid
+     */
+    public function demoScanned(Shelf $shelf, $new_demo_uuid)
+    {
+        // TODO: broadcast naar angular frontend met shelf id en demo uuid
+    }
+
+    /**
+     * @param Shelf $shelf
+     * @return \Dingo\Api\Http\Response
+     */
+    public function buttonPressed(Shelf $shelf)
+    {
+        $statistic = Statistic::create([
+            'action_id' => Action::knopIngedrukt()->id,
+            'shelf_id'  => $shelf->id
+        ]);
+
+        // TODO: product opzoeken.
+        // TODO: notificatie sturen.
+
+        return $this->response->item($statistic, new StatisticTransformer);
+    }
+
+    /**
+     * @param Shelf $shelf
+     * @param Tag $tag
+     * @return \Dingo\Api\Http\Response
+     */
+    public function tagScanned(Shelf $shelf, Tag $tag)
+    {
+        $statistic = Statistic::create([
+            'action_id' => Action::maatGescanned()->id,
+            'shelf_id'  => $shelf->id,
+            'tag_id'    => $tag->id
+        ]);
+
+        // TODO: opzoeken product.
+        // TODO: informatie sturen.
+        // TODO: maten terug sturen.
+
+        return $this->response->item($statistic, new StatisticTransformer);
     }
 }

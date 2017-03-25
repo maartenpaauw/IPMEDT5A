@@ -10,7 +10,7 @@ class Shelf extends Model
      * @var array
      */
     protected $with = ['demo'];
-
+    
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
