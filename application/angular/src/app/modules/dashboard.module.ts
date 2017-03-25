@@ -7,12 +7,16 @@ import {DashboardComponent} from "../components/dashboard/dashboard.component";
 import {LoginGuard} from "../guards/login.guard";
 import {OverzichtComponent} from "../components/overzicht/overzicht.component";
 import {OpgepaktVandaagComponent} from "../components/opgepakt-vandaag/opgepakt-vandaag.component";
+import {GescandVandaagComponent} from "../components/gescand-vandaag/gescand-vandaag.component";
+import {VergelijkingActiesComponent} from "../components/vergelijking-acties/vergelijking-acties.component";
 
 @NgModule({
     declarations: [
         DashboardComponent,
         OverzichtComponent,
-        OpgepaktVandaagComponent
+        OpgepaktVandaagComponent,
+        GescandVandaagComponent,
+        VergelijkingActiesComponent
     ],
     providers: [
     ],

@@ -25,7 +25,7 @@ import { ChartsModule } from 'ng2-charts';
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    NotFoundComponent
+    NotFoundComponent,
   ],
   imports: [
     BrowserModule,
