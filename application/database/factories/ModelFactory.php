@@ -61,6 +61,12 @@ $factory->define(\IPMEDT5A\Models\Shelf::class, function (\Faker\Generator $fake
     ];
 });
 
+$factory->state(\IPMEDT5A\Models\Shelf::class, 'lege_plank', function(\Faker\Generator $faker) use ($factory) {
+    return [
+        'demo_id' => null
+    ];
+});
+
 $factory->define(\IPMEDT5A\Models\Statistic::class, function (\Faker\Generator $faker) use ($factory) {
     return [
         'action_id'  => \IPMEDT5A\Models\Action::where('name', 'demo_opgepakt')->first()->id,

@@ -55,6 +55,7 @@ class TestDataCommand extends Command
             factory(Tag::class, 5)->create();
             factory(Demo::class, 3)->create();
             factory(Shelf::class, 3)->create();
+            factory(Shelf::class, 3)->states(['lege_plank'])->create();
             factory(Statistic::class, 100)->create();
             factory(Statistic::class, 100)->states(['maat_gescanned'])->create();
             factory(Statistic::class, 100)->states(['knop_ingedrukt'])->create();
