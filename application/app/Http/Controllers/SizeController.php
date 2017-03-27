@@ -31,7 +31,7 @@ class SizeController extends Controller
      */
     public function index()
     {
-        $sizes = Size::limit(1)->get();
+        $sizes = Size::all();
 
         return $this->response->collection($sizes, new SizeTransformer);
     }
