@@ -9,3 +9,4 @@ Homestead.yaml
 .env
 *.meta.php
 _ide_helper.php
+!.htaccess
