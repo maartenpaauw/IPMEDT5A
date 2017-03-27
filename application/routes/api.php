@@ -26,15 +26,15 @@ $api->version('v1', function ($api)
         $except = ['except' => ['create', 'edit']];
 
         // Resource routes.
-        $api->resource('actions',    \IPMEDT5A\Http\Controllers\ActionController::class, $except);
-        $api->resource('demos',      \IPMEDT5A\Http\Controllers\DemoController::class, $except);
-        $api->resource('products',   \IPMEDT5A\Http\Controllers\ProductController::class, $except);
-        $api->resource('shelves',    \IPMEDT5A\Http\Controllers\ShelfController::class, $except);
-        $api->resource('shoes',      \IPMEDT5A\Http\Controllers\ShoeController::class, $except);
-        $api->resource('sizes',      \IPMEDT5A\Http\Controllers\SizeController::class, $except);
+        $api->resource('actions',    \IPMEDT5A\Http\Controllers\ActionController::class,    $except);
+        $api->resource('demos',      \IPMEDT5A\Http\Controllers\DemoController::class,      $except);
+        $api->resource('products',   \IPMEDT5A\Http\Controllers\ProductController::class,   $except);
+        $api->resource('shelves',    \IPMEDT5A\Http\Controllers\ShelfController::class,     $except);
+        $api->resource('shoes',      \IPMEDT5A\Http\Controllers\ShoeController::class,      $except);
+        $api->resource('sizes',      \IPMEDT5A\Http\Controllers\SizeController::class,      $except);
         $api->resource('statistics', \IPMEDT5A\Http\Controllers\StatisticController::class, $except);
-        $api->resource('tags',       \IPMEDT5A\Http\Controllers\TagController::class, $except);
-        $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class, $except);
+        $api->resource('tags',       \IPMEDT5A\Http\Controllers\TagController::class,       $except);
+        $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class,   $except);
 
         // Settings
         $api->post('settings/toggle/{setting}/',                 ['as' => 'actions.toggle',                 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);

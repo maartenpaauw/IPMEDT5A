@@ -16,13 +16,22 @@ use IPMEDT5A\Transformers\SizeTransformer;
 class SizeController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the sizes.
+     *
+     * @Get("/api/sizes/")
+     * @Versions({"v1"})
+     * @Transaction({
+     *      @Request(headers = {"Authorization": "Bearer TOKEN_HERE"}),
+     *      @Response(200, body = {"data":{{"id":1,"eu_size":"30.0","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"}}}),
+     *      @Response(401, body = {"message":"Failed to authenticate because of bad credentials or an invalid authorization header.","status_code":401}),
+     *      @Response(401, body = {"message":"Could not decode token: The token 'TOKEN_HERE' is an invalid JWS","status_code":401}),
+     * })
      *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
-        $sizes = Size::all();
+        $sizes = Size::limit(1)->get();
 
         return $this->response->collection($sizes, new SizeTransformer);
     }
@@ -39,7 +48,19 @@ class SizeController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified size.
+     *
+     * @Get("/api/sizes/{size}/")
+     * @Versions({"v1"})
+     * @Parameters({
+     *      @Parameter("size", description="The eu_size of the size.", required=true, type="integer"),
+     * })
+     * @Transaction({
+     *      @Request(headers = {"Authorization": "Bearer TOKEN_HERE"}),
+     *      @Response(200, body = {"data":{"id":21,"eu_size":"40.0","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"}}),
+     *      @Response(401, body = {"message":"Failed to authenticate because of bad credentials or an invalid authorization header.","status_code":401}),
+     *      @Response(401, body = {"message":"Could not decode token: The token 'TOKEN_HERE' is an invalid JWS","status_code":401}),
+     * })
      *
      * @param  \IPMEDT5A\Models\Size  $size
      * @return \Illuminate\Http\Response

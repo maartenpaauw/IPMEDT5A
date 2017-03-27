@@ -9,14 +9,23 @@ use IPMEDT5A\Transformers\ActionTransformer;
 /**
  * Class ActionController
  *
- * @package IPMEDT5A\Http\Controllers
- *
  * @Resource("Actions")
+ *
+ * @package IPMEDT5A\Http\Controllers
  */
 class ActionController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of actions.
+     *
+     * @Get("/api/actions/")
+     * @Versions({"v1"})
+     * @Transaction({
+     *      @Request(headers = {"Authorization": "Bearer TOKEN_HERE"}),
+     *      @Response(200, body = {"data":{{"id":1,"name":"demo_opgepakt","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"}}}),
+     *      @Response(401, body = {"message":"Failed to authenticate because of bad credentials or an invalid authorization header.","status_code":401}),
+     *      @Response(401, body = {"message":"Could not decode token: The token 'TOKEN_HERE' is an invalid JWS","status_code":401}),
+     * })
      *
      * @return \Illuminate\Http\Response
      */
@@ -28,7 +37,7 @@ class ActionController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Store a newly created action in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -39,7 +48,19 @@ class ActionController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified action.
+     *
+     * @Get("/api/actions/{action}/")
+     * @Versions({"v1"})
+     * @Parameters({
+     *      @Parameter("action", description="The name of the action.", required=true, type="string"),
+     * })
+     * @Transaction({
+     *      @Request(headers = {"Authorization": "Bearer TOKEN_HERE"}),
+     *      @Response(200, body = {"data":{"id":1,"name":"demo_opgepakt","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"}}),
+     *      @Response(401, body = {"message":"Failed to authenticate because of bad credentials or an invalid authorization header.","status_code":401}),
+     *      @Response(401, body = {"message":"Could not decode token: The token 'TOKEN_HERE' is an invalid JWS","status_code":401}),
+     * })
      *
      * @param  \IPMEDT5A\Models\Action  $action
      * @return \Illuminate\Http\Response
@@ -50,7 +71,7 @@ class ActionController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * Update the specified action in storage.
      *
      * @param  \Illuminate\Http\Request  $request
      * @param  \IPMEDT5A\Models\Action  $action
@@ -62,7 +83,7 @@ class ActionController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Remove the specified action from storage.
      *
      * @param  \IPMEDT5A\Models\Action  $action
      * @return \Illuminate\Http\Response

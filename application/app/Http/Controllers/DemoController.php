@@ -16,7 +16,16 @@ use IPMEDT5A\Transformers\DemoTransformer;
 class DemoController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of demo shoes.
+     *
+     * @Get("/api/demos/")
+     * @Versions({"v1"})
+     * @Transaction({
+     *      @Request(headers = {"Authorization": "Bearer TOKEN_HERE"}),
+     *      @Response(200, body = {"data":{{"id":1,"product_id":45,"uuid":"d20fe26a-f9d2-335e-a029-a8628520a76e","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46","product":{"id":45,"shoe_id":10,"size_id":23,"sku":"3725077122970","price":"762.27","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46","shoe":{"id":10,"name":"SlateBlue","brand":"Walter PLC","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"},"size":{"id":23,"eu_size":"41.0","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"}}}}}),
+     *      @Response(401, body = {"message":"Failed to authenticate because of bad credentials or an invalid authorization header.","status_code":401}),
+     *      @Response(401, body = {"message":"Could not decode token: The token 'TOKEN_HERE' is an invalid JWS","status_code":401}),
+     * })
      *
      * @return \Illuminate\Http\Response
      */
@@ -39,7 +48,19 @@ class DemoController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified demo.
+     *
+     * @Get("/api/demos/{demo}/")
+     * @Versions({"v1"})
+     * @Parameters({
+     *      @Parameter("demo", description="The uuid of the demo.", required=true, type="string"),
+     * })
+     * @Transaction({
+     *      @Request(headers = {"Authorization": "Bearer TOKEN_HERE"}),
+     *      @Response(200, body = {"data":{"id":1,"product_id":45,"uuid":"d20fe26a-f9d2-335e-a029-a8628520a76e","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46","product":{"id":45,"shoe_id":10,"size_id":23,"sku":"3725077122970","price":"762.27","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46","shoe":{"id":10,"name":"SlateBlue","brand":"Walter PLC","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"},"size":{"id":23,"eu_size":"41.0","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"}}}}),
+     *      @Response(401, body = {"message":"Failed to authenticate because of bad credentials or an invalid authorization header.","status_code":401}),
+     *      @Response(401, body = {"message":"Could not decode token: The token 'TOKEN_HERE' is an invalid JWS","status_code":401}),
+     * })
      *
      * @param  \IPMEDT5A\Models\Demo  $demo
      * @return \Illuminate\Http\Response

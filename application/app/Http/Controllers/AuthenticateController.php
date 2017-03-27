@@ -8,10 +8,26 @@ use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
 
+/**
+ * Class AuthenticateController
+ *
+ * @package IPMEDT5A\Http\Controllers
+ *
+ * @Resource("Authorisation", uri="/authenticate")
+ */
 class AuthenticateController extends Controller
 {
     /**
      * Authenticate a user.
+     *
+     * @Post("/authenticate")
+     * @Versions({"v1"})
+     * @Transaction({
+     *      @Request({"email": "YOUR_EMAIL", "password": "YOUR_PASSWORD"}),
+     *      @Response(200, body = {"token":"YOUR_TOKEN"}),
+     *      @Response(401, body = {"error":"invalid_credentials"}),
+     *      @Response(500, body = {"error":"could_not_create_token"}),
+     * })
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
@@ -39,6 +55,15 @@ class AuthenticateController extends Controller
     /**
      * Authenticate a shelf.
      *
+     * @Post("/authenticate/shelf")
+     * @Versions({"v1"})
+     * @Transaction({
+     *      @Request({"to": "do"}),
+     *      @Response(200, body = {"token":"YOUR_TOKEN"}),
+     *      @Response(401, body = {"error":"invalid_credentials"}),
+     *      @Response(500, body = {"error":"could_not_create_token"}),
+     * })
+     *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
@@ -49,6 +74,18 @@ class AuthenticateController extends Controller
     }
 
     /**
+     * Check the token.
+     *
+     * @Post("/authenticate/check/")
+     * @Versions({"v1"})
+     * @Transaction({
+     *      @Request(headers = {"Authorization": "Bearer TOKEN_HERE"}),
+     *      @Response(200, body = {"user":{"id":1,"name":"YOUR_NAME","email":"YOUR_EMAIL","created_at":"2017-03-25 23:18:46","updated_at":"2017-03-25 23:18:46"}}),
+     *      @Response(401, body = {"token_expired"}),
+     *      @Response(400, body = {"token_invalid"}),
+     *      @Response(500, body = {"token_absent"}),
+     * })
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function authenticateCheck()
