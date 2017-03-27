@@ -9,8 +9,8 @@ import {students} from "../../../constants";
 })
 export class FooterComponent implements OnInit {
 
-  private year: number;
-  private students: Array<Student> = students;
+  public year: number;
+  public students: Array<Student> = students;
 
   constructor() { }
 

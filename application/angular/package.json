@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "sh pre-build.sh; ng build; sh post-build.sh",
+    "build": "sh pre-build.sh; ng build --prod --aot; sh post-build.sh",
     "test": "ng test",
     "lint": "ng lint",
     "hmr": "ng serve --hmr -e=hmr",

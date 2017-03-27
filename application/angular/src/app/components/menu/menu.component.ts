@@ -10,7 +10,7 @@ import {Router} from "@angular/router";
 })
 export class MenuComponent implements OnInit {
 
-  private loggedIn: boolean;
+  public loggedIn: boolean;
 
   constructor(private loginService: LoginService,
               private router: Router) { }

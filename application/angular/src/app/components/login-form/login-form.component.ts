@@ -34,7 +34,7 @@ export class LoginFormComponent implements OnInit {
     });
   }
 
-  private submitForm(value: Object)
+  public submitForm(value: Object)
   {
     this.loginService.login(value).subscribe(
       (res: any) => {
