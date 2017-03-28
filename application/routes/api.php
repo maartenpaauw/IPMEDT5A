@@ -37,22 +37,22 @@ $api->version('v1', function ($api)
         $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class,   $except);
 
         // Settings
-        $api->post('settings/toggle/{setting}/',                 ['as' => 'actions.toggle',                 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
+        $api->post('settings/toggle/{setting}/', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
 
         // Shelves
-        $api->post('shelves/{mac_address}/connect/',             ['as' => 'shelves.connect',                'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@connect']);
+        $api->post('shelves/{mac_address}/connect/', ['as' => 'shelves.connect', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@connect']);
 
         // Actions
-        $api->post('shelves/{shelf}/demos/{demo_uuid}/scanned/', ['as' => 'shelves.actions.demo_scanned',   'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
-        $api->post('shelves/{shelf}/tags/{tag}/scanned/',        ['as' => 'shelves.actions.tag_scanned',    'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@tagScanned']);
-        $api->post('shelves/{shelf}/actions/button_pressed/',    ['as' => 'shelves.actions.button_pressed', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@buttonPressed']);
-        $api->post('shelves/{shelf}/actions/picked_up/',         ['as' => 'shelves.actions.picked_up',      'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoPickedUp']);
+        $api->post('shelves/{shelf}/demos/{demo_uuid}/scanned/', ['as' => 'shelves.actions.demo_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
+        $api->post('shelves/{shelf}/tags/{tag}/scanned/', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@tagScanned']);
+        $api->post('shelves/{shelf}/tags/{tag}/actions/button_pressed/', ['as' => 'shelves.actions.button_pressed', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@buttonPressed']);
+        $api->post('shelves/{shelf}/actions/picked_up/', ['as' => 'shelves.actions.picked_up', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoPickedUp']);
 
         // Authenticate
-        $api->post('authenticate/check',                         ['as' => 'authenticate.check',             'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateCheck']);
+        $api->post('authenticate/check', ['as' => 'authenticate.check', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateCheck']);
     });
 
     // Authenticate
-    $api->post('authenticate',       ['as' => 'authenticate.user',  'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticate']);
+    $api->post('authenticate', ['as' => 'authenticate.user', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticate']);
     $api->post('authenticate/shelf', ['as' => 'authenticate.shelf', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateShelf']);
 });

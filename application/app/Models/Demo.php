@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Demo extends Model
 {
+    /**
+     * @var array
+     */
     protected $with = ['product'];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function product()
     {
         return $this->hasOne(Product::class, 'id', 'product_id');

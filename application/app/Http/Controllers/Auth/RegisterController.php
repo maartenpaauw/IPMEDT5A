@@ -2,7 +2,7 @@
 
 namespace IPMEDT5A\Http\Controllers\Auth;
 
-use IPMEDT5A\User;
+use IPMEDT5A\Models\User;
 use IPMEDT5A\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;

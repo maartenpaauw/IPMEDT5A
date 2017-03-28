@@ -15,4 +15,12 @@ class Size extends Model
     {
         return 'eu_size';
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function products()
+    {
+        return $this->belongsTo(Product::class, 'id', 'size_id');
+    }
 }

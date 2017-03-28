@@ -86,6 +86,7 @@ $factory->state(\IPMEDT5A\Models\Statistic::class, 'maat_gescanned', function(\F
 
 $factory->state(\IPMEDT5A\Models\Statistic::class, 'knop_ingedrukt', function(\Faker\Generator $faker) use ($factory) {
     return [
-        'action_id' => \IPMEDT5A\Models\Action::where('name', 'knop_ingedrukt')->first()->id
+        'action_id' => \IPMEDT5A\Models\Action::where('name', 'knop_ingedrukt')->first()->id,
+        'tag_id'    => \IPMEDT5A\Models\Tag::inRandomOrder()->first()->id
     ];
 });
