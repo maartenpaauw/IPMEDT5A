@@ -1,40 +1,26 @@
-<h2 class="page-title">Voorraad</h2>
+<div class="row">
+  <div class="col">
+    <h2 class="page-title">Voorraad</h2>
+  </div>
+</div>
 
 <table class="table">
   <thead class="thead-inverse">
     <tr>
-      <th>#</th>
+      <th># SKU</th>
       <th>Naam</th>
       <th>Merk</th>
       <th>Prijs</th>
-      <th>SKU</th>
       <th>Maat</th>
     </tr>
   </thead>
   <tbody>
-    <tr>
-      <td>1</td>
-      <td>Superstar</td>
-      <td>Adidas</td>
-      <td>69</td>
-      <td>1234052</td>
-      <td>44</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Andere</td>
-      <td>Adidas</td>
-      <td>69</td>
-      <td>4643453</td>
-      <td>41</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Airmax</td>
-      <td>Nike</td>
-      <td>69</td>
-      <td>2352454</td>
-      <td>37</td>
+    <tr *ngFor="let product of products">
+      <td>{{ product.sku }}</td>
+      <td>{{ product.shoe.name }}</td>
+      <td>{{ product.shoe.brand }}</td>
+      <td>&euro; {{ product.price }}</td>
+      <td>{{ product.size.eu_size }}</td>
     </tr>
   </tbody>
 </table>

@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {VoorraadComponent} from "../components/voorraad/voorraad.component";
 import {LoginGuard} from "../guards/login.guard";
+import {ProductsService} from "../services/products/products.service";
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import {LoginGuard} from "../guards/login.guard";
         VoorraadComponent
     ],
     providers: [
+        ProductsService
     ],
     imports: [
         CommonModule,

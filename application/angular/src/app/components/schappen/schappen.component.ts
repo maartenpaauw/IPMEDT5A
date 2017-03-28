@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {ShelvesService} from "../../services/shelves/shelves.service";
+import {Shelf} from "../../interfaces/shelf.interface";
 
 @Component({
   selector: 'app-schappen',
@@ -9,7 +10,7 @@ import {ShelvesService} from "../../services/shelves/shelves.service";
 })
 export class SchappenComponent implements OnInit {
 
-  private shelves: any;
+  public shelves: Array<Shelf>;
 
   constructor(private titleService: Title,
               private shelvesService: ShelvesService) { }
@@ -19,8 +20,7 @@ export class SchappenComponent implements OnInit {
 
     this.shelvesService.getShelves().subscribe(
         (res: any) => {
-          console.log(res);
-          this.shelves = res;
+          this.shelves = res.data;
         }
     );
   }

@@ -1,19 +1,22 @@
-<h2 class="page-title">Schappen</h2>
+<div class="row">
+    <div class="col">
+        <h2 class="page-title">Schappen</h2>
+    </div>
+</div>
 
 <div class="row">
-  <div class="col">
+    <div class="col-4 pb-4" *ngFor="let shelf of shelves">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title">Schap {{ shelf.id }}</h3>
+                <p class="card-text" *ngIf="shelf.demo">{{ shelf.demo.product.shoe.brand }} &ndash; {{ shelf.demo.product.shoe.name }}</p>
+                <p class="card-text text-right" *ngIf="shelf.demo">&euro;{{ shelf.demo.product.price }}</p>
 
-    <div class="col-4">
+                <p class="card-text" *ngIf="!shelf.demo">Schap is nog niet gekoppeld.</p>
 
-      <div class="card">
-        <div class="card-block">
-          <h3 class="card-title">Schap 1</h3>
-          <p class="card-text">Merk &ndash; Naam</p>
-          <p class="card-text text-right">€69,-</p>
+                <!-- TODO: koppelen pagina -->
+                <a href="#" class="btn btn-primary" *ngIf="!shelf.demo">koppelen</a>
+            </div>
         </div>
-      </div>
-
     </div>
-
-  </div>
 </div>

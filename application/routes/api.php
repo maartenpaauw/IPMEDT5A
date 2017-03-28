@@ -37,7 +37,7 @@ $api->version('v1', function ($api)
         $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class,   $except);
 
         // Settings
-        $api->post('settings/toggle/{setting}/', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
+        $api->post('settings/{setting}/toggle/', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
 
         // Shelves
         $api->post('shelves/{mac_address}/connect/', ['as' => 'shelves.connect', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@connect']);
