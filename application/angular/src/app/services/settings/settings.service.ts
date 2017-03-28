@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import {RequestOptions, Http, Headers, Response} from "@angular/http";
 import {url} from "../../../constants";
+import {Setting} from "../../interfaces/setting.interface";
 
 @Injectable()
 export class SettingsService {
@@ -16,14 +17,27 @@ export class SettingsService {
     this.postSettings = new RequestOptions({ headers });
   }
 
-  public postKanAanpassen()
-  {
-    return this.postSetting('kan_aanpassen');
+  public getKanAanpassen() {
+    return this.getSetting('kan_aanpassen');
   }
 
-  public postSetting(key: string)
+  public toggleKanAanpassen()
   {
-    return this.http.post(`${url}${key}/toggle`, null, this.postSettings)
+    return this.toggleSetting('kan_aanpassen');
+  }
+
+  private getSetting(key)
+  {
+    return this.http.get(`${url}settings/${key}`, this.postSettings)
+        .map((res: Response) => res.json())
+        .map((res: any) => {
+          return res;
+        })
+  }
+
+  private toggleSetting(key: string)
+  {
+    return this.http.post(`${url}settings/${key}/toggle`, null, this.postSettings)
         .map((res: Response) => res.json())
         .map((res: any) => {
           return res;

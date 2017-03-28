@@ -6,7 +6,7 @@
 
 <div class="row">
     <div class="col">
-
+        <a class="btn text-white" [ngClass]="{'btn-danger': kan_aanpassen?.value, 'btn-primary': !kan_aanpassen?.value}" (click)="toggleKanAanpassen()">Kan {{ kan_aanpassen?.value ? "wel" : "niet" }} aanpassen</a>
     </div>
 </div>
 
