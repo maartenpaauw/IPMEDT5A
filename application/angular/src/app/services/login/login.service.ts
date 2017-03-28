@@ -2,12 +2,11 @@ import { Injectable } from '@angular/core';
 import {Router} from "@angular/router";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 
-import {url} from "../../../constants";
-
 import {Login} from "../../interfaces/login.interface";
 import {User} from "../../interfaces/user.interface";
 
 import {Observable} from "rxjs";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class LoginService {
@@ -31,7 +30,7 @@ export class LoginService {
               private router: Router) { }
 
   public login(data: Object): Observable<boolean | number> {
-    return this.http.post(`${url}authenticate`, data, LoginService.headers(false, true))
+    return this.http.post(`${environment.url}authenticate`, data, LoginService.headers(false, true))
       .map((res: Response) => res.json())
       .map((res: Login) => {
         if (res.token.length > 0) {
@@ -56,7 +55,7 @@ export class LoginService {
   }
 
   public check(): Observable<boolean | number> {
-    return this.http.post(`${url}authenticate/check`, null, LoginService.headers(true))
+    return this.http.post(`${environment.url}authenticate/check`, null, LoginService.headers(true))
         .map((res: Response) => res.json())
         .map((res: User) => {
           if (res.user) {

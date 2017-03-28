@@ -1,4 +1,5 @@
 export const environment = {
   production: true,
-  hmr: false
+  hmr: false,
+  url: 'https://ipmedt5.roddeltrein.nl/api/'
 };

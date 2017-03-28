@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 import {Observable} from "rxjs";
-import {url} from "../../../constants";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class ProductsService {
@@ -19,7 +19,7 @@ export class ProductsService {
   }
 
   public getProducts() {
-    return this.http.get(`${url}products`, this.getOptions)
+    return this.http.get(`${environment.url}products`, this.getOptions)
         .map((res: Response) => res.json())
         .map((res: any) => {
           return res;

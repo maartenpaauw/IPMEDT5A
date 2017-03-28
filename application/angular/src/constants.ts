@@ -1,9 +1,5 @@
 import {Student} from "./app/interfaces/student.interface";
 
-export const url: string = "https://ipmedt5.roddeltrein.nl/api/";
-// export const url: string = "http://application.dev/api/";
-// export const url: string = "http://127.0.0.1:8000/api/";
-
 export const students: Array<Student> = [
     {
         "naam": "Maarten Paauw",

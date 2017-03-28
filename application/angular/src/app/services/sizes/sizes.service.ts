@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, RequestOptions, Headers, Response} from "@angular/http";
 import {Observable} from "rxjs";
-import {url} from "../../../constants";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class SizesService {
@@ -18,7 +18,7 @@ export class SizesService {
   }
 
   public getSizes(): Observable<boolean | number> {
-    return this.http.get(`${url}sizes`, this.getOptions)
+    return this.http.get(`${environment.url}sizes`, this.getOptions)
         .map((res: Response) => res.json())
         .map((res: any) => {
           return res;

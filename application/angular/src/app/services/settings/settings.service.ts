@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import {RequestOptions, Http, Headers, Response} from "@angular/http";
-import {url} from "../../../constants";
-import {Setting} from "../../interfaces/setting.interface";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class SettingsService {
@@ -28,7 +27,7 @@ export class SettingsService {
 
   private getSetting(key)
   {
-    return this.http.get(`${url}settings/${key}`, this.postSettings)
+    return this.http.get(`${environment.url}settings/${key}`, this.postSettings)
         .map((res: Response) => res.json())
         .map((res: any) => {
           return res;
@@ -37,7 +36,7 @@ export class SettingsService {
 
   private toggleSetting(key: string)
   {
-    return this.http.post(`${url}settings/${key}/toggle`, null, this.postSettings)
+    return this.http.post(`${environment.url}settings/${key}/toggle`, null, this.postSettings)
         .map((res: Response) => res.json())
         .map((res: any) => {
           return res;

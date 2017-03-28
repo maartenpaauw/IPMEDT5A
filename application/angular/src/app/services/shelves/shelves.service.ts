@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from "@angular/http";
 import {Observable} from "rxjs";
-import {url} from "../../../constants";
+import {environment} from "../../../environments/environment";
 
 @Injectable()
 export class ShelvesService {
@@ -19,7 +19,7 @@ export class ShelvesService {
   }
 
   public getShelves(): Observable<boolean | number> {
-      return this.http.get(`${url}shelves`, this.getOptions)
+      return this.http.get(`${environment.url}shelves`, this.getOptions)
           .map((res: Response) => res.json())
           .map((res: any) => {
               return res;
