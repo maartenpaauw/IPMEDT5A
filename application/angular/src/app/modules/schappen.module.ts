@@ -4,6 +4,7 @@ import {CommonModule} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {LoginGuard} from "../guards/login.guard";
 import {SchappenComponent} from "../components/schappen/schappen.component";
+import {ShelvesService} from "../services/shelves/shelves.service";
 
 
 @NgModule({
@@ -11,6 +12,7 @@ import {SchappenComponent} from "../components/schappen/schappen.component";
         SchappenComponent
     ],
     providers: [
+        ShelvesService
     ],
     imports: [
         CommonModule,
