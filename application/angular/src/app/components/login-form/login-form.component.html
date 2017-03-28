@@ -4,16 +4,14 @@
   <div class="col-sm-10 col-md-4 offset-md-4">
     <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
       <div class="form-group" [ngClass]="{'has-danger': !loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
-        <label class="form-control-label" for="email">Email address</label>
-        <input type="email" class="form-control form-control-danger" id="email" aria-describedby="email-help" placeholder="Enter email" [formControl]="loginForm.controls['email']">
-        <div class="form-control-feedback" *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched">Shucks, check the formatting of that and try again.</div>
-        <small id="email-help" class="form-text text-muted">Vul hier je e-mailadres in.</small>
+        <label class="form-control-label" for="email">E-mailadres</label>
+        <input type="email" class="form-control form-control-danger" id="email" aria-describedby="email-help" [formControl]="loginForm.controls['email']">
+        <div class="form-control-feedback" *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched">Er is iets mis met je e-mailadres.</div>
       </div>
       <div class="form-group" [ngClass]="{'has-danger': !loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
-        <label class="form-control-label" for="password">Password</label>
-        <input type="password" class="form-control form-control-danger" id="password" aria-describedby="password-help" placeholder="Password" [formControl]="loginForm.controls['password']">
-        <div class="form-control-feedback" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">Shucks, check the formatting of that and try again.</div>
-        <small id="password-help" class="form-text text-muted">Vul hier je wachtwoord in.</small>
+        <label class="form-control-label" for="password">Wachtwoord</label>
+        <input type="password" class="form-control form-control-danger" id="password" aria-describedby="password-help" [formControl]="loginForm.controls['password']">
+        <div class="form-control-feedback" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">Er is iets mis met je wachtwoord.</div>
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Inloggen</button>
     </form>

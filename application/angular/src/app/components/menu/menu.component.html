@@ -23,17 +23,13 @@
             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/login" *ngIf="!loggedIn">Inloggen</a>
             </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <li ngbDropdown class="nav-item dropdown" *ngIf="loggedIn">
+                <a ngbDropdownToggle class="nav-link dropdown-toggle" id="menu-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    {{ user.name }}
                 </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">Action</a>
-                    <a class="dropdown-item" href="#">Another action</a>
-                    <a class="dropdown-item" href="#">Something else here</a>
+                <div class="dropdown-menu" aria-labelledby="menu-user">
+                    <a class="dropdown-item" (click)="logout()" *ngIf="loggedIn">Uitloggen</a>
                 </div>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" (click)="logout()" *ngIf="loggedIn">Uitloggen</a>
             </li>
         </ul>
     </div>
