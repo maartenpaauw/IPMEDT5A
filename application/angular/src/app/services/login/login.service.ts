@@ -52,6 +52,7 @@ export class LoginService {
 
   public logout() : void {
       localStorage.removeItem('token');
+      localStorage.removeItem('user');
       this.router.navigateByUrl('/login');
   }
 
@@ -60,6 +61,7 @@ export class LoginService {
         .map((res: Response) => res.json())
         .map((res: User) => {
           if (res.user) {
+            localStorage.setItem('user', JSON.stringify(res.user));
             return true;
           }
 

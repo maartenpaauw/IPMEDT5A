@@ -1,0 +1,18 @@
+<div class="card">
+  <div class="content">
+    <h4 class="card-title">Gescand vandaag</h4>
+    <hr />
+    <div style="display: block;">
+      <canvas baseChart width="300" height="300"
+              [datasets]="lineChartData"
+              [labels]="lineChartLabels"
+              [options]="lineChartOptions"
+              [colors]="lineChartColors"
+              [legend]="lineChartLegend"
+              [chartType]="lineChartType"
+              (chartHover)="chartHovered($event)"
+              (chartClick)="chartClicked($event)">
+      </canvas>
+    </div>
+  </div>
+</div>
