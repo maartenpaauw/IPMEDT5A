@@ -10,7 +10,7 @@
             <div class="card-block">
                 <h3 class="card-title">{{ setting?.title }}</h3>
                 <p class="card-text ">{{ setting?.description }}</p>
-                <a class="btn text-white" [ngClass]="{'btn-danger': setting?.value, 'btn-primary': !setting?.value}" (click)="toggleSetting(setting?.key)">zet {{ setting?.value ? "uit" : "aan" }}</a>
+                <a class="btn text-white" [ngClass]="{'btn-danger': setting?.value, 'btn-primary': !setting?.value}" (click)="toggleSetting(setting?.key)" [innerText]="setting?.value ? 'zet uit' : 'zet aan'"></a>
             </div>
         </div>
     </div>

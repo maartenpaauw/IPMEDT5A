@@ -36,6 +36,9 @@ $api->version('v1', function ($api)
         $api->resource('tags',       \IPMEDT5A\Http\Controllers\TagController::class,       $except);
         $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class,   $except);
 
+        // Statistics
+        $api->get('statistics/actions/count', ['as' => 'statistics.actions.count', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@actionCount']);
+
         // Settings
         $api->post('settings/{setting}/toggle/', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
 

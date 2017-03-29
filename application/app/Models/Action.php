@@ -17,6 +17,14 @@ class Action extends Model
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function statistics()
+    {
+        return $this->belongsTo(Statistic::class, 'id', 'action_id');
+    }
+
+    /**
      * @param $query
      * @return mixed
      */

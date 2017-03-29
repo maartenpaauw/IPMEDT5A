@@ -2,8 +2,10 @@
 
 namespace IPMEDT5A\Http\Controllers;
 
+use IPMEDT5A\Models\Action;
 use IPMEDT5A\Models\Statistic;
 use Illuminate\Http\Request;
+use IPMEDT5A\Transformers\ActionTransformer;
 use IPMEDT5A\Transformers\StatisticTransformer;
 
 /**
@@ -91,5 +93,13 @@ class StatisticController extends Controller
     public function destroy(Statistic $statistic)
     {
         //
+    }
+
+    /**
+     * @return \Dingo\Api\Http\Response
+     */
+    public function actionCount()
+    {
+        return $this->response->collection(Action::withCount('statistics')->get(), new ActionTransformer());
     }
 }
