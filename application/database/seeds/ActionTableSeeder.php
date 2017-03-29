@@ -13,13 +13,14 @@ class ActionTableSeeder extends Seeder
     public function run()
     {
         $actions = [
-            'demo_opgepakt',
-            'maat_gescanned',
-            'knop_ingedrukt'
+            'Demo opgepakt',
+            'Maat gescanned',
+            'Knop ingedrukt'
         ];
 
         foreach ($actions as $action) {
             Action::create([
+                'slug' => str_slug($action, '_'),
                 'name' => $action
             ]);
         }

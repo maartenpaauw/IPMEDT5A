@@ -69,7 +69,7 @@ $factory->state(\IPMEDT5A\Models\Shelf::class, 'lege_plank', function(\Faker\Gen
 
 $factory->define(\IPMEDT5A\Models\Statistic::class, function (\Faker\Generator $faker) use ($factory) {
     return [
-        'action_id'  => \IPMEDT5A\Models\Action::where('name', 'demo_opgepakt')->first()->id,
+        'action_id'  => \IPMEDT5A\Models\Action::demoOpgepakt()->id,
         'shelf_id'   => \IPMEDT5A\Models\Shelf::inRandomOrder()->first()->id,
         'tag_id'     => null,
         'created_at' => $faker->dateTimeBetween(\Carbon\Carbon::now()->subWeek(), \Carbon\Carbon::now()),
@@ -79,14 +79,14 @@ $factory->define(\IPMEDT5A\Models\Statistic::class, function (\Faker\Generator $
 
 $factory->state(\IPMEDT5A\Models\Statistic::class, 'maat_gescanned', function(\Faker\Generator $faker) use ($factory) {
     return [
-        'action_id' => \IPMEDT5A\Models\Action::where('name', 'maat_gescanned')->first()->id,
+        'action_id' => \IPMEDT5A\Models\Action::maatGescanned()->id,
         'tag_id'    => \IPMEDT5A\Models\Tag::inRandomOrder()->first()->id
     ];
 });
 
 $factory->state(\IPMEDT5A\Models\Statistic::class, 'knop_ingedrukt', function(\Faker\Generator $faker) use ($factory) {
     return [
-        'action_id' => \IPMEDT5A\Models\Action::where('name', 'knop_ingedrukt')->first()->id,
+        'action_id' => \IPMEDT5A\Models\Action::knopIngedrukt()->id,
         'tag_id'    => \IPMEDT5A\Models\Tag::inRandomOrder()->first()->id
     ];
 });

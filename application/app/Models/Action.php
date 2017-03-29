@@ -13,7 +13,7 @@ class Action extends Model
      */
     public function getRouteKeyName()
     {
-        return 'name';
+        return 'slug';
     }
 
     /**
@@ -22,7 +22,7 @@ class Action extends Model
      */
     public function scopeDemoOpgepakt($query)
     {
-        return $query->where('name', 'deno_opgepakt')->first();
+        return $query->where('slug', 'demo_opgepakt')->first();
     }
 
     /**
@@ -31,7 +31,7 @@ class Action extends Model
      */
     public function scopeMaatGescanned($query)
     {
-        return $query->where('name', 'maat_gescanned')->first();
+        return $query->where('slug', 'maat_gescanned')->first();
     }
 
     /**
@@ -40,6 +40,6 @@ class Action extends Model
      */
     public function scopeKnopIngedrukt($query)
     {
-        return $query->where('name', 'knop_ingedrukt')->first();
+        return $query->where('slug', 'knop_ingedrukt')->first();
     }
 }
