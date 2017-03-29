@@ -50,15 +50,15 @@ class TestDataCommand extends Command
                 '--seed' => true
             ]);
 
-            factory(Shoe::class,       10)->create();
-            factory(Product::class,    50)->create();
-            factory(Tag::class,         5)->create();
-            factory(Demo::class,        3)->create();
-            factory(Shelf::class,       3)->create();
-            factory(Shelf::class,       3)->states(['lege_plank'])->create();
-            factory(Statistic::class, 100)->create();
-            factory(Statistic::class, 100)->states(['maat_gescanned'])->create();
-            factory(Statistic::class, 100)->states(['knop_ingedrukt'])->create();
+            factory(Shoe::class, 10)->create();
+            factory(Product::class, 100)->create();
+            factory(Tag::class, 5)->create();
+            factory(Demo::class, 3)->create();
+            factory(Shelf::class, 3)->create();
+            factory(Shelf::class, 3)->states(['lege_plank'])->create();
+            factory(Statistic::class, rand(50, 150))->create();
+            factory(Statistic::class, rand(50, 150))->states(['maat_gescanned'])->create();
+            factory(Statistic::class, rand(50, 150))->states(['knop_ingedrukt'])->create();
         }
     }
 }

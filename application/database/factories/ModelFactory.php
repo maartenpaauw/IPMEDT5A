@@ -68,12 +68,15 @@ $factory->state(\IPMEDT5A\Models\Shelf::class, 'lege_plank', function(\Faker\Gen
 });
 
 $factory->define(\IPMEDT5A\Models\Statistic::class, function (\Faker\Generator $faker) use ($factory) {
+
+    $date = $faker->dateTimeBetween(\Carbon\Carbon::now()->subWeek(), \Carbon\Carbon::now());
+
     return [
         'action_id'  => \IPMEDT5A\Models\Action::demoOpgepakt()->id,
         'shelf_id'   => \IPMEDT5A\Models\Shelf::inRandomOrder()->first()->id,
         'tag_id'     => null,
-        'created_at' => $faker->dateTimeBetween(\Carbon\Carbon::now()->subWeek(), \Carbon\Carbon::now()),
-        'updated_at' => \Carbon\Carbon::now()
+        'created_at' => $date,
+        'updated_at' => $date
     ];
 });
 
