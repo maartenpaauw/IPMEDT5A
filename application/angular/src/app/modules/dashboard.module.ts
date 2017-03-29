@@ -9,6 +9,7 @@ import {OverzichtComponent} from "../components/overzicht/overzicht.component";
 import {OpgepaktVandaagComponent} from "../components/opgepakt-vandaag/opgepakt-vandaag.component";
 import {GescandVandaagComponent} from "../components/gescand-vandaag/gescand-vandaag.component";
 import {VergelijkingActiesComponent} from "../components/vergelijking-acties/vergelijking-acties.component";
+import {VergelijkingActiesService} from "../services/vergelijking-acties/vergelijking-acties.service";
 
 @NgModule({
     declarations: [
@@ -19,6 +20,7 @@ import {VergelijkingActiesComponent} from "../components/vergelijking-acties/ver
         VergelijkingActiesComponent
     ],
     providers: [
+        VergelijkingActiesService
     ],
     imports: [
         CommonModule,

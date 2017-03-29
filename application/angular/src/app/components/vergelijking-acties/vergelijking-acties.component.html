@@ -1,12 +1,9 @@
 <div class="card">
-  <div class="content">
-    <h4 class="card-title">Acties</h4>
-    <hr />
-    <div style="display: block">
-      <canvas baseChart
-              [data]="pieChartData"
-              [labels]="pieChartLabels"
-              [chartType]="pieChartType"></canvas>
+    <div class="content">
+        <h4 class="card-title">Acties</h4>
+        <hr/>
+        <div style="display: block;">
+            <canvas *ngIf="pieChartData" baseChart [data]="pieChartData" [labels]="pieChartLabels" chartType="pie"></canvas>
+        </div>
     </div>
-  </div>
 </div>
