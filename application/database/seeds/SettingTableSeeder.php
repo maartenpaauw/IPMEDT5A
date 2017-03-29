@@ -13,8 +13,10 @@ class SettingTableSeeder extends Seeder
     public function run()
     {
         Setting::create([
-            'key'   => 'kan_aanpassen',
-            'value' => true
+            'key'         => 'kan_koppelen',
+            'value'       => false,
+            'title'       => 'Koppelen van schoenen',
+            'description' => 'Via deze optie kan het koppelen van schoenen aan of uit gezet worden.'
         ]);
     }
 }

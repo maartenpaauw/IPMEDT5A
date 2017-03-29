@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import {RequestOptions, Http, Headers, Response} from "@angular/http";
 import {environment} from "../../../environments/environment";
+import {Observable} from "rxjs";
+import {Setting} from "../../interfaces/setting.interface";
 
 @Injectable()
 export class SettingsService {
@@ -16,31 +18,35 @@ export class SettingsService {
     this.postSettings = new RequestOptions({ headers });
   }
 
-  public getKanAanpassen() {
-    return this.getSetting('kan_aanpassen');
-  }
-
-  public toggleKanAanpassen()
+  public getSettings(): Observable<Array<Setting> | number>
   {
-    return this.toggleSetting('kan_aanpassen');
-  }
-
-  private getSetting(key)
-  {
-    return this.http.get(`${environment.url}settings/${key}`, this.postSettings)
+    return this.http.get(`${environment.url}settings`, this.postSettings)
         .map((res: Response) => res.json())
         .map((res: any) => {
-          return res;
+          return res.data;
         })
+        .catch((error: any) => {
+          if (error.status == 401) {
+            return Observable.throw(error.status);
+          } else if (error.status == 500) {
+            return Observable.throw(error.status);
+          }
+        });
   }
 
-  private toggleSetting(key: string)
+  public toggleSetting(key: string): Observable<Setting | number>
   {
     return this.http.post(`${environment.url}settings/${key}/toggle`, null, this.postSettings)
         .map((res: Response) => res.json())
         .map((res: any) => {
-          return res;
+          return res.data;
         })
+        .catch((error: any) => {
+          if (error.status == 401) {
+            return Observable.throw(error.status);
+          } else if (error.status == 500) {
+            return Observable.throw(error.status);
+          }
+        });
   }
-
 }
