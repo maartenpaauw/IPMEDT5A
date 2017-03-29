@@ -25,7 +25,7 @@
             </li>
             <li ngbDropdown class="nav-item dropdown" *ngIf="loggedIn">
                 <a ngbDropdownToggle class="nav-link dropdown-toggle" id="menu-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    {{ user.name }}
+                    {{ user?.name }}
                 </a>
                 <div class="dropdown-menu" aria-labelledby="menu-user">
                     <a class="dropdown-item" (click)="logout()" *ngIf="loggedIn">Uitloggen</a>

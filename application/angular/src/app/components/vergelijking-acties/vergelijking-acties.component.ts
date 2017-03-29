@@ -14,9 +14,7 @@ export class VergelijkingActiesComponent implements OnInit, AfterViewInit {
 
   constructor(private vergelijkingActiesService: VergelijkingActiesService) { }
 
-  ngOnInit(): void {
-
-  }
+  ngOnInit(): void { }
 
   ngAfterViewInit(): void {
     this.vergelijkingActiesService.getActionsCount().subscribe(

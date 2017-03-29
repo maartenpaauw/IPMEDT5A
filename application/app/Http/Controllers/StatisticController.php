@@ -100,6 +100,8 @@ class StatisticController extends Controller
      */
     public function actionCount()
     {
-        return $this->response->collection(Action::withCount('statistics')->get(), new ActionTransformer());
+        $actions = Action::withCount('statistics')->get();
+
+        return $this->response->collection($actions, new ActionTransformer());
     }
 }

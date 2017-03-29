@@ -6,8 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class Statistic extends Model
 {
+    /**
+     * @var array
+     */
     protected $with = ['action', 'shelf', 'tag'];
 
+    /**
+     * @var array
+     */
     protected $fillable = ['action_id', 'shelf_id', 'tag_id'];
 
     /**
