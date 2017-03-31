@@ -10,10 +10,7 @@ use IPMEDT5A\Models\Shelf;
 use IPMEDT5A\Models\Size;
 use IPMEDT5A\Models\Statistic;
 use IPMEDT5A\Models\Tag;
-use IPMEDT5A\Transformers\ProductTransformer;
 use IPMEDT5A\Transformers\ShelfTransformer;
-use IPMEDT5A\Transformers\ShelfWithSizesTransformer;
-use IPMEDT5A\Transformers\SizeTransformer;
 use IPMEDT5A\Transformers\StatisticTransformer;
 
 /**
@@ -176,60 +173,14 @@ class ShelfController extends Controller
     /**
      * @param Shelf $shelf
      * @param Tag $tag
+     * @param Action $action
      * @return \Dingo\Api\Http\Response
      */
-    public function buttonPressed(Shelf $shelf, Tag $tag)
-    {
-        // Sta een statistiek op in de database.
-        Statistic::create([
-            'action_id' => Action::knopIngedrukt()->id,
-            'shelf_id'  => $shelf->id,
-            'tag_id'    => $tag->id
-        ]);
-
-        // Empty collect
-        $response_sizes = collect();
-
-        // Controleer of er een demo gekoppeld is aan de shelf.
-        if(! is_null($shelf->demo))
-        {
-            // Sizes
-            $sizes = Size::rangeSizes($tag->size);
-
-            // Zoek alle producten op.
-            $products = Product::productsWithSpecificSizes($sizes, $shelf)->get();
-
-            // Controleer of er producten zijn.
-            if(! is_null($products))
-            {
-                // Verkrijg alleen de maten uit de products result.
-                $sizes = Size::uniqueRangeSizes($products);
-
-                // Verkrijg alleen de maten uit de products result.
-                $response_sizes = $products->map(function ($item) { return $item->size; })->unique();
-            }
-        }
-
-        // Geef de unieke maten terug.
-        $response = $this->response->item($shelf, new ShelfTransformer($response_sizes));
-
-        // TODO: Broadcast response.
-
-        // Geef het response terug.
-        return $response;
-    }
-
-
-    /**
-     * @param Shelf $shelf
-     * @param Tag $tag
-     * @return \Dingo\Api\Http\Response
-     */
-    public function tagScanned(Shelf $shelf, Tag $tag)
+    public function interactionWithShelf(Shelf $shelf, Tag $tag, Action $action)
     {
         // Maak een statistiek aan in de database.
         Statistic::create([
-            'action_id' => Action::maatGescanned()->id,
+            'action_id' => $action->id,
             'shelf_id'  => $shelf->id,
             'tag_id'    => $tag->id
         ]);
@@ -241,7 +192,7 @@ class ShelfController extends Controller
         if(! is_null($shelf->demo))
         {
             // Range met maten
-            $sizes = Size::rangeSizes($tag->size);
+            $sizes = Size::rangeSizes($tag->size, 0.5);
 
             // Zoek alle producten op.
             $products = Product::productsWithSpecificSizes($sizes, $shelf)->get();
@@ -255,6 +206,15 @@ class ShelfController extends Controller
         }
 
         // Geef de unieke maten terug.
-        return $this->response->collection($response_sizes, new SizeTransformer);
+        $response = $this->response->item($shelf, new ShelfTransformer($response_sizes));
+
+        // Broadcast de notificatie naar de front end.
+        if($action == Action::knopIngedrukt())
+        {
+            // TODO: broadcast.
+        }
+
+        // Geef de unieke maten terug.
+        return $response;
     }
 }

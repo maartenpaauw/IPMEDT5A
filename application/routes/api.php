@@ -47,8 +47,7 @@ $api->version('v1', function ($api)
 
         // Actions
         $api->post('shelves/{shelf}/demos/{demo_uuid}/scanned/', ['as' => 'shelves.actions.demo_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
-        $api->post('shelves/{shelf}/tags/{tag}/actions/scanned/', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@tagScanned']);
-        $api->post('shelves/{shelf}/tags/{tag}/actions/button_pressed/', ['as' => 'shelves.actions.button_pressed', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@buttonPressed']);
+        $api->post('shelves/{shelf}/tags/{tag}/actions/{action}/', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@interactionWithShelf']);
         $api->post('shelves/{shelf}/actions/picked_up/', ['as' => 'shelves.actions.picked_up', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoPickedUp']);
 
         // Authenticate

@@ -6,15 +6,30 @@ use Illuminate\Support\Collection;
 use IPMEDT5A\Models\Shelf;
 use League\Fractal\TransformerAbstract;
 
+/**
+ * Class ShelfTransformer
+ * @package IPMEDT5A\Transformers
+ */
 class ShelfTransformer extends TransformerAbstract
 {
+    /**
+     * @var Collection
+     */
     private $sizes;
 
-    public function __construct(Collection $sizes)
+    /**
+     * ShelfTransformer constructor.
+     * @param Collection|null $sizes
+     */
+    public function __construct(Collection $sizes = null)
     {
         $this->sizes = $sizes;
     }
 
+    /**
+     * @param Shelf $shelf
+     * @return array
+     */
     public function transform(Shelf $shelf)
     {
         if($this->sizes)
