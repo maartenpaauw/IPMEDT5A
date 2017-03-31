@@ -55,7 +55,7 @@ class AuthenticateController extends Controller
      * @Post("/authenticate/shelf")
      * @Versions({"v1"})
      * @Transaction({
-     *      @Request({"mac_address": "MAC_ADDRESS_SHELF", "private_key" => "ENV_JWT_PRIVATE_KEY"}),
+     *      @Request({"mac_address": "MAC_ADDRESS_SHELF", "private_key": "ENV_JWT_PRIVATE_KEY"}),
      *      @Response(200, body = {"token":"YOUR_TOKEN"}),
      *      @Response(401, body = {"error":"invalid_credentials"}),
      *      @Response(500, body = {"error":"could_not_create_token"}),
@@ -140,6 +140,18 @@ class AuthenticateController extends Controller
     }
 
     /**
+     * Check the token.
+     *
+     * @Post("/authenticate/shelf/check/")
+     * @Versions({"v1"})
+     * @Transaction({
+     *      @Request(headers = {"Authorization": "Bearer TOKEN_HERE"}),
+     *      @Response(200, body = {"shelf":{"id":1,"demo_id":3,"mac_address":"60:DB:65:4D:08:CA","created_at":"2017-03-31 11:09:55","updated_at":"2017-03-31 11:09:55","demo":{"id":3,"product_id":293,"uuid":"8b6d3cbf-f1c2-37f7-ad6b-a3c461c1c90f","created_at":"2017-03-31 11:09:55","updated_at":"2017-03-31 11:09:55","product":{"id":293,"shoe_id":2,"size_id":2,"sku":"1975872688085","price":"504.65","created_at":"2017-03-31 11:09:55","updated_at":"2017-03-31 11:09:55","shoe":{"id":2,"name":"Aquamarine","brand":"Cruickshank-Thiel","created_at":"2017-03-31 11:09:55","updated_at":"2017-03-31 11:09:55"},"size":{"id":2,"eu_size":"30.5","created_at":"2017-03-31 11:09:54","updated_at":"2017-03-31 11:09:54"}}}}}),
+     *      @Response(401, body = {"token_expired"}),
+     *      @Response(400, body = {"token_invalid"}),
+     *      @Response(500, body = {"token_absent"}),
+     * })
+     *
      * @return \Illuminate\Http\JsonResponse
      */
     public function authenticateShelfCheck()

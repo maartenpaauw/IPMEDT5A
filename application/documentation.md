@@ -1093,7 +1093,8 @@ Class AuthenticateController
     + Body
 
             {
-                "to": "do"
+                "mac_address": "MAC_ADDRESS_SHELF",
+                "private_key": "ENV_JWT_PRIVATE_KEY"
             }
 
 + Response 200 (application/json)
@@ -1135,6 +1136,77 @@ Class AuthenticateController
                     "email": "YOUR_EMAIL",
                     "created_at": "2017-03-25 23:18:46",
                     "updated_at": "2017-03-25 23:18:46"
+                }
+            }
+
++ Response 401 (application/json)
+    + Body
+
+            [
+                "token_expired"
+            ]
+
++ Response 400 (application/json)
+    + Body
+
+            [
+                "token_invalid"
+            ]
+
++ Response 500 (application/json)
+    + Body
+
+            [
+                "token_absent"
+            ]
+
+## Check the token. [POST /authenticate/authenticate/shelf/check]
+
+
++ Request (application/json)
+    + Headers
+
+            Authorization: Bearer TOKEN_HERE
+
++ Response 200 (application/json)
+    + Body
+
+            {
+                "shelf": {
+                    "id": 1,
+                    "demo_id": 3,
+                    "mac_address": "60:DB:65:4D:08:CA",
+                    "created_at": "2017-03-31 11:09:55",
+                    "updated_at": "2017-03-31 11:09:55",
+                    "demo": {
+                        "id": 3,
+                        "product_id": 293,
+                        "uuid": "8b6d3cbf-f1c2-37f7-ad6b-a3c461c1c90f",
+                        "created_at": "2017-03-31 11:09:55",
+                        "updated_at": "2017-03-31 11:09:55",
+                        "product": {
+                            "id": 293,
+                            "shoe_id": 2,
+                            "size_id": 2,
+                            "sku": "1975872688085",
+                            "price": "504.65",
+                            "created_at": "2017-03-31 11:09:55",
+                            "updated_at": "2017-03-31 11:09:55",
+                            "shoe": {
+                                "id": 2,
+                                "name": "Aquamarine",
+                                "brand": "Cruickshank-Thiel",
+                                "created_at": "2017-03-31 11:09:55",
+                                "updated_at": "2017-03-31 11:09:55"
+                            },
+                            "size": {
+                                "id": 2,
+                                "eu_size": "30.5",
+                                "created_at": "2017-03-31 11:09:54",
+                                "updated_at": "2017-03-31 11:09:54"
+                            }
+                        }
+                    }
                 }
             }
 
