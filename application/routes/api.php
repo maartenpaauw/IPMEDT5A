@@ -52,6 +52,7 @@ $api->version('v1', function ($api)
 
         // Authenticate
         $api->post('authenticate/check', ['as' => 'authenticate.check', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateCheck']);
+        $api->post('authenticate/shelf/check', ['as' => 'authenticate.check', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateShelfCheck']);
     });
 
     // Authenticate

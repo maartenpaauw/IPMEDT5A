@@ -113,18 +113,60 @@ class AuthenticateController extends Controller
      */
     public function authenticateCheck()
     {
-        try {
-            if (!$user = JWTAuth::parseToken()->authenticate()) {
+        try
+        {
+            if (!$user = JWTAuth::parseToken()->authenticate())
+            {
                 return response()->json(['user_not_found'], 404);
             }
-        } catch (TokenExpiredException $e) {
+        }
+
+        catch (TokenExpiredException $e)
+        {
             return response()->json(['token_expired'], $e->getStatusCode());
-        } catch (TokenInvalidException $e) {
+        }
+
+        catch (TokenInvalidException $e)
+        {
             return response()->json(['token_invalid'], $e->getStatusCode());
-        } catch (JWTException $e) {
+        }
+
+        catch (JWTException $e)
+        {
             return response()->json(['token_absent'], $e->getStatusCode());
         }
 
         return response()->json(compact('user'));
+    }
+
+    /**
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function authenticateShelfCheck()
+    {
+        try
+        {
+            if (!$shelf = Shelf::find(JWTAuth::parseToken()->getPayload()->get('sub')))
+            {
+                return response()->json(['user_not_found'], 404);
+            }
+        }
+
+        catch (TokenExpiredException $e)
+        {
+            return response()->json(['token_expired'], $e->getStatusCode());
+        }
+
+        catch (TokenInvalidException $e)
+        {
+            return response()->json(['token_invalid'], $e->getStatusCode());
+        }
+
+        catch (JWTException $e)
+        {
+            return response()->json(['token_absent'], $e->getStatusCode());
+        }
+
+        return response()->json(compact('shelf'));
     }
 }
