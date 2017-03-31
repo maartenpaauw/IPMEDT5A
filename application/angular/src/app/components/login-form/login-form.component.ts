@@ -38,7 +38,6 @@ export class LoginFormComponent implements OnInit {
   {
     this.loginService.login(value).subscribe(
       (res: any) => {
-        //TODO: route aanpassen.
         this.loginGuard.redirect();
       },
       (err: number) => {

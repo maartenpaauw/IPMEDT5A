@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col">
-        <h2 class="page-title">Schappen</h2>
+        <h2 class="page-title pb-3">Schappen</h2>
     </div>
 </div>
 
@@ -12,7 +12,7 @@
                 <p class="card-text" *ngIf="shelf.demo">{{ shelf.demo.product.shoe.brand }} &ndash; {{ shelf.demo.product.shoe.name }}</p>
                 <p class="card-text text-right" *ngIf="shelf.demo">&euro;{{ shelf.demo.product.price }}</p>
 
-                <p class="card-text" *ngIf="!shelf.demo">Schap is nog niet gekoppeld.</p>
+                <p class="card-text" *ngIf="!shelf.demo">Schap {{ shelf.id }} is nog niet gekoppeld.</p>
 
                 <!-- TODO: koppelen pagina -->
                 <a href="#" class="btn btn-primary" *ngIf="!shelf.demo">koppelen</a>

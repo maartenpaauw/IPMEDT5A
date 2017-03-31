@@ -26,15 +26,15 @@ $api->version('v1', function ($api)
         $except = ['except' => ['create', 'edit']];
 
         // Resource routes.
-        $api->resource('actions',    \IPMEDT5A\Http\Controllers\ActionController::class,    $except);
-        $api->resource('demos',      \IPMEDT5A\Http\Controllers\DemoController::class,      $except);
-        $api->resource('products',   \IPMEDT5A\Http\Controllers\ProductController::class,   $except);
-        $api->resource('shelves',    \IPMEDT5A\Http\Controllers\ShelfController::class,     $except);
-        $api->resource('shoes',      \IPMEDT5A\Http\Controllers\ShoeController::class,      $except);
-        $api->resource('sizes',      \IPMEDT5A\Http\Controllers\SizeController::class,      $except);
+        $api->resource('actions',    \IPMEDT5A\Http\Controllers\ActionController::class, $except);
+        $api->resource('demos',      \IPMEDT5A\Http\Controllers\DemoController::class, $except);
+        $api->resource('products',   \IPMEDT5A\Http\Controllers\ProductController::class, $except);
+        $api->resource('shelves',    \IPMEDT5A\Http\Controllers\ShelfController::class, $except);
+        $api->resource('shoes',      \IPMEDT5A\Http\Controllers\ShoeController::class, $except);
+        $api->resource('sizes',      \IPMEDT5A\Http\Controllers\SizeController::class, $except);
         $api->resource('statistics', \IPMEDT5A\Http\Controllers\StatisticController::class, $except);
-        $api->resource('tags',       \IPMEDT5A\Http\Controllers\TagController::class,       $except);
-        $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class,   $except);
+        $api->resource('tags',       \IPMEDT5A\Http\Controllers\TagController::class, $except);
+        $api->resource('settings',   \IPMEDT5A\Http\Controllers\SettingController::class, $except);
 
         // Statistics
         $api->get('statistics/actions/count', ['as' => 'statistics.actions.count', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@actionCount']);
@@ -47,7 +47,7 @@ $api->version('v1', function ($api)
 
         // Actions
         $api->post('shelves/{shelf}/demos/{demo_uuid}/scanned/', ['as' => 'shelves.actions.demo_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
-        $api->post('shelves/{shelf}/tags/{tag}/scanned/', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@tagScanned']);
+        $api->post('shelves/{shelf}/tags/{tag}/actions/scanned/', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@tagScanned']);
         $api->post('shelves/{shelf}/tags/{tag}/actions/button_pressed/', ['as' => 'shelves.actions.button_pressed', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@buttonPressed']);
         $api->post('shelves/{shelf}/actions/picked_up/', ['as' => 'shelves.actions.picked_up', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoPickedUp']);
 

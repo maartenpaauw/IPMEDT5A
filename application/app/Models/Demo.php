@@ -12,6 +12,16 @@ class Demo extends Model
     protected $with = ['product'];
 
     /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'uuid';
+    }
+
+    /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function product()
@@ -20,12 +30,10 @@ class Demo extends Model
     }
 
     /**
-     * Get the route key for the model.
-     *
-     * @return string
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function getRouteKeyName()
+    public function shelf()
     {
-        return 'uuid';
+        return $this->belongsTo(Shelf::class, 'demo_id', 'id');
     }
 }

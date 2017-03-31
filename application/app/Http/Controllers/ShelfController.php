@@ -5,11 +5,15 @@ namespace IPMEDT5A\Http\Controllers;
 use Illuminate\Http\Request;
 use IPMEDT5A\Models\Action;
 use IPMEDT5A\Models\Product;
+use IPMEDT5A\Models\Setting;
 use IPMEDT5A\Models\Shelf;
+use IPMEDT5A\Models\Size;
 use IPMEDT5A\Models\Statistic;
 use IPMEDT5A\Models\Tag;
 use IPMEDT5A\Transformers\ProductTransformer;
 use IPMEDT5A\Transformers\ShelfTransformer;
+use IPMEDT5A\Transformers\ShelfWithSizesTransformer;
+use IPMEDT5A\Transformers\SizeTransformer;
 use IPMEDT5A\Transformers\StatisticTransformer;
 
 /**
@@ -157,7 +161,11 @@ class ShelfController extends Controller
      */
     public function demoScanned(Shelf $shelf, $new_demo_uuid)
     {
-        // TODO: broadcast naar angular frontend met shelf id en demo uuid
+        // Er mag een nieuw product gekoppeld worden aan de plank.
+        if(Setting::kanKoppelen()->value)
+        {
+            // TODO: broadcast naar angular frontend met shelf id en demo uuid
+        }
     }
 
     public function linkDemo(Shelf $shelf, Product $product)
@@ -173,30 +181,44 @@ class ShelfController extends Controller
     public function buttonPressed(Shelf $shelf, Tag $tag)
     {
         // Sta een statistiek op in de database.
-        $statistic = Statistic::create([
+        Statistic::create([
             'action_id' => Action::knopIngedrukt()->id,
             'shelf_id'  => $shelf->id,
             'tag_id'    => $tag->id
         ]);
 
+        // Empty collect
+        $response_sizes = collect();
+
         // Controleer of er een demo gekoppeld is aan de shelf.
         if(! is_null($shelf->demo))
         {
-            $products = Product::whereHas('size', function($query) use ($tag) {
-                $query->where('eu_size', $tag->size->eu_size);
-            })->whereHas('shoe', function ($query) use ($shelf) {
-                $query->where('id', $shelf->demo->product->shoe->id);
-            })->get();
+            // Sizes
+            $sizes = Size::rangeSizes($tag->size);
 
-            // Geef de producten terug.
-            return $this->response->collection($products, new ProductTransformer);
+            // Zoek alle producten op.
+            $products = Product::productsWithSpecificSizes($sizes, $shelf)->get();
+
+            // Controleer of er producten zijn.
+            if(! is_null($products))
+            {
+                // Verkrijg alleen de maten uit de products result.
+                $sizes = Size::uniqueRangeSizes($products);
+
+                // Verkrijg alleen de maten uit de products result.
+                $response_sizes = $products->map(function ($item) { return $item->size; })->unique();
+            }
         }
 
-        // TODO: product opzoeken.
-        // TODO: notificatie sturen.
+        // Geef de unieke maten terug.
+        $response = $this->response->item($shelf, new ShelfTransformer($response_sizes));
 
-//        return $this->response->item($statistic, new StatisticTransformer);
+        // TODO: Broadcast response.
+
+        // Geef het response terug.
+        return $response;
     }
+
 
     /**
      * @param Shelf $shelf
@@ -206,18 +228,33 @@ class ShelfController extends Controller
     public function tagScanned(Shelf $shelf, Tag $tag)
     {
         // Maak een statistiek aan in de database.
-        $statistic = Statistic::create([
+        Statistic::create([
             'action_id' => Action::maatGescanned()->id,
             'shelf_id'  => $shelf->id,
             'tag_id'    => $tag->id
         ]);
 
+        // Lege response collection.
+        $response_sizes = collect();
+
         // Controleer of er een demo gekoppeld is.
+        if(! is_null($shelf->demo))
+        {
+            // Range met maten
+            $sizes = Size::rangeSizes($tag->size);
 
-        // TODO: opzoeken product.
-        // TODO: informatie sturen.
-        // TODO: maten terug sturen.
+            // Zoek alle producten op.
+            $products = Product::productsWithSpecificSizes($sizes, $shelf)->get();
 
-        return $this->response->item($statistic, new StatisticTransformer);
+            // Controleer of er producten zijn.
+            if(! is_null($products))
+            {
+                // Verkrijg alleen de maten uit de products result.
+                $response_sizes = $products->map(function ($item) { return $item->size; })->unique();
+            }
+        }
+
+        // Geef de unieke maten terug.
+        return $this->response->collection($response_sizes, new SizeTransformer);
     }
 }

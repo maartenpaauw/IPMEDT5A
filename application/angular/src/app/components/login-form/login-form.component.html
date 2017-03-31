@@ -1,7 +1,5 @@
-<span *ngIf="msg" [innerText]="msg"></span>
-
-<div class="row ustify-content-md-center">
-  <div class="col-sm-10 col-md-4 offset-md-4">
+<div class="row justify-content-center">
+  <div class="col-4">
     <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
       <div class="form-group" [ngClass]="{'has-danger': !loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
         <label class="form-control-label" for="email">E-mailadres</label>
@@ -15,5 +13,11 @@
       </div>
       <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Inloggen</button>
     </form>
+  </div>
+</div>
+
+<div class="row justify-content-center" *ngIf="msg">
+  <div class="col-4 mt-5">
+    <ngb-alert [dismissible]="false"><strong>Let op!</strong> {{ msg }}</ngb-alert>
   </div>
 </div>

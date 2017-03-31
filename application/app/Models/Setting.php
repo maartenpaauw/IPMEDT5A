@@ -27,4 +27,9 @@ class Setting extends Model
     {
         return 'key';
     }
+
+    public function scopeKanKoppelen($query)
+    {
+        return $query->where('key', 'kan_koppelen')->first();
+    }
 }
