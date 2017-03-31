@@ -3,10 +3,12 @@
 namespace IPMEDT5A\Http\Controllers;
 
 use Illuminate\Http\Request;
+use IPMEDT5A\Models\Shelf;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
 use Tymon\JWTAuth\Exceptions\TokenInvalidException;
 use Tymon\JWTAuth\Facades\JWTAuth;
 use Tymon\JWTAuth\Exceptions\JWTException;
+use Tymon\JWTAuth\Facades\JWTFactory;
 
 /**
  * Class AuthenticateController
@@ -29,23 +31,18 @@ class AuthenticateController extends Controller
      *      @Response(500, body = {"error":"could_not_create_token"}),
      * })
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function authenticate(Request $request)
     {
         $credentials = $request->only('email', 'password');
 
-        try
-        {
-            if (! $token = JWTAuth::attempt($credentials))
-            {
+        try {
+            if (!$token = JWTAuth::attempt($credentials)) {
                 return response()->json(['error' => 'invalid_credentials'], 401);
             }
-        }
-
-        catch (JWTException $e)
-        {
+        } catch (JWTException $e) {
             return response()->json(['error' => 'could_not_create_token'], 500);
         }
 
@@ -58,19 +55,45 @@ class AuthenticateController extends Controller
      * @Post("/authenticate/shelf")
      * @Versions({"v1"})
      * @Transaction({
-     *      @Request({"to": "do"}),
+     *      @Request({"mac_address": "MAC_ADDRESS_SHELF", "private_key" => "ENV_JWT_PRIVATE_KEY"}),
      *      @Response(200, body = {"token":"YOUR_TOKEN"}),
      *      @Response(401, body = {"error":"invalid_credentials"}),
      *      @Response(500, body = {"error":"could_not_create_token"}),
      * })
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function authenticateShelf(Request $request)
     {
-        // TODO: even doen.
-        return response()->json(["to" => "do #joe"]);
+        // Credentials
+        $credentials = collect($request->only(['mac_address', 'private_key']));
+
+        // Controleer of de private key klopt.
+        if($credentials->get('private_key') == env('JWT_PRIVATE_KEY'))
+        {
+            // Haal de shelf op.
+            $shelf = Shelf::where('mac_address', $credentials->get('mac_address'))->first();
+
+            // Controleer of deze shelf bestaat.
+            if(! is_null($shelf))
+            {
+                // Maak de payload aan.
+                $payload = JWTFactory::sub($shelf->id)->make();
+
+                // Maak een token van de payload.
+                $token = JWTAuth::encode($payload)->get();
+
+                // Geef de token terug.
+                return response()->json(compact('token'));
+            }
+
+            // Shelf bestaat niet, token kan niet gemaakt worden.
+            return response()->json(['error' => 'could_not_create_token'], 500);
+        }
+
+        // Private key klopt niet, token kan niet gemaakt worden.
+        return response()->json(['error' => 'invalid_credentials'], 401);
     }
 
     /**
@@ -91,7 +114,7 @@ class AuthenticateController extends Controller
     public function authenticateCheck()
     {
         try {
-            if (! $user = JWTAuth::parseToken()->authenticate()) {
+            if (!$user = JWTAuth::parseToken()->authenticate()) {
                 return response()->json(['user_not_found'], 404);
             }
         } catch (TokenExpiredException $e) {
