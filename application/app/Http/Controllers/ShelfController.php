@@ -4,6 +4,7 @@ namespace IPMEDT5A\Http\Controllers;
 
 use Illuminate\Http\Request;
 use IPMEDT5A\Models\Action;
+use IPMEDT5A\Models\Demo;
 use IPMEDT5A\Models\Product;
 use IPMEDT5A\Models\Setting;
 use IPMEDT5A\Models\Shelf;
@@ -165,9 +166,25 @@ class ShelfController extends Controller
         }
     }
 
-    public function linkDemo(Shelf $shelf, Product $product)
+    /**
+     * Link a fresh created demo to a shelf.
+     *
+     * @param Shelf $shelf
+     * @param Demo $demo
+     * @return \Dingo\Api\Http\Response
+     * @internal param $new_demo_uuid
+     *
+     */
+    public function linkDemo(Shelf $shelf, Demo $demo)
     {
-        // TODO: link een product aan een shelf als demo.
+        // Pas de demo id aan.
+        $shelf->demo_id = $demo->id;
+
+        // Sla het op.
+        $shelf->save();
+
+        // Geef het terug.
+        return $this->response->item($shelf, new ShelfTransformer());
     }
 
     /**
@@ -211,7 +228,7 @@ class ShelfController extends Controller
         // Broadcast de notificatie naar de front end.
         if($action == Action::knopIngedrukt())
         {
-            // TODO: broadcast.
+            // TODO: broadcast met $response.
         }
 
         // Geef de unieke maten terug.
