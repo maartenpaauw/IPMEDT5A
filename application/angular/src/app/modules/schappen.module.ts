@@ -3,13 +3,15 @@ import {RouterModule} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {LoginGuard} from "../guards/login.guard";
-import {SchappenComponent} from "../components/schappen/schappen.component";
 import {ShelvesService} from "../services/shelves/shelves.service";
+import {SchappenComponent} from "../components/schappen/schappen.component";
+import {KoppelenComponent} from "../components/koppelen/koppelen.component";
 
 
 @NgModule({
     declarations: [
-        SchappenComponent
+        SchappenComponent,
+        KoppelenComponent
     ],
     providers: [
         ShelvesService
@@ -21,6 +23,14 @@ import {ShelvesService} from "../services/shelves/shelves.service";
             {
                 path: '',
                 component: SchappenComponent,
+                pathMatch: 'full',
+                canActivate: [
+                    LoginGuard
+                ]
+            },
+            {
+                path: ':mac_address/koppelen',
+                component: KoppelenComponent,
                 pathMatch: 'full',
                 canActivate: [
                     LoginGuard

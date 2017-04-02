@@ -13,6 +13,8 @@ export class MenuComponent implements OnInit {
 
   public loggedIn: boolean;
   public user: User;
+  public collapsed: boolean = false;
+  public url: string;
 
   constructor(private loginService: LoginService,
               private router: Router) { }
@@ -23,11 +25,27 @@ export class MenuComponent implements OnInit {
     });
 
     this.loggedIn = LoginGuard.check();
-    this.user = <User>JSON.parse(localStorage.getItem('user'));
+    this.user = JSON.parse(localStorage.getItem('user'));
+
+    this.router.events.subscribe((url: any) => {
+      if (typeof(url.url) !== 'undefined') {
+        this.url = url.url;
+      }
+    });
   }
 
   public logout(): void {
     this.loginService.logout();
     this.loggedIn = false;
+    this.toggleMenu(true);
   }
+
+  public toggleMenu(force: boolean = false): void {
+    if (force) {
+      this.collapsed = true;
+    }
+
+    this.collapsed = !this.collapsed;
+  }
+
 }

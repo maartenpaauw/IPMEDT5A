@@ -1,9 +1,11 @@
+export interface JWTCheck {
+    "user": User
+}
+
 export interface User {
-    "user": {
-        "id": number,
-        "name": string,
-        "email": string,
-        "created_at": string,
-        "updated_at": string
-    }
+    "id": number,
+    "name": string,
+    "email": string,
+    "created_at": string,
+    "updated_at": string
 }

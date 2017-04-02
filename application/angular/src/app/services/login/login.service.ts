@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 
 import {Login} from "../../interfaces/login.interface";
-import {User} from "../../interfaces/user.interface";
+import {JWTCheck, User} from "../../interfaces/user.interface";
 
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
@@ -57,7 +57,7 @@ export class LoginService {
   public check(): Observable<boolean | number> {
     return this.http.post(`${environment.url}authenticate/check`, null, LoginService.headers(true))
         .map((res: Response) => res.json())
-        .map((res: User) => {
+        .map((res: JWTCheck) => {
           if (res.user) {
             localStorage.setItem('user', JSON.stringify(res.user));
             return true;
@@ -66,6 +66,7 @@ export class LoginService {
           return false;
         }).
         catch((error: any) => {
+          localStorage.removeItem('token');
           if (error.status <= 400) {
             return Observable.throw(error.status);
           }

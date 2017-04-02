@@ -15,7 +15,7 @@
                 <p class="card-text" *ngIf="!shelf.demo">Schap {{ shelf.id }} is nog niet gekoppeld.</p>
 
                 <!-- TODO: koppelen pagina -->
-                <a href="#" class="btn btn-primary" *ngIf="!shelf.demo">koppelen</a>
+                <a [routerLink]="['/schappen', shelf.mac_address, 'koppelen']" class="btn btn-primary" *ngIf="!shelf.demo">koppelen</a>
             </div>
         </div>
     </div>

@@ -1,27 +1,27 @@
 <nav class="navbar navbar-toggleable-md navbar-inverse bg-primary bg-faded">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation" aria-expanded="false" aria-label="Toggle navigation" [class.collapsed]="collapsed" (click)="toggleMenu()">
         <span class="navbar-toggler-icon"></span>
     </button>
-    <a class="navbar-brand" href="#">IPMEDT5A</a>
+    <a class="navbar-brand" routerLink="/dashboard">IPMEDT5A</a>
 
-    <div class="collapse navbar-collapse" id="navigation">
+    <div class="collapse navbar-collapse" id="navigation" [class.show]="collapsed">
         <ul class="navbar-nav mr-auto mt-2 mt-md-0">
             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/dashboard" *ngIf="loggedIn">Dashboard <span class="sr-only">(current)</span></a>
+                <a class="nav-link" routerLink="/dashboard" (click)="toggleMenu(true)" *ngIf="loggedIn">Dashboard <span *ngIf="url === '/dashboard'" class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/voorraad" *ngIf="loggedIn">Voorraad</a>
+                <a class="nav-link" routerLink="/voorraad" (click)="toggleMenu(true)" *ngIf="loggedIn">Voorraad <span *ngIf="url === '/voorraad'" class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/schappen" *ngIf="loggedIn">Schappen</a>
+                <a class="nav-link" routerLink="/schappen" (click)="toggleMenu(true)" *ngIf="loggedIn">Schappen <span *ngIf="url === '/schappen'" class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/settings" *ngIf="loggedIn">Settings</a>
+                <a class="nav-link" routerLink="/settings" (click)="toggleMenu(true)" *ngIf="loggedIn">Settings <span *ngIf="url === '/settings'" class="sr-only">(current)</span></a>
             </li>
         </ul>
         <ul class="navbar-nav">
             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/login" *ngIf="!loggedIn">Inloggen</a>
+                <a class="nav-link" routerLink="/login" (click)="toggleMenu(true)" *ngIf="!loggedIn">Inloggen <span *ngIf="url === '/login'" class="sr-only">(current)</span></a>
             </li>
             <li ngbDropdown class="nav-item dropdown" *ngIf="loggedIn">
                 <a ngbDropdownToggle class="nav-link dropdown-toggle" id="menu-user" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
