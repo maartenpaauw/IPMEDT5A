@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-block">
-        <h5 class="card-title">Acties</h5>
+        <h5 class="card-title" [innerHtml]="title"></h5>
         <hr/>
-        <canvas *ngIf="pieChartData" baseChart [data]="pieChartData" [labels]="pieChartLabels" chartType="pie"></canvas>
+        <canvas *ngIf="pieChartData" baseChart="baseChart" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="chartType"></canvas>
     </div>
 </div>

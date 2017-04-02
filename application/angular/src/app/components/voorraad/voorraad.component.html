@@ -16,11 +16,11 @@
   </thead>
   <tbody>
     <tr *ngFor="let product of products">
-      <td>{{ product.sku }}</td>
-      <td>{{ product.shoe.name }}</td>
-      <td>{{ product.shoe.brand }}</td>
-      <td>{{ product.size.eu_size }}</td>
-      <td>&euro; {{ product.price }}</td>
+      <td [innerHtml]="product.sku"></td>
+      <td [innerHtml]="product.shoe.name"></td>
+      <td [innerHtml]="product.shoe.brand"></td>
+      <td [innerHtml]="product.size.eu_size"></td>
+      <td [innerHtml]="'&euro; ' + product.price"></td>
     </tr>
   </tbody>
 </table>

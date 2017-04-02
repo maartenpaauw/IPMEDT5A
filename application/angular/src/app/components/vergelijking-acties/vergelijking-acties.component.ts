@@ -10,7 +10,9 @@ import {Action} from "../../interfaces/action.interface";
 export class VergelijkingActiesComponent implements OnInit, AfterViewInit {
 
   public pieChartLabels: Array<string>;
-  public pieChartData:   Array<number>;
+  public pieChartData: Array<number>;
+  public chartType: string = "pie";
+  public title: string = "Acties";
 
   constructor(private vergelijkingActiesService: VergelijkingActiesService) { }
 
