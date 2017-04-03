@@ -244,8 +244,9 @@ class ShelfController extends Controller
         // Broadcast de notificatie naar de front end.
         if($action == Action::knopIngedrukt())
         {
+
             // Trigger het ButtonPressedEvent.
-            event(new ButtonPressedEvent($response));
+            event(new ButtonPressedEvent($response->content()));
         }
 
         // Geef de unieke maten terug.

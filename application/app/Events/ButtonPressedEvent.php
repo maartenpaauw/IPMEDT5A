@@ -13,14 +13,13 @@ use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 
 class ButtonPressedEvent implements ShouldBroadcast
 {
-    use Dispatchable, InteractsWithSockets, SerializesModels;
+use Dispatchable, InteractsWithSockets;
 
     public $response;
 
     /**
      * Create a new event instance.
-     *
-     * @param Response $response
+     * @param $response
      */
     public function __construct($response)
     {
@@ -34,6 +33,14 @@ class ButtonPressedEvent implements ShouldBroadcast
      */
     public function broadcastOn()
     {
-        return new PrivateChannel('notifications');
+        return ['notifications'];
+    }
+
+    /**
+     * @return string
+     */
+    public function broadcastAs()
+    {
+        return 'button.pressed';
     }
 }
