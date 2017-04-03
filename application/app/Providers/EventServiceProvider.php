@@ -4,6 +4,7 @@ namespace IPMEDT5A\Providers;
 
 use Illuminate\Support\Facades\Event;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
+use IPMEDT5A\Events\ButtonPressedEvent;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -12,11 +13,7 @@ class EventServiceProvider extends ServiceProvider
      *
      * @var array
      */
-    protected $listen = [
-        'IPMEDT5A\Events\SomeEvent' => [
-            'IPMEDT5A\Listeners\EventListener',
-        ],
-    ];
+    protected $listen = [];
 
     /**
      * Register any events for your application.

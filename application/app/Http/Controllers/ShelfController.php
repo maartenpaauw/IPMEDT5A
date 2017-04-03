@@ -3,6 +3,8 @@
 namespace IPMEDT5A\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Response;
+use IPMEDT5A\Events\ButtonPressedEvent;
 use IPMEDT5A\Models\Action;
 use IPMEDT5A\Models\Demo;
 use IPMEDT5A\Models\Product;
@@ -116,13 +118,27 @@ class ShelfController extends Controller
      * @param $mac_address
      * @return \Dingo\Api\Http\Response
      */
-    public function connect($mac_address)
+    public function connect(Request $request, $mac_address)
     {
-        $shelf = new Shelf();
-        $shelf->mac_address = $mac_address;
-        $shelf->save();
+        // Credentials
+        $credentials = collect($request->only(['private_key']));
 
-        return $this->response->item($shelf, new ShelfTransformer);
+        // Response.
+
+        // Check of de private key gelijk is.
+        if($credentials->get('private_key') == env('JWT_PRIVATE_KEY'))
+        {
+            // Sla de gegevens op.
+            $shelf = new Shelf();
+            $shelf->mac_address = $mac_address;
+            $shelf->save();
+
+            // Geef de response terug.
+            return $this->response->item($shelf, new ShelfTransformer);
+        }
+
+        // Private key klopt niet, token kan niet gemaakt worden.
+        return response()->json(['error' => 'invalid_credentials'], 401);
     }
 
     /**
@@ -228,7 +244,8 @@ class ShelfController extends Controller
         // Broadcast de notificatie naar de front end.
         if($action == Action::knopIngedrukt())
         {
-            // TODO: broadcast met $response.
+            // Trigger het ButtonPressedEvent.
+            event(new ButtonPressedEvent($response));
         }
 
         // Geef de unieke maten terug.
