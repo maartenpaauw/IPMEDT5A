@@ -9,13 +9,9 @@ export class ProductsService {
   private getOptions: RequestOptions;
 
   constructor(private http: Http) {
-
     const headers = new Headers();
-
     headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
-
     this.getOptions = new RequestOptions({ headers });
-
   }
 
   public getProducts() {

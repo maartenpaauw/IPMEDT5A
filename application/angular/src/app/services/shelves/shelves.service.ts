@@ -33,4 +33,19 @@ export class ShelvesService {
           });
   }
 
+    public getShelf(mac_address: string): Observable<boolean | number> {
+        return this.http.get(`${environment.url}shelves/${mac_address}`, this.getOptions)
+            .map((res: Response) => res.json())
+            .map((res: any) => {
+                return res;
+            })
+            .catch((error: any) => {
+                if (error.status == 401) {
+                    return Observable.throw(error.status);
+                } else if (error.status == 500) {
+                    return Observable.throw(error.status);
+                }
+            });
+    }
+
 }
