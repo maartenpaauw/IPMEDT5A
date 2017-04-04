@@ -5,6 +5,7 @@ namespace IPMEDT5A\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Response;
 use IPMEDT5A\Events\ButtonPressedEvent;
+use IPMEDT5A\Events\DemoScannedEvent;
 use IPMEDT5A\Models\Action;
 use IPMEDT5A\Models\Demo;
 use IPMEDT5A\Models\Product;
@@ -171,15 +172,21 @@ class ShelfController extends Controller
 
     /**
      * @param Shelf $shelf
-     * @param $new_demo_uuid
+     * @param $demo_uuid
+     *
+     * @return \Dingo\Api\Http\Response
      */
-    public function demoScanned(Shelf $shelf, $new_demo_uuid)
+    public function demoScanned(Shelf $shelf, $demo_uuid)
     {
         // Er mag een nieuw product gekoppeld worden aan de plank.
         if(Setting::kanKoppelen()->value)
         {
-            // TODO: broadcast naar angular frontend met shelf id en demo uuid
+            // Stuur een notificatie naar Pusher.
+            event(new DemoScannedEvent($shelf, $demo_uuid));
         }
+
+        // Geef de shelf terug.
+        return $this->response->item($shelf, new ShelfTransformer());
     }
 
     /**
@@ -246,7 +253,7 @@ class ShelfController extends Controller
         {
 
             // Trigger het ButtonPressedEvent.
-            event(new ButtonPressedEvent($response->content()));
+            event(new ButtonPressedEvent($shelf, $response_sizes));
         }
 
         // Geef de unieke maten terug.

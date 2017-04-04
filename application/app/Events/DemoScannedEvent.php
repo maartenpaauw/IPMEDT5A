@@ -9,26 +9,25 @@ use Illuminate\Broadcasting\PresenceChannel;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Broadcasting\InteractsWithSockets;
 use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
-use Illuminate\Support\Collection;
 use IPMEDT5A\Models\Shelf;
 
-class ButtonPressedEvent implements ShouldBroadcast
+class DemoScannedEvent implements ShouldBroadcast
 {
-use Dispatchable, InteractsWithSockets, SerializesModels;
+    use Dispatchable, InteractsWithSockets, SerializesModels;
 
-    public $sizes;
     public $shelf;
+    public $uuid;
 
     /**
      * Create a new event instance.
+     *
      * @param Shelf $shelf
-     * @param Collection $sizes
-     * @internal param $response
+     * @param $uuid
      */
-    public function __construct(Shelf $shelf, Collection $sizes)
+    public function __construct(Shelf $shelf, $uuid)
     {
         $this->shelf = $shelf;
-        $this->sizes = $sizes;
+        $this->uuid  = $uuid;
     }
 
     /**
@@ -38,7 +37,7 @@ use Dispatchable, InteractsWithSockets, SerializesModels;
      */
     public function broadcastOn()
     {
-        return ['notifications'];
+        return ['demos'];
     }
 
     /**
@@ -46,6 +45,6 @@ use Dispatchable, InteractsWithSockets, SerializesModels;
      */
     public function broadcastAs()
     {
-        return 'button.pressed';
+        return 'demo.scanned';
     }
 }
