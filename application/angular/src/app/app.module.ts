@@ -17,6 +17,8 @@ import {LoginService} from "./services/login/login.service";
 import {LoginGuard} from "./guards/login.guard";
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ChartsModule } from 'ng2-charts';
+import {ToastModule} from "ng2-toastr";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { ChartsModule } from 'ng2-charts';
     RoutingModule,
     RouterModule,
     ChartsModule,
-    NgbModule.forRoot()
+    NgbModule.forRoot(),
+    ToastModule.forRoot(),
+    BrowserAnimationsModule
   ],
   providers: [
     LoginService,
