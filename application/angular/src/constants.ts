@@ -1,5 +1,7 @@
 import {Student} from "./app/interfaces/student.interface";
 
+export const PUSHER_KEY: string = "";
+
 export const students: Array<Student> = [
     {
         "naam": "Maarten Paauw",
