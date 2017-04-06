@@ -14,11 +14,16 @@ class ProductsTableSeeder extends Seeder
      */
     public function run()
     {
+        // Alle producten
         $shoes = Shoe::all();
 
+        // Ga door elk product heen.
         foreach($shoes as $shoe)
         {
-            foreach (range(36, 41, 1) as $size) {
+            // Ga door elke maat heen.
+            foreach (range(36, 41, 1) as $size)
+            {
+                // Maak het product aan.
                 Product::create([
                         'shoe_id' => $shoe->id,
                         'size_id' => Size::size($size)->id
