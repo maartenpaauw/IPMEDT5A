@@ -9,6 +9,7 @@
     <tr>
       <th>Naam</th>
       <th>Merk</th>
+      <th>Kleur</th>
       <th>Maat</th>
       <th>Prijs</th>
     </tr>
@@ -17,6 +18,7 @@
     <tr *ngFor="let product of products">
       <td [innerHtml]="product.shoe.name"></td>
       <td [innerHtml]="product.shoe.brand"></td>
+      <td [innerHtml]="product.shoe.color"></td>
       <td [innerHtml]="product.size.eu_size"></td>
       <td [innerHtml]="'&euro; ' + product.shoe.price"></td>
     </tr>
