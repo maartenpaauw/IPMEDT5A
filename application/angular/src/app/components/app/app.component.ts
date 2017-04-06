@@ -5,6 +5,7 @@ import {Shelf} from "../../interfaces/shelf.interface";
 import {Notification} from '../../interfaces/notification.interface';
 import {List} from "immutable";
 import {Size} from "../../interfaces/size.interface";
+import {Tag} from "../../interfaces/tag.interface";
 
 @Component({
     selector: 'app-root',
@@ -14,6 +15,7 @@ import {Size} from "../../interfaces/size.interface";
 export class AppComponent implements OnInit {
 
     private notifications: PusherService;
+    private demo: PusherService;
 
     constructor(private toastsManager: ToastsManager,
                 private viewContainerRef: ViewContainerRef) {
@@ -22,6 +24,15 @@ export class AppComponent implements OnInit {
     }
 
     ngOnInit(): void {
+        this.notificationsPusher();
+        this.demoPusher();
+    }
+
+    private demoPusher(): void {
+        this.demo = new PusherService('demo', 'demo.linked');
+    }
+
+    private notificationsPusher(): void {
 
         this.notifications = new PusherService('notifications', 'button.pressed');
 
@@ -30,6 +41,7 @@ export class AppComponent implements OnInit {
 
                 const shelf: Shelf            = data.shelf;
                 const sizes: Array<Size>      = data.sizes;
+                const tag: Tag                = data.tag;
                 const eu_sizes: Array<string> = [];
 
                 for (let size of sizes) {
@@ -40,12 +52,11 @@ export class AppComponent implements OnInit {
                                        de schoen ${shelf.demo.product.shoe.name}, ${shelf.demo.product.shoe.brand} 
                                        passen in een van de ${eu_sizes.join(', ')} `;
 
-                this.toastsManager.success('Passen van schoen', message, {
+                this.toastsManager.success(message, null, {
                     toastLife: 10000
                 });
             }
         });
-
     }
 
 }
