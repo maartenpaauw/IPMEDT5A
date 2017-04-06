@@ -17,8 +17,6 @@ class CreateProductsTable extends Migration
             $table->increments('id');
             $table->integer('shoe_id')->unsigned();
             $table->integer('size_id')->unsigned();
-            $table->string('sku');
-            $table->decimal('price', 5);
             $table->timestamps();
 
             $table->foreign('shoe_id')

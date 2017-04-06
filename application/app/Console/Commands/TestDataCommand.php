@@ -50,8 +50,6 @@ class TestDataCommand extends Command
                 '--seed' => true
             ]);
 
-            factory(Shoe::class, 10)->create();
-            factory(Product::class, 500)->create();
             factory(Demo::class, 3)->create();
             factory(Shelf::class, 3)->create();
             factory(Shelf::class, 1)->states(['lege_plank'])->create();

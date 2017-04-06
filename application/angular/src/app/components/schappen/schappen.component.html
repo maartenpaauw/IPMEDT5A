@@ -10,7 +10,7 @@
             <div class="card-block">
                 <h3 class="card-title" [innerText]="'Schap ' + shelf.id"></h3>
                 <p class="card-text" *ngIf="shelf.demo" [innerText]="shelf.demo.product.shoe.brand + ' &ndash; ' + shelf.demo.product.shoe.name"></p>
-                <p class="card-text text-right" *ngIf="shelf.demo" [innerText]="'&euro; ' + shelf.demo.product.price"></p>
+                <p class="card-text text-right" *ngIf="shelf.demo" [innerText]="'&euro; ' + shelf.demo.product.shoe.price"></p>
                 <p class="card-text" *ngIf="!shelf.demo" [innerHtml]="'Schap ' + shelf.id + ' is nog niet gekoppeld'"></p>
                 <a [routerLink]="['/schappen', shelf.mac_address, 'koppelen']" class="btn btn-primary" *ngIf="!shelf.demo">koppelen</a>
             </div>

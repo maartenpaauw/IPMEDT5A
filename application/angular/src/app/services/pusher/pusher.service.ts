@@ -16,8 +16,6 @@ export class PusherService {
   constructor(private channelName: string,
               private event: string) {
 
-    console.log('PusherService', 'constructor');
-
     this.pusher = new Pusher(PUSHER_KEY, {
       disableStats: true,
       cluster: 'eu'

@@ -7,7 +7,6 @@
 <table class="table">
   <thead class="thead-inverse">
     <tr>
-      <th># SKU</th>
       <th>Naam</th>
       <th>Merk</th>
       <th>Maat</th>
@@ -16,11 +15,10 @@
   </thead>
   <tbody>
     <tr *ngFor="let product of products">
-      <td [innerHtml]="product.sku"></td>
       <td [innerHtml]="product.shoe.name"></td>
       <td [innerHtml]="product.shoe.brand"></td>
       <td [innerHtml]="product.size.eu_size"></td>
-      <td [innerHtml]="'&euro; ' + product.price"></td>
+      <td [innerHtml]="'&euro; ' + product.shoe.price"></td>
     </tr>
   </tbody>
 </table>

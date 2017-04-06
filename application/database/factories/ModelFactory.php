@@ -26,16 +26,16 @@ $factory->define(IPMEDT5A\Models\User::class, function (Faker\Generator $faker) 
 $factory->define(\IPMEDT5A\Models\Shoe::class, function (Faker\Generator $faker) {
     return [
         'name'  => $faker->colorName,
-        'brand' => $faker->company
+        'brand' => $faker->company,
+        'price' => $faker->randomFloat(2, 50, 900),
+
     ];
 });
 
 $factory->define(\IPMEDT5A\Models\Product::class, function (\Faker\Generator $faker) use ($factory) {
     return [
         'shoe_id' => \IPMEDT5A\Models\Shoe::inRandomOrder()->first()->id,
-        'size_id' => \IPMEDT5A\Models\Size::inRandomOrder()->first()->id,
-        'sku'     => $faker->ean13,
-        'price'   => $faker->randomFloat(2, 50, 900),
+        'size_id' => \IPMEDT5A\Models\Size::inRandomOrder()->first()->id
 
     ];
 });

@@ -17,6 +17,8 @@ class CreateShoesTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('brand');
+            $table->string('color');
+            $table->decimal('price', 5);
             $table->timestamps();
         });
     }
