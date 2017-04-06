@@ -26,6 +26,16 @@ class Size extends Model
     }
 
     /**
+     * @param $query
+     * @param $size
+     * @return mixed
+     */
+    public function scopeSize($query, $size)
+    {
+        return $query->where('eu_size', $size)->first();
+    }
+
+    /**
      * @param Size $size
      * @param int $step
      * @return array

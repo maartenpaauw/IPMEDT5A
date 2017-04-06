@@ -52,7 +52,6 @@ class TestDataCommand extends Command
 
             factory(Shoe::class, 10)->create();
             factory(Product::class, 500)->create();
-            factory(Tag::class, 5)->create();
             factory(Demo::class, 3)->create();
             factory(Shelf::class, 3)->create();
             factory(Shelf::class, 1)->states(['lege_plank'])->create();
