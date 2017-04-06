@@ -246,14 +246,14 @@ class ShelfController extends Controller
         }
 
         // Geef de unieke maten terug.
-        $response = $this->response->item($shelf, new ShelfTransformer($response_sizes));
+        $response = $this->response->item($shelf, new ShelfTransformer($response_sizes, $tag));
 
         // Broadcast de notificatie naar de front end.
         if($action == Action::knopIngedrukt())
         {
 
             // Trigger het ButtonPressedEvent.
-            event(new ButtonPressedEvent($shelf, $response_sizes));
+            event(new ButtonPressedEvent($shelf, $tag, $response_sizes));
         }
 
         // Geef de unieke maten terug.
