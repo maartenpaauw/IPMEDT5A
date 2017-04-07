@@ -10,6 +10,11 @@ class Shelf extends Model
      * @var array
      */
     protected $with = ['demo'];
+
+    /**
+     * @var array
+     */
+    protected $fillable = ['mac_address'];
     
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne

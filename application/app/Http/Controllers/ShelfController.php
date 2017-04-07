@@ -116,6 +116,7 @@ class ShelfController extends Controller
      *      @Response(401, body = {"message":"Could not decode token: The token 'TOKEN_HERE' is an invalid JWS","status_code":401}),
      * })
      *
+     * @param Request $request
      * @param $mac_address
      * @return \Dingo\Api\Http\Response
      */
@@ -129,10 +130,10 @@ class ShelfController extends Controller
         // Check of de private key gelijk is.
         if($credentials->get('private_key') == env('JWT_PRIVATE_KEY'))
         {
-            // Sla de gegevens op.
-            $shelf = new Shelf();
-            $shelf->mac_address = $mac_address;
-            $shelf->save();
+            // Aanmaken van een nieuw plankje.
+            $shelf = Shelf::firstOrCreate([
+                'mac_address' => $mac_address
+            ]);
 
             // Geef de response terug.
             return $this->response->item($shelf, new ShelfTransformer);
