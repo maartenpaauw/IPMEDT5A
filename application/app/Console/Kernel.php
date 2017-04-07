@@ -4,6 +4,7 @@ namespace IPMEDT5A\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use IPMEDT5A\Console\Commands\RealDataCommand;
 use IPMEDT5A\Console\Commands\TestDataCommand;
 
 class Kernel extends ConsoleKernel
@@ -14,7 +15,8 @@ class Kernel extends ConsoleKernel
      * @var array
      */
     protected $commands = [
-        TestDataCommand::class
+        TestDataCommand::class,
+        RealDataCommand::class
     ];
 
     /**

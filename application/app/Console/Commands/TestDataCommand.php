@@ -18,7 +18,7 @@ class TestDataCommand extends Command
      *
      * @var string
      */
-    protected $signature = 'test:data';
+    protected $signature = 'data:test';
 
     /**
      * The console command description.
