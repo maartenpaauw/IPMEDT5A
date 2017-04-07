@@ -3,10 +3,11 @@ import {PusherService} from "../../services/pusher/pusher.service";
 import {ToastsManager} from "ng2-toastr";
 import {Shelf} from "../../interfaces/shelf.interface";
 import {Notification} from '../../interfaces/notification.interface';
-import {List} from "immutable";
 import {Size} from "../../interfaces/size.interface";
 import {Tag} from "../../interfaces/tag.interface";
 import {Demo} from "../../interfaces/demo.interface";
+import {Connect} from "../../interfaces/connect.interface";
+import {List} from "../../interfaces/list.interface";
 
 @Component({
     selector: 'app-root',
@@ -30,7 +31,13 @@ export class AppComponent implements OnInit {
     }
 
     private demoPusher(): void {
-        this.demo = new PusherService('demo', 'demo.linked');
+        this.demo = new PusherService('demos', 'demo.scanned');
+
+        this.demo.messages.subscribe((data: any | Connect) => {
+            if (typeof (data.size) === 'undefined') {
+                console.log(data);
+            }
+        });
     }
 
     private notificationsPusher(): void {

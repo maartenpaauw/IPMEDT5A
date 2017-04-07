@@ -28,7 +28,6 @@ $factory->define(\IPMEDT5A\Models\Shoe::class, function (Faker\Generator $faker)
         'name'  => $faker->colorName,
         'brand' => $faker->company,
         'price' => $faker->randomFloat(2, 50, 900),
-
     ];
 });
 
@@ -36,7 +35,6 @@ $factory->define(\IPMEDT5A\Models\Product::class, function (\Faker\Generator $fa
     return [
         'shoe_id' => \IPMEDT5A\Models\Shoe::inRandomOrder()->first()->id,
         'size_id' => \IPMEDT5A\Models\Size::inRandomOrder()->first()->id
-
     ];
 });
 
