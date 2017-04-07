@@ -216,7 +216,7 @@ return [
 
     'formats' => [
 
-        'json' => Dingo\Api\Http\Response\Format\Json::class,
+        'json' => \IPMEDT5A\Formatters\Json::class
 
     ],
 
