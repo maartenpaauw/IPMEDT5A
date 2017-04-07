@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use IPMEDT5A\Files\ShoesListImport;
+use IPMEDT5A\Files\ProductsListImport;
 use IPMEDT5A\Models\Shoe;
 use IPMEDT5A\Models\Product;
 use IPMEDT5A\Models\Size;
@@ -11,10 +11,10 @@ class ProductsTableSeeder extends Seeder
     /**
      * Run the database seeds.
      *
-     * @param ShoesListImport $import
+     * @param ProductsListImport $import
      * @return void
      */
-    public function run(ShoesListImport $import)
+    public function run(ProductsListImport $import)
     {
         // Verkrijg de inhoud van het bestand.
         $results = $import->get();

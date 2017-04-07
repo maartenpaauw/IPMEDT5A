@@ -8,7 +8,7 @@ use Maatwebsite\Excel\Files\ExcelFile;
  * Class ShoesListImport
  * @package IPMEDT5A\Files
  */
-class ShoesListImport extends ExcelFile
+class ProductsListImport extends ExcelFile
 {
 
     /**
