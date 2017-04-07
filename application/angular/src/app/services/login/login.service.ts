@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {Http, Headers, RequestOptions, Response} from "@angular/http";
 
 import {Login} from "../../interfaces/login.interface";
-import {JWTCheck, User} from "../../interfaces/user.interface";
+import {JWTCheck} from "../../interfaces/user.interface";
 
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
