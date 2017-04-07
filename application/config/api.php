@@ -216,7 +216,8 @@ return [
 
     'formats' => [
 
-        'json' => \IPMEDT5A\Formatters\Json::class
+        'json'    =>\Dingo\Api\Http\Response\Format\Json::class,
+        'arduino' => \IPMEDT5A\Formatters\Arduino::class
 
     ],
 

@@ -6,7 +6,7 @@ use Dingo\Api\Http\Response\Format\Format;
 use Illuminate\Support\Str;
 use Illuminate\Contracts\Support\Arrayable;
 
-class Json extends Format
+class Arduino extends Format
 {
     /**
      * Format an Eloquent model.
