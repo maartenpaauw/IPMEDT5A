@@ -6,6 +6,7 @@ import {Notification} from '../../interfaces/notification.interface';
 import {List} from "immutable";
 import {Size} from "../../interfaces/size.interface";
 import {Tag} from "../../interfaces/tag.interface";
+import {Demo} from "../../interfaces/demo.interface";
 
 @Component({
     selector: 'app-root',
@@ -39,22 +40,51 @@ export class AppComponent implements OnInit {
         this.notifications.messages.subscribe((data: any | Notification) => {
             if (typeof (data.size) === 'undefined') {
 
-                const shelf: Shelf            = data.shelf;
-                const sizes: Array<Size>      = data.sizes;
-                const tag: Tag                = data.tag;
+                const shelf: Shelf = data.shelf;
+                const sizes: Array<Size> = data.sizes;
+                const tag: Tag = data.tag;
+                const demo: Demo = data.shelf.demo;
+
                 const eu_sizes: Array<string> = [];
 
                 for (let size of sizes) {
                     eu_sizes.push(size.eu_size);
                 }
 
-                let message: string = `Een klant wilt bij schap ${shelf.id} 
-                                       de schoen ${shelf.demo.product.shoe.name}, ${shelf.demo.product.shoe.brand} 
-                                       passen in een van de ${eu_sizes.join(', ')} `;
+                if(!demo) {
+                    this.toastsManager.warning(`Een klant heeft hulp nodig bij schap ${shelf.id}.`, null, {
+                        toastLife: 10000
+                    });
+                }
 
-                this.toastsManager.success(message, null, {
-                    toastLife: 10000
-                });
+                else if(sizes.length == 0) {
+                    this.toastsManager.error(`De schoen ${shelf.demo.product.shoe.name}, 
+                                              ${shelf.demo.product.shoe.brand} is helaas niet op voorraad in maat
+                                              ${tag.size.eu_size}`, null, {
+                        toastLife: 10000
+                    })
+                }
+
+                else {
+
+                    if(eu_sizes.indexOf(tag.size.eu_size) != -1) {
+                        this.toastsManager.success(`Een klant wilt bij schap ${shelf.id} 
+                                                    de schoen ${shelf.demo.product.shoe.name}, 
+                                                    ${shelf.demo.product.shoe.brand} 
+                                                    passen in een van de ${eu_sizes.join(', ')} `, null, {
+                            toastLife: 10000
+                        });
+                    }
+
+                    else {
+                        this.toastsManager.success(`Een klant wilt bij schap ${shelf.id} 
+                                                    de schoen ${shelf.demo.product.shoe.name}, 
+                                                    ${shelf.demo.product.shoe.brand} 
+                                                    passen in de maat ${tag.size.eu_size}`, null, {
+                            toastLife: 10000
+                        });
+                    }
+                }
             }
         });
     }

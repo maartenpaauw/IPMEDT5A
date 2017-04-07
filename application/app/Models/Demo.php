@@ -14,7 +14,7 @@ class Demo extends Model
     /**
      * @var array
      */
-    protected $fillable = ['uuid', 'demo_id'];
+    protected $fillable = ['uuid', 'product_id'];
 
     /**
      * Get the route key for the model.
