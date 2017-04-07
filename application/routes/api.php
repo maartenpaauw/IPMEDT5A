@@ -40,12 +40,12 @@ $api->version('v1', function ($api)
         $api->get('statistics/actions/count', ['as' => 'statistics.actions.count', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@actionCount']);
 
         // Settings
-        $api->post('settings/{setting}/toggle/', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
+        $api->post('settings/{setting}/toggle', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
 
         // Actions
-        $api->post('shelves/{shelf}/demos/{demo_uuid}/scanned/', ['as' => 'shelves.actions.demo_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
-        $api->post('shelves/{shelf}/tags/{tag}/actions/{action}/', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@interactionWithShelf']);
-        $api->post('shelves/{shelf}/actions/picked_up/', ['as' => 'shelves.actions.picked_up', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoPickedUp']);
+        $api->post('shelves/{shelf}/demos/{demo_uuid}/scanned', ['as' => 'shelves.actions.demo_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
+        $api->post('shelves/{shelf}/tags/{tag}/actions/{action}', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@interactionWithShelf']);
+        $api->post('shelves/{shelf}/actions/picked_up', ['as' => 'shelves.actions.picked_up', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoPickedUp']);
 
         // Authenticate
         $api->post('authenticate/check', ['as' => 'authenticate.check', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateCheck']);
@@ -57,5 +57,5 @@ $api->version('v1', function ($api)
     $api->post('authenticate/shelf', ['as' => 'authenticate.shelf', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateShelf']);
 
     // Shelves
-    $api->post('shelves/{mac_address}/connect/', ['as' => 'shelves.connect', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@connect']);
+    $api->post('shelves/{mac_address}/connect', ['as' => 'shelves.connect', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@connect']);
 });
