@@ -7,6 +7,7 @@ import {Size} from "../../interfaces/size.interface";
 import {Tag} from "../../interfaces/tag.interface";
 import {Demo} from "../../interfaces/demo.interface";
 import {Connect} from "../../interfaces/connect.interface";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'app-root',
@@ -19,7 +20,8 @@ export class AppComponent implements OnInit {
     private demo: PusherService;
 
     constructor(private toastsManager: ToastsManager,
-                private viewContainerRef: ViewContainerRef) {
+                private viewContainerRef: ViewContainerRef,
+                private router: Router) {
 
         this.toastsManager.setRootViewContainerRef(viewContainerRef);
     }
@@ -34,7 +36,7 @@ export class AppComponent implements OnInit {
 
         this.demo.messages.subscribe((data: any | Connect) => {
             if (typeof (data.size) === 'undefined') {
-                console.log(data);
+                this.router.navigateByUrl(`/schappen/${data.shelf.mac_address}/koppelen/${data.uuid}`);
             }
         });
     }

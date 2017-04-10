@@ -12,8 +12,8 @@
             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/voorraad" (click)="toggleMenu(true)" *ngIf="loggedIn">Voorraad <span *ngIf="url === '/voorraad'" class="sr-only">(current)</span></a>
             </li>
-            <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
-                <a class="nav-link" routerLink="/schappen" (click)="toggleMenu(true)" *ngIf="loggedIn">Schappen <span *ngIf="url === '/schappen'" class="sr-only">(current)</span></a>
+            <li class="nav-item" [routerLinkActive]="['active']">
+                <a class="nav-link" routerLink="/schappen" (click)="toggleMenu(true)" *ngIf="loggedIn">Schappen <span *ngIf="url?.includes('/schappen')" class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact: true}">
                 <a class="nav-link" routerLink="/settings" (click)="toggleMenu(true)" *ngIf="loggedIn">Settings <span *ngIf="url === '/settings'" class="sr-only">(current)</span></a>

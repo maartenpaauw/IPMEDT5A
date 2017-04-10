@@ -18,7 +18,8 @@ export class KoppelenComponent implements OnInit {
   private mac_address: string;
   private uuid: string;
   private shelf: Shelf;
-  private products: Array<Product>;
+  public products: Array<Product>;
+  private product_id: number;
 
   constructor(private titleService: Title,
               private activatedRoute: ActivatedRoute,
@@ -48,5 +49,13 @@ export class KoppelenComponent implements OnInit {
           this.products = res;
         }
     );
+  }
+
+  public product(event): void {
+      this.product_id = (event.target).value;
+  }
+
+  public koppelen(): void {
+
   }
 }
