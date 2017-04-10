@@ -11,13 +11,16 @@ export class EditGuard implements CanActivate {
               private loginGuard: LoginGuard) {}
 
   canActivate(): boolean {
-    this.settingsService.getSetting('kan_aanpassen').subscribe(
+    this.settingsService.getSetting('kan_koppelen').subscribe(
         (res: Setting) => {
           if(res.value) {
-            return true;
+              return true;
           }
 
-          return false;
+          else {
+              this.loginGuard.redirect();
+              return false;
+          }
         },
         (err) => {
           this.loginGuard.redirect();

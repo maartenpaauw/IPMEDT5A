@@ -19,6 +19,8 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 import { ChartsModule } from 'ng2-charts';
 import {ToastModule} from "ng2-toastr";
 import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {EditGuard} from "./guards/edit.guard";
+import {SettingsService} from "./services/settings/settings.service";
 
 @NgModule({
   declarations: [
@@ -43,7 +45,9 @@ import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
   ],
   providers: [
     LoginService,
-    LoginGuard
+    SettingsService,
+    LoginGuard,
+    EditGuard
   ],
   bootstrap: [AppComponent]
 })

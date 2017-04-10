@@ -39,7 +39,7 @@ const routes: Routes = [
         path: 'schappen',
         loadChildren: './schappen.module#SchappenModule',
         canActivate: [
-            LoginGuard
+            LoginGuard,
         ]
     },
     {
