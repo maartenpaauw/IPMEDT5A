@@ -34,7 +34,7 @@ import {ProductsService} from "../services/products/products.service";
                 ]
             },
             {
-                path: ':mac_address/koppelen',
+                path: ':mac_address/koppelen/:uuid',
                 component: KoppelenComponent,
                 pathMatch: 'full',
                 canActivate: [

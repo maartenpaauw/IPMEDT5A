@@ -19,7 +19,7 @@ export class VoorraadComponent implements OnInit {
     this.titleService.setTitle("Voorraad — IPMEDT5A");
 
     this.productsService.getProducts().subscribe(
-        (res: any) => {
+        (res: Array<Product>) => {
           this.products = res;
         }
     );

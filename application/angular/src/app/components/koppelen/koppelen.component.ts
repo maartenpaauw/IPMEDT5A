@@ -16,6 +16,7 @@ import {ProductsService} from "../../services/products/products.service";
 export class KoppelenComponent implements OnInit {
 
   private mac_address: string;
+  private uuid: string;
   private shelf: Shelf;
   private products: Array<Product>;
 
@@ -28,6 +29,7 @@ export class KoppelenComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
       this.mac_address = params['mac_address'];
+      this.uuid        = params['uuid'];
     });
 
     this.shelvesService.getShelf(this.mac_address).subscribe(
