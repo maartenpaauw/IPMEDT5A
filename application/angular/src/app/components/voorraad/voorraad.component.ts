@@ -20,7 +20,7 @@ export class VoorraadComponent implements OnInit {
 
     this.productsService.getProducts().subscribe(
         (res: any) => {
-          this.products = res.data;
+          this.products = res;
         }
     );
   }
