@@ -18,7 +18,7 @@ export class ProductsService {
     return this.http.get(`${environment.url}products`, this.getOptions)
         .map((res: Response) => res.json())
         .map((res: any) => {
-          return res;
+          return res.data;
         })
         .catch((error: any) => {
           if (error.status == 401) {

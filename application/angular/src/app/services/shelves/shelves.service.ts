@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {Http, Response, RequestOptions, Headers} from "@angular/http";
 import {Observable} from "rxjs";
 import {environment} from "../../../environments/environment";
+import {Shelf} from "../../interfaces/shelf.interface";
 
 @Injectable()
 export class ShelvesService {
@@ -33,11 +34,11 @@ export class ShelvesService {
           });
   }
 
-    public getShelf(mac_address: string): Observable<boolean | number> {
+    public getShelf(mac_address: string): Observable<Shelf | number> {
         return this.http.get(`${environment.url}shelves/${mac_address}`, this.getOptions)
             .map((res: Response) => res.json())
             .map((res: any) => {
-                return res;
+                return res.data;
             })
             .catch((error: any) => {
                 if (error.status == 401) {

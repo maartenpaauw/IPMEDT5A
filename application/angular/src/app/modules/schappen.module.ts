@@ -7,6 +7,8 @@ import {EditGuard} from "../guards/edit.guard";
 import {ShelvesService} from "../services/shelves/shelves.service";
 import {SchappenComponent} from "../components/schappen/schappen.component";
 import {KoppelenComponent} from "../components/koppelen/koppelen.component";
+import {SettingsService} from "../services/settings/settings.service";
+import {ProductsService} from "../services/products/products.service";
 
 
 @NgModule({
@@ -15,7 +17,9 @@ import {KoppelenComponent} from "../components/koppelen/koppelen.component";
         KoppelenComponent
     ],
     providers: [
-        ShelvesService
+        ShelvesService,
+        SettingsService,
+        ProductsService
     ],
     imports: [
         CommonModule,
