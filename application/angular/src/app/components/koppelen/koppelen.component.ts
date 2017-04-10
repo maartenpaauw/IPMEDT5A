@@ -56,6 +56,6 @@ export class KoppelenComponent implements OnInit {
   }
 
   public koppelen(): void {
-
+    // TODO post naar naar demo.
   }
 }
