@@ -7,7 +7,6 @@ import {Size} from "../../interfaces/size.interface";
 import {Tag} from "../../interfaces/tag.interface";
 import {Demo} from "../../interfaces/demo.interface";
 import {Connect} from "../../interfaces/connect.interface";
-import {List} from "../../interfaces/list.interface";
 
 @Component({
     selector: 'app-root',
