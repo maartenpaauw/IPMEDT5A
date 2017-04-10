@@ -16,10 +16,10 @@ import {ProductsService} from "../../services/products/products.service";
 export class KoppelenComponent implements OnInit {
 
   private mac_address: string;
-  private uuid: string;
-  private shelf: Shelf;
-  public products: Array<Product>;
   private product_id: number;
+  public shelf: Shelf;
+  public uuid: string;
+  public products: Array<Product>;
 
   constructor(private titleService: Title,
               private activatedRoute: ActivatedRoute,
