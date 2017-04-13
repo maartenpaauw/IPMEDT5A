@@ -1,0 +1,3 @@
+[submodule "embedded"]
+	path = embedded
+	url = git@github.com:djohalo2/pi-shelf.git
