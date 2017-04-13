@@ -3,13 +3,24 @@
 namespace IPMEDT5A\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Product extends Model
 {
     /**
+     * Soft deletes.
+     */
+    use SoftDeletes;
+
+    /**
      * @var array
      */
     protected $with = ['shoe', 'size'];
+
+    /**
+     * @var array
+     */
+    protected $dates  =['deleted_at'];
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
