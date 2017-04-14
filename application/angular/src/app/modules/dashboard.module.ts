@@ -10,6 +10,7 @@ import {OpgepaktVandaagComponent} from "../components/opgepakt-vandaag/opgepakt-
 import {GescandVandaagComponent} from "../components/gescand-vandaag/gescand-vandaag.component";
 import {VergelijkingActiesComponent} from "../components/vergelijking-acties/vergelijking-acties.component";
 import {StatisticsService} from "../services/statistics/statistics.service";
+import {IngedruktVandaagComponent} from "../components/ingedrukt-vandaag/ingedrukt-vandaag.component";
 
 @NgModule({
     declarations: [
@@ -17,6 +18,7 @@ import {StatisticsService} from "../services/statistics/statistics.service";
         OverzichtComponent,
         OpgepaktVandaagComponent,
         GescandVandaagComponent,
+        IngedruktVandaagComponent,
         VergelijkingActiesComponent
     ],
     providers: [

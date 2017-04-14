@@ -63,4 +63,19 @@ export class StatisticsService {
         });
   }
 
+    public getPressedTodayGroupedByHour() {
+        return this.http.get(`${environment.url}statistics/custom/pressed_today_grouped_by_hour`, this.getOptions)
+            .map((res: Response) => res.json())
+            .map((res: any) => {
+                return res.data;
+            })
+            .catch((error: any) => {
+                if (error.status == 401) {
+                    return Observable.throw(error.status);
+                } else if (error.status == 500) {
+                    return Observable.throw(error.status);
+                }
+            });
+    }
+
 }

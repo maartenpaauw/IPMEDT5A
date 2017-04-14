@@ -136,4 +136,16 @@ class StatisticController extends Controller
 
         return $this->response->collection($statistics, new StatisticTransformer());
     }
+
+    public function pressedTodayGroupedByHour()
+    {
+        $statistics = Statistic::where('action_id', Action::knopIngedrukt()->id)
+            ->whereRaw('Date(created_at) = CURDATE()')
+            ->select(DB::raw('DATE_FORMAT(created_at, "%H:00") as uur'), DB::raw('COUNT(*) as aantal'))
+            ->groupBy(DB::raw('DATE_FORMAT(created_at, "%H:00")'))
+            ->get()
+        ;
+
+        return $this->response->collection($statistics, new StatisticTransformer());
+    }
 }
