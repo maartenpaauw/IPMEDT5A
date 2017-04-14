@@ -38,6 +38,7 @@ $api->version('v1', function ($api)
 
         // Statistics
         $api->get('statistics/actions/count', ['as' => 'statistics.actions.count', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@actionCount']);
+        $api->get('statistics/custom/picked_up_today_grouped_by_hour', ['as' => 'statistics.picked_up_today_grouped_by_hour', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@pickedUpTodayGroupedByHour']);
 
         // Settings
         $api->post('settings/{setting}/toggle', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);

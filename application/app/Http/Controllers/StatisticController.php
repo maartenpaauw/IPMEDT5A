@@ -2,6 +2,8 @@
 
 namespace IPMEDT5A\Http\Controllers;
 
+use Carbon\Carbon;
+use Illuminate\Support\Facades\DB;
 use IPMEDT5A\Models\Action;
 use IPMEDT5A\Models\Statistic;
 use Illuminate\Http\Request;
@@ -103,5 +105,20 @@ class StatisticController extends Controller
         $actions = Action::withCount('statistics')->get();
 
         return $this->response->collection($actions, new ActionTransformer());
+    }
+
+    /**
+     * @return \Dingo\Api\Http\Response
+     */
+    public function pickedUpTodayGroupedByHour()
+    {
+        $statistics = Statistic::where('action_id', Action::demoOpgepakt()->id)
+            ->whereRaw('Date(created_at) = CURDATE()')
+            ->select(DB::raw('DATE_FORMAT(created_at, "%H:00") as uur'), DB::raw('COUNT(*) as aantal'))
+            ->groupBy(DB::raw('DATE_FORMAT(created_at, "%H:00")'))
+            ->get()
+        ;
+
+        return $this->response->collection($statistics, new StatisticTransformer());
     }
 }

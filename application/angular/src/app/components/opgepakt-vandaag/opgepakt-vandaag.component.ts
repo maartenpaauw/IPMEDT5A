@@ -1,46 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {OpgepaktVandaagService} from "../../services/opgepakt-vandaag/opgepakt-vandaag.service";
+import {IntervalObservable} from "rxjs/observable/IntervalObservable";
+import {Subscription} from "rxjs/Subscription";
+import {AantalPerUur} from "../../interfaces/aantalperuur.interface";
 
 @Component({
   selector: 'app-opgepakt-vandaag',
   templateUrl: './opgepakt-vandaag.component.html',
   styleUrls: ['./opgepakt-vandaag.component.scss']
 })
-export class OpgepaktVandaagComponent implements OnInit {
+export class OpgepaktVandaagComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  // lineChart
-  public lineChartData:Array<any> = [
-    {data: [10, 12, 22, 17, 31, 44, 32, 16, 6], label: 'Schoenen'}
-  ];
-  public lineChartLabels:Array<any> = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
-  public lineChartOptions:any = {
-    responsive: true
+  public lineChartLabels:Array<string>;
+  public lineChartData: Array<any>;
+  public lineChartType: string = 'bar';
+  public title: string = 'Opgepakt vandaag';
+  public lineChartOptions: any = {
+      scaleBeginAtZero: true
   };
-  public lineChartColors:Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(52, 152, 219,0.5)',
-      borderColor: 'rgba(41, 128, 185,1.0)',
-      pointBackgroundColor: 'rgba(52, 152, 219,1.0)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(41, 128, 185,1.0)'
-    }
-  ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
 
-  constructor() { }
+  private observable: Subscription;
+
+  constructor(private opgepaktVandaagService: OpgepaktVandaagService) {}
+
+  private data(): void {
+      this.opgepaktVandaagService.getPickedUpTodayGroupedByHour().subscribe(
+        (res: Array<AantalPerUur>) => {
+            const data   = [];
+            const labels = [];
+
+            for (let item of res) {
+                data.push(item.aantal);
+                labels.push(item.uur);
+            }
+
+            this.lineChartData = [{ data: data, label: 'Schoenen' }];
+            this.lineChartLabels = labels;
+        }
+      );
+  }
 
   ngOnInit() {
+      this.data();
   }
 
-  // events
-  public chartClicked(e:any):void {
-    console.log(e);
+  ngAfterViewInit(): void {
+      this.observable = IntervalObservable.create(2000).subscribe(() => {
+          this.data();
+      });
   }
 
-  public chartHovered(e:any):void {
-    console.log(e);
+  ngOnDestroy(): void {
+      this.observable.unsubscribe();
   }
-
 }
 
