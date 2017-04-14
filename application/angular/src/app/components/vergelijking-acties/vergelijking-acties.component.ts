@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {VergelijkingActiesService} from "../../services/vergelijking-acties/vergelijking-acties.service";
 import {Action} from "../../interfaces/action.interface";
 import {IntervalObservable} from "rxjs/observable/IntervalObservable";
 import {Subscription} from "rxjs/Subscription";
+import {StatisticsService} from "../../services/statistics/statistics.service";
 
 @Component({
   selector: 'app-vergelijking-acties',
@@ -18,10 +18,10 @@ export class VergelijkingActiesComponent implements OnInit, AfterViewInit, OnDes
 
   private observable: Subscription;
 
-  constructor(private vergelijkingActiesService: VergelijkingActiesService) { }
+  constructor(private statisticsService: StatisticsService) { }
 
   private data(): void {
-      this.vergelijkingActiesService.getActionsCount().subscribe(
+      this.statisticsService.getActionsCount().subscribe(
           (res: Array<Action>) => {
 
               this.pieChartLabels = [];

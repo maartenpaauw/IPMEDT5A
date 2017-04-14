@@ -1,8 +1,8 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
-import {OpgepaktVandaagService} from "../../services/opgepakt-vandaag/opgepakt-vandaag.service";
 import {IntervalObservable} from "rxjs/observable/IntervalObservable";
 import {Subscription} from "rxjs/Subscription";
 import {AantalPerUur} from "../../interfaces/aantalperuur.interface";
+import {StatisticsService} from "../../services/statistics/statistics.service";
 
 @Component({
   selector: 'app-opgepakt-vandaag',
@@ -21,10 +21,10 @@ export class OpgepaktVandaagComponent implements OnInit, AfterViewInit, OnDestro
 
   private observable: Subscription;
 
-  constructor(private opgepaktVandaagService: OpgepaktVandaagService) {}
+  constructor(private statisticsService: StatisticsService) {}
 
   private data(): void {
-      this.opgepaktVandaagService.getPickedUpTodayGroupedByHour().subscribe(
+      this.statisticsService.getPickedUpTodayGroupedByHour().subscribe(
         (res: Array<AantalPerUur>) => {
             const data   = [];
             const labels = [];
