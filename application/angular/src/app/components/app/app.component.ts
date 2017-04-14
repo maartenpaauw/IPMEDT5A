@@ -76,7 +76,7 @@ export class AppComponent implements OnInit {
                 else {
 
                     if(!(eu_sizes.indexOf(tag.size.eu_size) != -1)) {
-                        this.toastsManager.success(`Een klant wilt bij schap ${shelf.id} 
+                        this.toastsManager.warning(`Een klant wilt bij schap ${shelf.id} 
                                                     de schoen ${shelf.demo.product.shoe.name}, 
                                                     ${shelf.demo.product.shoe.brand} 
                                                     passen in een van de ${eu_sizes.join(', ')} `, null, {
