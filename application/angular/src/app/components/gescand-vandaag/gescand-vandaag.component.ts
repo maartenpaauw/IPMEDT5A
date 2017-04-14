@@ -1,46 +1,57 @@
-import { Component, OnInit } from '@angular/core';
+import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {IntervalObservable} from "rxjs/observable/IntervalObservable";
+import {Subscription} from "rxjs/Subscription";
+import {AantalPerUur} from "../../interfaces/aantalperuur.interface";
+import {StatisticsService} from "../../services/statistics/statistics.service";
 
 @Component({
   selector: 'app-gescand-vandaag',
   templateUrl: './gescand-vandaag.component.html',
   styleUrls: ['./gescand-vandaag.component.scss']
 })
-export class GescandVandaagComponent implements OnInit {
+export class GescandVandaagComponent implements OnInit, AfterViewInit, OnDestroy {
 
-  // lineChart
-  public lineChartData:Array<any> = [
-    {data: [8, 14, 31, 17, 31, 27, 41, 16, 6], label: 'Schoenen'}
-  ];
-  public lineChartLabels:Array<any> = ['09:00', '10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00', '17:00'];
-  public lineChartOptions:any = {
-    responsive: true
+  public lineChartLabels:Array<string>;
+  public lineChartData: Array<any>;
+  public lineChartType: string = 'bar';
+  public title: string = 'Gescanned vandaag';
+  public lineChartOptions: any = {
+    scaleBeginAtZero: true
   };
-  public lineChartColors:Array<any> = [
-    { // grey
-      backgroundColor: 'rgba(231, 76, 60,0.5)',
-      borderColor: 'rgba(192, 57, 43,1.0)',
-      pointBackgroundColor: 'rgba(231, 76, 60,1.0)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(192, 57, 43,1.0)'
-    }
-  ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
 
-  constructor() { }
+  private observable: Subscription;
+
+  constructor(private statisticsService: StatisticsService) {}
+
+  private data(): void {
+    this.statisticsService.getScannedTodayGroupedByHour().subscribe(
+        (res: Array<AantalPerUur>) => {
+          const data   = [];
+          const labels = [];
+
+          for (let item of res) {
+            data.push(item.aantal);
+            labels.push(item.uur);
+          }
+
+          this.lineChartData = [{ data: data, label: 'Maten' }];
+          this.lineChartLabels = labels;
+        }
+    );
+  }
 
   ngOnInit() {
+    this.data();
   }
 
-  // events
-  public chartClicked(e:any):void {
-    console.log(e);
+  ngAfterViewInit(): void {
+    this.observable = IntervalObservable.create(2000).subscribe(() => {
+      this.data();
+    });
   }
 
-  public chartHovered(e:any):void {
-    console.log(e);
+  ngOnDestroy(): void {
+    this.observable.unsubscribe();
   }
-
 }
 

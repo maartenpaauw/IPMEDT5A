@@ -1,18 +1,7 @@
 <div class="card">
-  <div class="content">
-    <h4 class="card-title">Gescand vandaag</h4>
+  <div class="card-block">
+    <h5 class="card-title" [innerHtml]="title"></h5>
     <hr />
-    <div style="display: block;">
-      <canvas baseChart width="300" height="300"
-              [datasets]="lineChartData"
-              [labels]="lineChartLabels"
-              [options]="lineChartOptions"
-              [colors]="lineChartColors"
-              [legend]="lineChartLegend"
-              [chartType]="lineChartType"
-              (chartHover)="chartHovered($event)"
-              (chartClick)="chartClicked($event)">
-      </canvas>
-    </div>
+    <canvas *ngIf="lineChartData" baseChart="baseChart" width="300" height="300" [datasets]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType" [options]="lineChartOptions"></canvas>
   </div>
 </div>
