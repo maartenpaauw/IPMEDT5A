@@ -34,7 +34,7 @@ export class IngedruktVandaagComponent implements OnInit, AfterViewInit, OnDestr
             labels.push(item.uur);
           }
 
-          this.lineChartData = [{ data: data, label: 'Maten' }];
+          this.lineChartData = [{ data: data, label: 'Knoppen' }];
           this.lineChartLabels = labels;
         }
     );
