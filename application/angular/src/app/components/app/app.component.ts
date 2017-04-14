@@ -36,7 +36,6 @@ export class AppComponent implements OnInit {
 
         this.demo.messages.subscribe((data: any | Connect) => {
             if (typeof (data.size) === 'undefined') {
-                console.info('dsaf');
                 this.router.navigateByUrl(`/schappen/${data.shelf.mac_address}/koppelen/${data.uuid}`);
             }
         });
