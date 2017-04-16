@@ -29,7 +29,7 @@ import {SettingsService} from "./services/settings/settings.service";
     HeaderComponent,
     FooterComponent,
     MenuComponent,
-    NotFoundComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

@@ -6,13 +6,15 @@ import {ShelvesService} from "../../services/shelves/shelves.service";
 import {LoginGuard} from "../../guards/login.guard";
 import {Product} from "../../interfaces/product.interface";
 import {ProductsService} from "../../services/products/products.service";
+import {Subscription} from "rxjs/Subscription";
+import {AutoUnsubscribe} from "../../decorators/auto.unsubscribe.decorator";
 
 @Component({
   selector: 'app-koppelen',
   templateUrl: './koppelen.component.html',
   styleUrls: ['./koppelen.component.scss']
 })
-
+@AutoUnsubscribe()
 export class KoppelenComponent implements OnInit {
 
   private mac_address: string;
@@ -21,6 +23,10 @@ export class KoppelenComponent implements OnInit {
   public uuid: string;
   public products: Array<Product>;
 
+  private paramsSubscription: Subscription;
+  private shelfSubscription: Subscription;
+  private productSubscription: Subscription;
+
   constructor(private titleService: Title,
               private activatedRoute: ActivatedRoute,
               private shelvesService: ShelvesService,
@@ -28,12 +34,12 @@ export class KoppelenComponent implements OnInit {
               private loginGuard: LoginGuard) { }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
+    this.paramsSubscription = this.activatedRoute.params.subscribe((params: Params) => {
       this.mac_address = params['mac_address'];
       this.uuid        = params['uuid'];
     });
 
-    this.shelvesService.getShelf(this.mac_address).subscribe(
+    this.shelfSubscription = this.shelvesService.getShelf(this.mac_address).subscribe(
         (res: Shelf) => {
           this.shelf = res;
 
@@ -44,7 +50,7 @@ export class KoppelenComponent implements OnInit {
         }
     );
 
-    this.productsService.getProducts().subscribe(
+    this.productSubscription = this.productsService.getProducts().subscribe(
         (res: Array<Product>) => {
           this.products = res;
         }

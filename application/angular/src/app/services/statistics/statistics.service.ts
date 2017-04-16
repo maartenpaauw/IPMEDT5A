@@ -6,20 +6,22 @@ import {Observable} from "rxjs";
 @Injectable()
 export class StatisticsService {
 
-  private getOptions: RequestOptions;
 
   constructor(private http: Http) {
 
-    const headers = new Headers();
 
-    headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
-
-    this.getOptions = new RequestOptions({ headers });
 
   }
 
+  private getOptions(): RequestOptions {
+      const headers = new Headers();
+      headers.append('Authorization', `Bearer ${localStorage.getItem('token')}`);
+      return new RequestOptions({ headers });
+  }
+
+
   public getActionsCount() {
-    return this.http.get(`${environment.url}statistics/actions/count`, this.getOptions)
+    return this.http.get(`${environment.url}statistics/actions/count`, this.getOptions())
         .map((res: Response) => res.json())
         .map((res: any) => {
           return res.data;
@@ -34,7 +36,7 @@ export class StatisticsService {
   }
 
   public getPickedUpTodayGroupedByHour() {
-    return this.http.get(`${environment.url}statistics/custom/picked_up_today_grouped_by_hour`, this.getOptions)
+    return this.http.get(`${environment.url}statistics/custom/picked_up_today_grouped_by_hour`, this.getOptions())
         .map((res: Response) => res.json())
         .map((res: any) => {
           return res.data;
@@ -49,7 +51,7 @@ export class StatisticsService {
   }
 
   public getScannedTodayGroupedByHour() {
-    return this.http.get(`${environment.url}statistics/custom/scanned_today_grouped_by_hour`, this.getOptions)
+    return this.http.get(`${environment.url}statistics/custom/scanned_today_grouped_by_hour`, this.getOptions())
         .map((res: Response) => res.json())
         .map((res: any) => {
           return res.data;
@@ -64,7 +66,7 @@ export class StatisticsService {
   }
 
     public getPressedTodayGroupedByHour() {
-        return this.http.get(`${environment.url}statistics/custom/pressed_today_grouped_by_hour`, this.getOptions)
+        return this.http.get(`${environment.url}statistics/custom/pressed_today_grouped_by_hour`, this.getOptions())
             .map((res: Response) => res.json())
             .map((res: any) => {
                 return res.data;

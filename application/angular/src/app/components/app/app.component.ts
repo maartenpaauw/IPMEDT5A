@@ -8,16 +8,22 @@ import {Tag} from "../../interfaces/tag.interface";
 import {Demo} from "../../interfaces/demo.interface";
 import {Connect} from "../../interfaces/connect.interface";
 import {Router} from "@angular/router";
+import {Subscription} from "rxjs/Subscription";
+import {AutoUnsubscribe} from "../../decorators/auto.unsubscribe.decorator";
 
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss']
 })
+@AutoUnsubscribe()
 export class AppComponent implements OnInit {
 
     private notifications: PusherService;
     private demo: PusherService;
+
+    private demoSubscribtion: Subscription;
+    private notificationsSubscribtion: Subscription;
 
     constructor(private toastsManager: ToastsManager,
                 private viewContainerRef: ViewContainerRef,
@@ -34,7 +40,7 @@ export class AppComponent implements OnInit {
     private demoPusher(): void {
         this.demo = new PusherService('demos', 'demo.scanned');
 
-        this.demo.messages.subscribe((data: any | Connect) => {
+        this.demoSubscribtion = this.demo.messages.subscribe((data: any | Connect) => {
             if (typeof (data.size) === 'undefined') {
                 this.router.navigateByUrl(`/schappen/${data.shelf.mac_address}/koppelen/${data.uuid}`);
             }
@@ -45,7 +51,7 @@ export class AppComponent implements OnInit {
 
         this.notifications = new PusherService('notifications', 'button.pressed');
 
-        this.notifications.messages.subscribe((data: any | Notification) => {
+        this.notificationsSubscribtion = this.notifications.messages.subscribe((data: any | Notification) => {
             if (typeof (data.size) === 'undefined') {
 
                 const shelf: Shelf = data.shelf;

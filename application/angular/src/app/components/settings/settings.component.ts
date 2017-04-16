@@ -2,15 +2,21 @@ import {Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {SettingsService} from "../../services/settings/settings.service";
 import {Setting} from "../../interfaces/setting.interface";
+import {AutoUnsubscribe} from "../../decorators/auto.unsubscribe.decorator";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
     selector: 'app-settings',
     templateUrl: './settings.component.html',
     styleUrls: ['./settings.component.scss']
 })
+@AutoUnsubscribe()
 export class SettingsComponent implements OnInit {
 
     public settings: Array<Setting>;
+
+    private settingsSubscription: Subscription;
+    private settingSubscription: Subscription;
 
     constructor(private titleService: Title,
                 private settingsService: SettingsService) {
@@ -23,7 +29,7 @@ export class SettingsComponent implements OnInit {
     }
 
     private getSettings() {
-        this.settingsService.getSettings().subscribe(
+        this.settingsSubscription = this.settingsService.getSettings().subscribe(
             (res: any) => {
                 this.settings = res;
             }
@@ -35,7 +41,7 @@ export class SettingsComponent implements OnInit {
      * @param setting
      */
     public toggleSetting(setting) {
-        this.settingsService.toggleSetting(setting).subscribe(
+        this.settingSubscription = this.settingsService.toggleSetting(setting).subscribe(
             (res: any) => {
                 this.getSettings();
             }

@@ -5,16 +5,21 @@ import {LoginService} from "../../services/login/login.service";
 
 import {LoginGuard} from "../../guards/login.guard";
 import {Title} from "@angular/platform-browser";
+import {AutoUnsubscribe} from "../../decorators/auto.unsubscribe.decorator";
+import {Subscription} from "rxjs/Subscription";
 
 @Component({
   selector: 'app-login-form',
   templateUrl: './login-form.component.html',
   styleUrls: ['./login-form.component.scss']
 })
+@AutoUnsubscribe()
 export class LoginFormComponent implements OnInit {
 
   public loginForm: FormGroup;
   public msg: string;
+
+  private loginSubscription: Subscription;
 
   constructor(private formBuilder: FormBuilder,
               private loginService: LoginService,
@@ -36,7 +41,7 @@ export class LoginFormComponent implements OnInit {
 
   public submitForm(value: Object)
   {
-    this.loginService.login(value).subscribe(
+    this.loginSubscription = this.loginService.login(value).subscribe(
       (res: any) => {
         this.loginGuard.redirect();
       },

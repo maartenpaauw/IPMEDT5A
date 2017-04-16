@@ -1,15 +1,17 @@
-import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, Component } from '@angular/core';
 import {IntervalObservable} from "rxjs/observable/IntervalObservable";
 import {Subscription} from "rxjs/Subscription";
 import {AantalPerUur} from "../../interfaces/aantalperuur.interface";
 import {StatisticsService} from "../../services/statistics/statistics.service";
+import {AutoUnsubscribe} from "../../decorators/auto.unsubscribe.decorator";
 
 @Component({
   selector: 'app-gescand-vandaag',
   templateUrl: './gescand-vandaag.component.html',
   styleUrls: ['./gescand-vandaag.component.scss']
 })
-export class GescandVandaagComponent implements OnInit, AfterViewInit, OnDestroy {
+@AutoUnsubscribe()
+export class GescandVandaagComponent implements AfterViewInit {
 
   public lineChartLabels:Array<string>;
   public lineChartData: Array<any>;
@@ -40,18 +42,12 @@ export class GescandVandaagComponent implements OnInit, AfterViewInit, OnDestroy
     );
   }
 
-  ngOnInit() {}
-
   ngAfterViewInit(): void {
     this.data();
 
-    this.observable = IntervalObservable.create(2000).subscribe(() => {
+    this.observable = IntervalObservable.create(5000).subscribe(() => {
       this.data();
     });
-  }
-
-  ngOnDestroy(): void {
-    this.observable.unsubscribe();
   }
 }
 
