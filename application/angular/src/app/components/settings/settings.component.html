@@ -10,7 +10,7 @@
             <div class="card-block">
                 <h3 class="card-title" [innerText]="setting?.title"></h3>
                 <p class="card-text" [innerText]="setting?.description"></p>
-                <a class="btn text-white" [ngClass]="{'btn-danger': setting?.value, 'btn-primary': !setting?.value}" (click)="toggleSetting(setting?.key)" [innerText]="'zet ' + (setting?.value ? 'uit' : 'aan')"></a>
+                <a class="btn" [ngClass]="{'btn-danger text-white': setting?.value, 'btn-secondary': !setting?.value}" (click)="toggleSetting(setting?.key)" [innerText]="'zet ' + (setting?.value ? 'uit' : 'aan')"></a>
             </div>
         </div>
     </div>

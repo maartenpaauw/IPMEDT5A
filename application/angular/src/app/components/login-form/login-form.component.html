@@ -11,7 +11,7 @@
         <input type="password" class="form-control form-control-danger" id="password" aria-describedby="password-help" [formControl]="loginForm.controls['password']">
         <div class="form-control-feedback" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">Er is iets mis met je wachtwoord.</div>
       </div>
-      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">Inloggen</button>
+      <button type="submit" class="btn btn-secondary" [disabled]="!loginForm.valid">Inloggen</button>
     </form>
   </div>
 </div>

@@ -35,11 +35,11 @@ export class VergelijkingActiesComponent implements OnInit, AfterViewInit, OnDes
       );
   }
 
-  ngOnInit(): void {
-      this.data();
-  }
+  ngOnInit(): void {}
 
   ngAfterViewInit(): void {
+      this.data();
+
       this.observable = IntervalObservable.create(2000).subscribe(() => {
           this.data();
       });

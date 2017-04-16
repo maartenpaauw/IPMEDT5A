@@ -40,11 +40,11 @@ export class GescandVandaagComponent implements OnInit, AfterViewInit, OnDestroy
     );
   }
 
-  ngOnInit() {
-    this.data();
-  }
+  ngOnInit() {}
 
   ngAfterViewInit(): void {
+    this.data();
+
     this.observable = IntervalObservable.create(2000).subscribe(() => {
       this.data();
     });
