@@ -13,8 +13,7 @@ export class PusherService {
   private _messages: BehaviorSubject<List<Notification>> = new BehaviorSubject(List([]));
   public messages: Observable<List<Notification>> = this._messages.asObservable();
 
-  constructor(private channelName: string,
-              private event: string) {
+  public listen(channelName: string, event: string): void {
 
     this.pusher = new Pusher(PUSHER_KEY, {
       disableStats: true,
@@ -26,6 +25,7 @@ export class PusherService {
     channel.bind(event, (data) => {
       this._messages.next(data);
     });
-  }
 
+    return this.pusher;
+  }
 }

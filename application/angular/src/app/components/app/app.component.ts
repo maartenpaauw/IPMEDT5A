@@ -38,7 +38,8 @@ export class AppComponent implements OnInit {
     }
 
     private demoPusher(): void {
-        this.demo = new PusherService('demos', 'demo.scanned');
+        this.demo = new PusherService();
+        this.demo.listen('demos', 'demo.scanned');
 
         this.demoSubscribtion = this.demo.messages.subscribe((data: any | Connect) => {
             if (typeof (data.size) === 'undefined') {
@@ -49,7 +50,8 @@ export class AppComponent implements OnInit {
 
     private notificationsPusher(): void {
 
-        this.notifications = new PusherService('notifications', 'button.pressed');
+        this.notifications = new PusherService();
+        this.notifications.listen('notifications', 'button.pressed');
 
         this.notificationsSubscribtion = this.notifications.messages.subscribe((data: any | Notification) => {
             if (typeof (data.size) === 'undefined') {
