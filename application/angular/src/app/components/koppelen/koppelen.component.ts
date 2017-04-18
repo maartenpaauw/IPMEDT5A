@@ -8,6 +8,8 @@ import {Product} from "../../interfaces/product.interface";
 import {ProductsService} from "../../services/products/products.service";
 import {Subscription} from "rxjs/Subscription";
 import {AutoUnsubscribe} from "../../decorators/auto.unsubscribe.decorator";
+import {DemosService} from "../../services/demos/demos.service";
+import {Demo} from "../../interfaces/demo.interface";
 
 @Component({
   selector: 'app-koppelen',
@@ -22,6 +24,8 @@ export class KoppelenComponent implements OnInit {
   public shelf: Shelf;
   public uuid: string;
   public products: Array<Product>;
+  public message: string;
+  public type: string = 'success';
 
   private paramsSubscription: Subscription;
   private shelfSubscription: Subscription;
@@ -30,6 +34,7 @@ export class KoppelenComponent implements OnInit {
   constructor(private titleService: Title,
               private activatedRoute: ActivatedRoute,
               private shelvesService: ShelvesService,
+              private demosService: DemosService,
               private productsService: ProductsService,
               private loginGuard: LoginGuard) { }
 
@@ -53,6 +58,7 @@ export class KoppelenComponent implements OnInit {
     this.productSubscription = this.productsService.getProducts().subscribe(
         (res: Array<Product>) => {
           this.products = res;
+          this.product_id = this.products[0].id;
         }
     );
   }
@@ -62,6 +68,28 @@ export class KoppelenComponent implements OnInit {
   }
 
   public koppelen(): void {
-    // TODO post naar naar demo.
+
+      const data = {
+          'uuid': this.uuid,
+          'product_id': this.product_id
+      };
+
+    this.demosService.storeDemos(data).subscribe(
+        (res: Demo) => {
+            this.shelvesService.linkDemo(this.mac_address, res.uuid).subscribe(
+                (res: Shelf) => {
+                    this.message = `Schap #${res.id} is succesvol gelinkt aan het product ${res.demo.product.shoe.brand} - ${res.demo.product.shoe.name } (${res.demo.product.shoe.color }) met maat ${res.demo.product.size.eu_size}.`;
+                },
+                (err: any) => {
+                    this.message = 'Er is iets mis gegaan, probeer het later opnieuw.';
+                    this.type = 'danger';
+                }
+            )
+        },
+        (err: any) => {
+           this.message = 'Er is iets mis gegaan, probeer het later opnieuw.';
+           this.type = 'danger';
+        }
+    );
   }
 }

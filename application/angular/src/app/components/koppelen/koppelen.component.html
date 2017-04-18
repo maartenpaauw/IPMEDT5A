@@ -4,6 +4,12 @@
     </div>
 </div>
 
+<div class="row justify-content-center" *ngIf="message">
+    <div class="col-12">
+        <ngb-alert [type]="type" [dismissible]="false"><strong>Let op!</strong> {{ message }}</ngb-alert>
+    </div>
+</div>
+
 <div class="row justify-content-center">
     <div class="col">
         <div class="form-group row">

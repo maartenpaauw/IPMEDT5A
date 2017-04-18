@@ -9,6 +9,7 @@ import {SchappenComponent} from "../components/schappen/schappen.component";
 import {KoppelenComponent} from "../components/koppelen/koppelen.component";
 import {SettingsService} from "../services/settings/settings.service";
 import {ProductsService} from "../services/products/products.service";
+import {DemosService} from "../services/demos/demos.service";
 
 
 @NgModule({
@@ -19,7 +20,8 @@ import {ProductsService} from "../services/products/products.service";
     providers: [
         ShelvesService,
         SettingsService,
-        ProductsService
+        ProductsService,
+        DemosService
     ],
     imports: [
         CommonModule,

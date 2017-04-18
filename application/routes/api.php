@@ -47,6 +47,7 @@ $api->version('v1', function ($api)
         $api->post('settings/{setting}/toggle', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
 
         // Actions
+        $api->post('shelves/{shelf}/demos/{demo}/link', ['as' => 'shelves.demo.link', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@linkDemo']);
         $api->post('shelves/{shelf}/demos/{demo_uuid}/scanned', ['as' => 'shelves.actions.demo_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
         $api->post('shelves/{shelf}/tags/{tag}/actions/{action}', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@interactionWithShelf']);
         $api->post('shelves/{shelf}/actions/picked_up', ['as' => 'shelves.actions.picked_up', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoPickedUp']);

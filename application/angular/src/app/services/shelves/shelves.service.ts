@@ -49,4 +49,19 @@ export class ShelvesService {
             });
     }
 
+    public linkDemo(mac_address: string, uuid: string) {
+      return this.http.post(`${environment.url}shelves/${mac_address}/demos/${uuid}/link`, null,this.getOptions)
+          .map((res: Response) => res.json())
+          .map((res: any) => {
+              return res.data;
+          })
+          .catch((error: any) => {
+              if (error.status == 401) {
+                  return Observable.throw(error.status);
+              } else if (error.status == 500) {
+                  return Observable.throw(error.status);
+              }
+          });
+    }
+
 }
