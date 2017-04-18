@@ -47,7 +47,6 @@ export class KoppelenComponent implements OnInit {
     this.shelfSubscription = this.shelvesService.getShelf(this.mac_address).subscribe(
         (res: Shelf) => {
           this.shelf = res;
-
           this.titleService.setTitle(`Koppelen schap ${this.shelf.id} — IPMEDT5A`);
         },
         (err) => {
@@ -78,7 +77,9 @@ export class KoppelenComponent implements OnInit {
         (res: Demo) => {
             this.shelvesService.linkDemo(this.mac_address, res.uuid).subscribe(
                 (res: Shelf) => {
-                    this.message = `Schap #${res.id} is succesvol gelinkt aan het product ${res.demo.product.shoe.brand} - ${res.demo.product.shoe.name } (${res.demo.product.shoe.color }) met maat ${res.demo.product.size.eu_size}.`;
+                    this.message = `Schap #${res.id} is succesvol gelinkt aan het product 
+                                    ${res.demo.product.shoe.brand} - ${res.demo.product.shoe.name } 
+                                    (${res.demo.product.shoe.color }) met maat ${res.demo.product.size.eu_size}.`;
                 },
                 (err: any) => {
                     this.message = 'Er is iets mis gegaan, probeer het later opnieuw.';
