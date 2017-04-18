@@ -17,6 +17,7 @@ export class IngedruktVandaagComponent implements AfterViewInit {
   public lineChartData: Array<any>;
   public lineChartType: string = 'bar';
   public title: string = 'Ingedrukt vandaag';
+
   public lineChartOptions: any = {
     scaleBeginAtZero: true
   };

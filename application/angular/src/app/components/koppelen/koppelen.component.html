@@ -28,7 +28,7 @@
             <label class="col col-form-label">Producten</label>
             <div class="col">
             <select class="form-control" id="product" (change)="product($event)">
-                <option *ngFor="let product of products" [value]="product.id">{{ product.size.eu_size }} - {{ product.shoe.brand}} - {{ product.shoe.name }} - {{ product.shoe.color }}</option>
+                <option *ngFor="let product of products" [attr.selected]="(product.id == current_product_id) ? 'selected' : null" [value]="product.id">{{ product.size.eu_size }} - {{ product.shoe.brand}} - {{ product.shoe.name }} - {{ product.shoe.color }}</option>
             </select>
             </div>
         </div>

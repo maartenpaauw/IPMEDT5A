@@ -17,6 +17,7 @@ export class GescandVandaagComponent implements AfterViewInit {
   public lineChartData: Array<any>;
   public lineChartType: string = 'bar';
   public title: string = 'Gescanned vandaag';
+
   public lineChartOptions: any = {
     scaleBeginAtZero: true
   };

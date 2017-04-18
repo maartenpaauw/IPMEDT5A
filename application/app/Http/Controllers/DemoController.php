@@ -48,7 +48,9 @@ class DemoController extends Controller
         $demo_data = $request->only(['uuid', 'product_id']);
 
         // Demo, de eerste of een nieuwe.
-        $demo = Demo::firstOrCreate($demo_data);
+        $demo = Demo::firstOrNew(['uuid' => $demo_data['uuid']]);
+        $demo->product_id = $demo_data['product_id'];
+        $demo->save();
 
         // Geef de demo terug.
         return $this->response->item($demo, new DemoTransformer());

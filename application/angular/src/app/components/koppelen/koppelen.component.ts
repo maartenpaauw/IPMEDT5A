@@ -19,14 +19,15 @@ import {Demo} from "../../interfaces/demo.interface";
 @AutoUnsubscribe()
 export class KoppelenComponent implements OnInit {
 
-  private mac_address: string;
-  private product_id: number;
   public shelf: Shelf;
+  public current_product_id: number;
   public uuid: string;
   public products: Array<Product>;
   public message: string;
   public type: string = 'success';
 
+  private mac_address: string;
+  private product_id: number;
   private paramsSubscription: Subscription;
   private shelfSubscription: Subscription;
   private demoSubscription: Subscription;
@@ -49,6 +50,8 @@ export class KoppelenComponent implements OnInit {
     this.shelfSubscription = this.shelvesService.getShelf(this.mac_address).subscribe(
         (res: Shelf) => {
           this.shelf = res;
+          this.current_product_id = this.shelf.demo.product.id;
+          console.info(this.current_product_id);
           this.titleService.setTitle(`Koppelen schap ${this.shelf.id} — IPMEDT5A`);
         },
         (err) => {
