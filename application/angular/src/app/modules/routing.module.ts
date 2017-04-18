@@ -29,7 +29,7 @@ const routes: Routes = [
         ]
     },
     {
-        path: 'settings',
+        path: 'instellingen',
         loadChildren: './settings.module#SettingsModule',
         canActivate: [
             LoginGuard
