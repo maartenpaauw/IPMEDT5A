@@ -45,11 +45,11 @@ class DemoController extends Controller
     public function store(Request $request)
     {
         // Verkrijg de demo data.
-        $demo_data = $request->only(['uuid', 'product_id']);
+        $demo_data = collect($request->only(['uuid', 'product_id']));
 
         // Demo, de eerste of een nieuwe.
-        $demo = Demo::firstOrNew(['uuid' => $demo_data['uuid']]);
-        $demo->product_id = $demo_data['product_id'];
+        $demo = Demo::firstOrNew(['uuid' => $demo_data->get('uuid')]);
+        $demo->product_id = $demo_data->get('product_id');
         $demo->save();
 
         // Geef de demo terug.

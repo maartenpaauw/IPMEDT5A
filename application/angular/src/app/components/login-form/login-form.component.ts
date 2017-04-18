@@ -18,6 +18,7 @@ export class LoginFormComponent implements OnInit {
 
   public loginForm: FormGroup;
   public msg: string;
+  public type: string = 'warning';
 
   private loginSubscription: Subscription;
 
@@ -50,6 +51,7 @@ export class LoginFormComponent implements OnInit {
           this.msg = 'Login gegevens incorrect!';
         } else if (err === 500) {
           this.msg = 'Probeer het later nog eens!';
+          this.type = 'danger';
         }
       }
     );

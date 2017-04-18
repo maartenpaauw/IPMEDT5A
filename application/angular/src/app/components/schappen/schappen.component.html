@@ -7,8 +7,14 @@
 <div class="row">
     <div class="col-6 pb-4" *ngFor="let shelf of shelves">
         <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="m-0" [innerText]="'Schap ' + shelf.id"></h3>
+                    </div>
+                </div>
+            </div>
             <div class="card-block">
-                <h3 class="card-title" [innerText]="'Schap ' + shelf.id"></h3>
                 <p class="card-text" *ngIf="shelf.demo" [innerText]="shelf.demo.product.shoe.brand + ' &ndash; ' + shelf.demo.product.shoe.name + ' &ndash; ' + shelf.demo.product.shoe.color"></p>
                 <p class="card-text text-right" *ngIf="shelf.demo" [innerText]="'&euro; ' + shelf.demo.product.shoe.price"></p>
                 <p class="card-text" *ngIf="!shelf.demo" [innerHtml]="'Schap ' + shelf.id + ' is nog niet gekoppeld'"></p>

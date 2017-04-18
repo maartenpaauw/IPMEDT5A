@@ -1,3 +1,9 @@
+<div class="row justify-content-center" *ngIf="msg">
+  <div class="col-4 mb-3">
+    <ngb-alert [type]="type" [dismissible]="false"><strong>Let op!</strong> {{ msg }}</ngb-alert>
+  </div>
+</div>
+
 <div class="row justify-content-center">
   <div class="col-4">
     <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
@@ -13,11 +19,5 @@
       </div>
       <button type="submit" class="btn btn-secondary" [disabled]="!loginForm.valid">Inloggen</button>
     </form>
-  </div>
-</div>
-
-<div class="row justify-content-center" *ngIf="msg">
-  <div class="col-4 mt-5">
-    <ngb-alert [dismissible]="false"><strong>Let op!</strong> {{ msg }}</ngb-alert>
   </div>
 </div>
