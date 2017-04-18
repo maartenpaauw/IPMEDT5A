@@ -4,6 +4,7 @@ import {SettingsService} from "../../services/settings/settings.service";
 import {Setting} from "../../interfaces/setting.interface";
 import {AutoUnsubscribe} from "../../decorators/auto.unsubscribe.decorator";
 import {Subscription} from "rxjs/Subscription";
+import {environment} from "../../../environments/environment";
 
 @Component({
     selector: 'app-settings',
@@ -14,6 +15,7 @@ import {Subscription} from "rxjs/Subscription";
 export class SettingsComponent implements OnInit {
 
     public settings: Array<Setting>;
+    public exampleFile: string = `${environment.urlWithoutApi}storage/producten.csv`;
 
     private settingsSubscription: Subscription;
     private settingSubscription: Subscription;

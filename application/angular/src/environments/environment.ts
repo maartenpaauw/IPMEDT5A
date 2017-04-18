@@ -6,5 +6,6 @@
 export const environment = {
   production: false,
   hmr: false,
-  url: 'https://ipmedt5.roddeltrein.nl/api/'
+  url: 'https://ipmedt5.roddeltrein.nl/api/',
+  urlWithoutApi: 'https://ipmedt5.roddeltrein.nl/'
 };
