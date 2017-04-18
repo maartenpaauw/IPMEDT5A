@@ -29,6 +29,8 @@ export class KoppelenComponent implements OnInit {
 
   private paramsSubscription: Subscription;
   private shelfSubscription: Subscription;
+  private demoSubscription: Subscription;
+  private shelfUpdateSubscription: Subscription;
   private productSubscription: Subscription;
 
   constructor(private titleService: Title,
@@ -73,9 +75,9 @@ export class KoppelenComponent implements OnInit {
           'product_id': this.product_id
       };
 
-    this.demosService.storeDemos(data).subscribe(
+    this.demoSubscription = this.demosService.storeDemos(data).subscribe(
         (res: Demo) => {
-            this.shelvesService.linkDemo(this.mac_address, res.uuid).subscribe(
+            this.shelfUpdateSubscription = this.shelvesService.linkDemo(this.mac_address, res.uuid).subscribe(
                 (res: Shelf) => {
                     this.message = `Schap #${res.id} is succesvol gelinkt aan het product 
                                     ${res.demo.product.shoe.brand} - ${res.demo.product.shoe.name } 
