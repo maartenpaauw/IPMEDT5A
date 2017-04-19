@@ -11,3 +11,7 @@ php artisan storage:link
 php artisan key:generate
 php artisan migrate --seed
 ```
+<img src="https://img.shields.io/badge/Student-Maarten%20Paauw-red.svg">
+<img src="https://img.shields.io/badge/Student-Djovanni%20Tehubijuluw-red.svg">
+<img src="https://img.shields.io/badge/Student-Bram%20Valstar-red.svg">
+<img src="https://img.shields.io/badge/Student-Rogier%20Cabout-red.svg">
