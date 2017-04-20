@@ -5,6 +5,8 @@ import {Setting} from "../../interfaces/setting.interface";
 import {AutoUnsubscribe} from "../../decorators/auto.unsubscribe.decorator";
 import {Subscription} from "rxjs/Subscription";
 import {environment} from "../../../environments/environment";
+import {ProductsService} from "../../services/products/products.service";
+import {Product} from "../../interfaces/product.interface";
 
 @Component({
     selector: 'app-settings',
@@ -19,13 +21,17 @@ export class SettingsComponent implements OnInit {
 
     private settingsSubscription: Subscription;
     private settingSubscription: Subscription;
+    private uploadSubscription: Subscription;
+
+    private file: Array<File>;
 
     constructor(private titleService: Title,
-                private settingsService: SettingsService) {
+                private settingsService: SettingsService,
+                private productsService: ProductsService) {
     }
 
     ngOnInit() {
-        this.titleService.setTitle("Settings — IPMEDT5A");
+        this.titleService.setTitle("Instellingen — IPMEDT5A");
 
         this.getSettings();
     }
@@ -48,5 +54,30 @@ export class SettingsComponent implements OnInit {
                 this.getSettings();
             }
         );
+    }
+
+    /**
+     *
+     * @param event
+     */
+    public voorraadLijst(event) {
+        this.file = event.target.files;
+    }
+
+    /**
+     *
+     */
+    public voorraadUploaden() {
+        if(this.file)
+        {
+            const formData = new FormData();
+            formData.append('file', this.file[0], this.file[0].name);
+
+            this.uploadSubscription = this.productsService.uploadProducts(formData).subscribe(
+                (res: Array<Product>) => {
+                    console.log(res);
+                }
+            );
+        }
     }
 }

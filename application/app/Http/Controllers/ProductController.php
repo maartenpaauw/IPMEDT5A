@@ -4,7 +4,10 @@ namespace IPMEDT5A\Http\Controllers;
 
 use IPMEDT5A\Models\Product;
 use Illuminate\Http\Request;
+use IPMEDT5A\Models\Shoe;
+use IPMEDT5A\Models\Size;
 use IPMEDT5A\Transformers\ProductTransformer;
+use Maatwebsite\Excel\Facades\Excel;
 
 /**
  * Class ProductController
@@ -91,5 +94,57 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    /**
+     * @param Request $request
+     * @return \Dingo\Api\Http\Response
+     */
+    public function uploadProducts(Request $request)
+    {
+        // Haad het bestand.
+        Excel::load($request->file('file')->getRealPath(), function($reader) {
+
+            // Ga door al je producten heen.
+            foreach ( Product::all() as $product)
+            {
+                // Verwijder het product.
+               $product->delete();
+            }
+
+            // Loop door alle producten heen.
+            foreach ($reader->all() as $result)
+            {
+                // Verkrijg de schoen.
+                $shoe = Shoe::firstOrCreate([
+                    'name'  => $result->benaming,
+                    'brand' => $result->merk,
+                    'color' => $result->kleur,
+                    'price' => $result->prijs
+                ]);
+
+                // De data.
+                $data = [
+                    'shoe_id' => $shoe->id,
+                    'size_id' => Size::size($result->maat)->id
+                ];
+
+                // Maak het product.
+                $product = Product::where($data)->withTrashed()->first() ?: new Product($data);
+
+                // Controleer of er een getrashde product bestaat.
+                if($product->trashed())
+                {
+                    // Restore het.
+                    $product->restore();
+                }
+
+                // Sla het op.
+                $product->save();
+            }
+        });
+
+        // Geef alle producten terug.
+        return $this->response->item(Product::all(), new ProductTransformer());
     }
 }

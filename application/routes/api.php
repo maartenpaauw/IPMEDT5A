@@ -40,8 +40,8 @@ $api->version('v1', function ($api)
         $api->get('statistics/actions/count', ['as' => 'statistics.actions.count', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@actionCount']);
 
         $api->get('statistics/custom/picked_up_today_grouped_by_hour', ['as' => 'statistics.picked_up_today_grouped_by_hour', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@pickedUpTodayGroupedByHour']);
-        $api->get('statistics/custom/scanned_today_grouped_by_hour', ['as' => 'statistics.picked_up_today_grouped_by_hour', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@scannedTodayGroupedByHour']);
-        $api->get('statistics/custom/pressed_today_grouped_by_hour', ['as' => 'statistics.picked_up_today_grouped_by_hour', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@pressedTodayGroupedByHour']);
+        $api->get('statistics/custom/scanned_today_grouped_by_hour', ['as' => 'statistics.scanned_today_grouped_by_hour', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@scannedTodayGroupedByHour']);
+        $api->get('statistics/custom/pressed_today_grouped_by_hour', ['as' => 'statistics.pressed_today_grouped_by_hour', 'uses' => '\IPMEDT5A\Http\Controllers\StatisticController@pressedTodayGroupedByHour']);
 
         // Settings
         $api->post('settings/{setting}/toggle', ['as' => 'actions.toggle', 'uses' => '\IPMEDT5A\Http\Controllers\SettingController@toggle']);
@@ -51,6 +51,9 @@ $api->version('v1', function ($api)
         $api->post('shelves/{shelf}/demos/{demo_uuid}/scanned', ['as' => 'shelves.actions.demo_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoScanned']);
         $api->post('shelves/{shelf}/tags/{tag}/actions/{action}', ['as' => 'shelves.actions.tag_scanned', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@interactionWithShelf']);
         $api->post('shelves/{shelf}/actions/picked_up', ['as' => 'shelves.actions.picked_up', 'uses' => '\IPMEDT5A\Http\Controllers\ShelfController@demoPickedUp']);
+
+        // Products
+        $api->post('products/upload', ['as' => 'products.upload', 'uses' => '\IPMEDT5A\Http\Controllers\ProductController@uploadProducts']);
 
         // Authenticate
         $api->post('authenticate/check', ['as' => 'authenticate.check', 'uses' => '\IPMEDT5A\Http\Controllers\AuthenticateController@authenticateCheck']);

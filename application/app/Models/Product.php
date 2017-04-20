@@ -15,6 +15,11 @@ class Product extends Model
     /**
      * @var array
      */
+    protected $fillable = ['shoe_id', 'size_id'];
+
+    /**
+     * @var array
+     */
     protected $with = ['shoe', 'size'];
 
     /**

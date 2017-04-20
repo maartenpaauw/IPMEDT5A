@@ -29,4 +29,19 @@ export class ProductsService {
         });
   }
 
+  public uploadProducts(data: FormData) {
+    return this.http.post(`${environment.url}products/upload`, data, this.getOptions)
+        .map((res: Response) => res.json())
+        .map((res: any) => {
+          return res.data;
+        })
+        .catch((error: any) => {
+          if (error.status == 401) {
+            return Observable.throw(error.status);
+          } else if (error.status == 500) {
+            return Observable.throw(error.status);
+          }
+        });
+  }
+
 }

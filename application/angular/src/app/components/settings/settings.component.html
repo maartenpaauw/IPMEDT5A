@@ -33,9 +33,10 @@
         <div class="form-group row">
             <label class="col-3 col-form-label" for="voorraad">Excel bestand voorraad</label>
             <div class="col">
-                <input type="file" class="form-control-file" id="voorraad" aria-describedby="fileHelp">
-                <small id="fileHelp" class="form-text text-muted">Een voorbeeld bestand kan hier gedownload worden: <a [href]="exampleFile">voorbeeldlijst</a>.</small>
+                <input type="file" class="form-control-file" id="voorraad" aria-describedby="voorraadHelp" (change)="voorraadLijst($event)">
+                <small id="voorraadHelp" class="form-text text-muted">Een voorbeeld bestand kan gedownload worden: <a [href]="exampleFile">voorbeeldlijst</a>.</small>
             </div>
         </div>
+        <button type="submit" class="btn btn-secondary" (click)="voorraadUploaden()">Voorraad uploaden</button>
     </div>
 </div>

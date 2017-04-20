@@ -5,13 +5,15 @@ import {NgbModule} from "@ng-bootstrap/ng-bootstrap";
 import {SettingsComponent} from "../components/settings/settings.component";
 import {LoginGuard} from "../guards/login.guard";
 import {SettingsService} from "../services/settings/settings.service";
+import {ProductsService} from "../services/products/products.service";
 
 @NgModule({
     declarations: [
         SettingsComponent
     ],
     providers: [
-        SettingsService
+        SettingsService,
+        ProductsService
     ],
     imports: [
         CommonModule,
