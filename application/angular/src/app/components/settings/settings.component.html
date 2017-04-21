@@ -28,12 +28,18 @@
     </div>
 </div>
 
+<div class="row mb-4 justify-content-center" *ngIf="message">
+    <div class="col-12">
+        <ngb-alert [type]="type" [dismissible]="false"><strong>Let op!</strong> {{ message }}</ngb-alert>
+    </div>
+</div>
+
 <div class="row">
     <div class="col">
         <div class="form-group row">
             <label class="col-3 col-form-label" for="voorraad">Excel bestand voorraad</label>
             <div class="col">
-                <input type="file" class="form-control-file" id="voorraad" aria-describedby="voorraadHelp" (change)="voorraadLijst($event)">
+                <input type="file" class="form-control-file" id="voorraad" aria-describedby="voorraadHelp" accept=".csv" (change)="voorraadLijst($event)">
                 <small id="voorraadHelp" class="form-text text-muted">Een voorbeeld bestand kan gedownload worden: <a [href]="exampleFile">voorbeeldlijst</a>.</small>
             </div>
         </div>

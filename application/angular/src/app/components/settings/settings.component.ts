@@ -19,6 +19,9 @@ export class SettingsComponent implements OnInit {
     public settings: Array<Setting>;
     public exampleFile: string = `${environment.urlWithoutApi}storage/producten.csv`;
 
+    public type: string = 'success';
+    public message: string;
+
     private settingsSubscription: Subscription;
     private settingSubscription: Subscription;
     private uploadSubscription: Subscription;
@@ -75,7 +78,11 @@ export class SettingsComponent implements OnInit {
 
             this.uploadSubscription = this.productsService.uploadProducts(formData).subscribe(
                 (res: Array<Product>) => {
-                    console.log(res);
+                    this.message = 'Het uploaden van de nieuwe producten is gelukt.';
+                },
+                (err: any) => {
+                    this.message = 'Er is iets fout gegaan...';
+                    this.type= 'danger';
                 }
             );
         }
