@@ -2,6 +2,6 @@
   <div class="card-block">
     <h5 class="card-title" [innerHtml]="title"></h5>
     <hr />
-    <canvas *ngIf="lineChartData" baseChart="baseChart" width="300" height="300" [datasets]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType" [options]="lineChartOptions"></canvas>
+    <canvas *ngIf="lineChartData" baseChart="baseChart" width="300" height="300" [colors]="lineChartColors" [datasets]="lineChartData" [labels]="lineChartLabels" [chartType]="lineChartType" [options]="lineChartOptions"></canvas>
   </div>
 </div>

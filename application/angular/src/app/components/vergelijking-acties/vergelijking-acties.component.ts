@@ -18,6 +18,33 @@ export class VergelijkingActiesComponent implements AfterViewInit {
   public chartType: string = "pie";
   public title: string = "Acties";
 
+  public pieChartColors: Array<Object> = [
+      { // Red
+          backgroundColor: [
+              'rgba(255,99,132,0.8)',
+              'rgba(54,162,235,0.8)',
+              'rgba(255,205,86,0.8)'
+          ],
+          borderColor: [
+              'rgba(255,99,132,0.5)',
+              'rgba(54,162,235,0.5)',
+              'rgba(255,205,86,0.5)'
+          ],
+          pointBackgroundColor: [
+              'rgba(255,99,132,0.5)',
+              'rgba(54,162,235,0.5)',
+              'rgba(255,205,86,0.5)'
+          ],
+          pointHoverBorderColor: [
+              'rgba(255,99,132,0.5)',
+              'rgba(54,162,235,0.5)',
+              'rgba(255,205,86,0.5)'
+          ],
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+      },
+  ];
+
   private actionSubscription: Subscription;
   private observable: Subscription;
 

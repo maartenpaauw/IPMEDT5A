@@ -17,9 +17,21 @@ export class OpgepaktVandaagComponent implements AfterViewInit {
   public lineChartData: Array<any>;
   public lineChartType: string = 'bar';
   public title: string = 'Opgepakt vandaag';
+
   public lineChartOptions: any = {
       scaleBeginAtZero: true
   };
+
+  public lineChartColors: Array<any> = [
+    { // Red
+        backgroundColor: 'rgba(255,99,132,0.8)',
+        borderColor: 'rgba(255,99,132,0.5)',
+        pointBackgroundColor: 'rgba(255,99,132,0.5)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(255,99,132,0.5)'
+    }
+  ];
 
   private observable: Subscription;
 

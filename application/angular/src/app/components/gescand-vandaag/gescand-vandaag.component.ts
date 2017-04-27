@@ -22,6 +22,17 @@ export class GescandVandaagComponent implements AfterViewInit {
     scaleBeginAtZero: true
   };
 
+  public lineChartColors: Array<any> = [
+      { // Blue
+          backgroundColor: 'rgba(54,162,235,0.8)',
+          borderColor: 'rgba(54,162,235,0.5)',
+          pointBackgroundColor: 'rgba(54,162,235,0.5)',
+          pointBorderColor: '#fff',
+          pointHoverBackgroundColor: '#fff',
+          pointHoverBorderColor: 'rgba(54,162,235,0.5)'
+      }
+  ];
+
   private observable: Subscription;
 
   constructor(private statisticsService: StatisticsService) {}

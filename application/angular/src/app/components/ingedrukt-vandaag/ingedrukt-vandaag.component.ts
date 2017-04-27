@@ -22,6 +22,17 @@ export class IngedruktVandaagComponent implements AfterViewInit {
     scaleBeginAtZero: true
   };
 
+  public lineChartColors: Array<any> = [
+    { // Yellow
+        backgroundColor: 'rgba(255,205,86,0.8)',
+        borderColor: 'rgba(255,205,86,0.5)',
+        pointBackgroundColor: 'rgba(255,205,86,0.5)',
+        pointBorderColor: '#fff',
+        pointHoverBackgroundColor: '#fff',
+        pointHoverBorderColor: 'rgba(255,205,86,0.5)'
+    }
+  ];
+
   private observable: Subscription;
 
   constructor(private statisticsService: StatisticsService) {}
