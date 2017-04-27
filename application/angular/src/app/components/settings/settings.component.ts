@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit} from '@angular/core';
 import {Title} from "@angular/platform-browser";
 import {SettingsService} from "../../services/settings/settings.service";
 import {Setting} from "../../interfaces/setting.interface";
@@ -7,6 +7,7 @@ import {Subscription} from "rxjs/Subscription";
 import {environment} from "../../../environments/environment";
 import {ProductsService} from "../../services/products/products.service";
 import {Product} from "../../interfaces/product.interface";
+import {IntervalObservable} from "rxjs/observable/IntervalObservable";
 
 @Component({
     selector: 'app-settings',
@@ -14,7 +15,7 @@ import {Product} from "../../interfaces/product.interface";
     styleUrls: ['./settings.component.scss']
 })
 @AutoUnsubscribe()
-export class SettingsComponent implements OnInit {
+export class SettingsComponent implements OnInit, AfterViewInit {
 
     public settings: Array<Setting>;
     public exampleFile: string = `${environment.urlWithoutApi}storage/producten.csv`;
@@ -28,6 +29,8 @@ export class SettingsComponent implements OnInit {
 
     private file: Array<File>;
 
+    private observable: Subscription;
+
     constructor(private titleService: Title,
                 private settingsService: SettingsService,
                 private productsService: ProductsService) {
@@ -35,8 +38,14 @@ export class SettingsComponent implements OnInit {
 
     ngOnInit() {
         this.titleService.setTitle("Instellingen — IPMEDT5A");
+    }
 
+    ngAfterViewInit(): void {
         this.getSettings();
+
+        this.observable = IntervalObservable.create(5000).subscribe(() => {
+            this.getSettings();
+        })
     }
 
     private getSettings() {
