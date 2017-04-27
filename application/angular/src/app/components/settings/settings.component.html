@@ -5,7 +5,7 @@
 </div>
 
 <div class="row">
-    <div class="col-6 pb-4" *ngFor="let setting of settings">
+    <div class="col-12 col-md-6 pb-4" *ngFor="let setting of settings">
         <div class="card">
             <div class="card-block">
                 <h3 class="card-title" [innerText]="setting?.title"></h3>
@@ -37,7 +37,7 @@
 <div class="row">
     <div class="col">
         <div class="form-group row">
-            <label class="col-3 col-form-label" for="voorraad">Excel bestand voorraad</label>
+            <label class="col col-md-3 col-form-label" for="voorraad"><strong>Excel bestand voorraad</strong></label>
             <div class="col">
                 <input type="file" class="form-control-file" id="voorraad" aria-describedby="voorraadHelp" accept=".csv" (change)="voorraadLijst($event)">
                 <small id="voorraadHelp" class="form-text text-muted">Een voorbeeld bestand kan gedownload worden: <a [href]="exampleFile">voorbeeldlijst</a>.</small>

@@ -1,19 +1,19 @@
 <div class="row justify-content-center" *ngIf="msg">
-  <div class="col-4 mb-3">
+  <div class="col-12 col-sm-8 col-md-6 mb-3">
     <ngb-alert [type]="type" [dismissible]="false"><strong>Let op!</strong> {{ msg }}</ngb-alert>
   </div>
 </div>
 
 <div class="row justify-content-center">
-  <div class="col-4">
+  <div class="col-12 col-sm-8 col-md-6">
     <form [formGroup]="loginForm" (ngSubmit)="submitForm(loginForm.value)">
       <div class="form-group" [ngClass]="{'has-danger': !loginForm.controls['email'].valid && loginForm.controls['email'].touched}">
-        <label class="form-control-label" for="email">E-mailadres</label>
+        <label class="form-control-label" for="email"><strong>E-mailadres</strong></label>
         <input type="email" class="form-control form-control-danger" id="email" aria-describedby="email-help" [formControl]="loginForm.controls['email']">
         <div class="form-control-feedback" *ngIf="!loginForm.controls['email'].valid && loginForm.controls['email'].touched">Er is iets mis met je e-mailadres.</div>
       </div>
       <div class="form-group" [ngClass]="{'has-danger': !loginForm.controls['password'].valid && loginForm.controls['password'].touched}">
-        <label class="form-control-label" for="password">Wachtwoord</label>
+        <label class="form-control-label" for="password"><strong>Wachtwoord</strong></label>
         <input type="password" class="form-control form-control-danger" id="password" aria-describedby="password-help" [formControl]="loginForm.controls['password']">
         <div class="form-control-feedback" *ngIf="!loginForm.controls['password'].valid && loginForm.controls['password'].touched">Er is iets mis met je wachtwoord.</div>
       </div>
