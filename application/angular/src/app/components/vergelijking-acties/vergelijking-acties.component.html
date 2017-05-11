@@ -1,0 +1,7 @@
+<div class="card">
+    <div class="card-block">
+        <h5 class="card-title" [innerHtml]="title"></h5>
+        <hr/>
+        <canvas *ngIf="pieChartData" baseChart="baseChart" [colors]="pieChartColors" [data]="pieChartData" [labels]="pieChartLabels" [chartType]="chartType"></canvas>
+    </div>
+</div>

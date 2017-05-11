@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col">
+    <h1 class="page-title pb-3">Voorraad</h1>
+  </div>
+</div>
+
+<table class="table">
+  <thead class="thead-inverse">
+    <tr>
+      <th class="hidden-md-up">Product</th>
+      <th class="hidden-sm-down">Naam</th>
+      <th class="hidden-sm-down">Merk</th>
+      <th class="hidden-sm-down">Kleur</th>
+      <th>Maat</th>
+      <th>Prijs</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let product of products">
+      <td class="hidden-md-up" [innerHtml]="product.shoe.name + ' - ' + product.shoe.brand + ' - ' + product.shoe.color"></td>
+      <td class="hidden-sm-down" [innerHtml]="product.shoe.name"></td>
+      <td class="hidden-sm-down" [innerHtml]="product.shoe.brand"></td>
+      <td class="hidden-sm-down" [innerHtml]="product.shoe.color"></td>
+      <td [innerHtml]="product.size.eu_size"></td>
+      <td [innerHtml]="'&euro; ' + product.shoe.price"></td>
+    </tr>
+  </tbody>
+</table>

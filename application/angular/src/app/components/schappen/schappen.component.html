@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col">
+        <h1 class="page-title pb-3">Schappen</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6 pb-4" *ngFor="let shelf of shelves">
+        <div class="card">
+            <div class="card-header">
+                <div class="row">
+                    <div class="col">
+                        <h3 class="m-0" [innerText]="'Schap ' + shelf.id"></h3>
+                    </div>
+                </div>
+            </div>
+            <div class="card-block">
+                <p class="card-text" *ngIf="shelf.demo && shelf.demo.product" [innerText]="shelf.demo.product.shoe.brand + ' &ndash; ' + shelf.demo.product.shoe.name + ' &ndash; ' + shelf.demo.product.shoe.color"></p>
+                <p class="card-text text-right" *ngIf="shelf.demo && shelf.demo.product" [innerText]="'&euro; ' + shelf.demo.product.shoe.price"></p>
+                <p class="card-text" *ngIf="!shelf.demo || !shelf.demo.product" [innerHtml]="'Schap ' + shelf.id + ' is nog niet gekoppeld'"></p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,48 @@
+<div class="row">
+    <div class="col">
+        <h1 class="page-title pb-3">Instellingen</h1>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-12 col-md-6 pb-4" *ngFor="let setting of settings">
+        <div class="card">
+            <div class="card-block">
+                <h3 class="card-title" [innerText]="setting?.title"></h3>
+                <p class="card-text" [innerText]="setting?.description"></p>
+                <a class="btn" [ngClass]="{'btn-danger text-white': setting?.value, 'btn-secondary': !setting?.value}" (click)="toggleSetting(setting?.key)" [innerText]="'zet ' + (setting?.value ? 'uit' : 'aan')"></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <hr class="mt-4 mb-5" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <h2 class="pb-3">Voorraad uploaden</h2>
+    </div>
+</div>
+
+<div class="row mb-4 justify-content-center" *ngIf="message">
+    <div class="col-12">
+        <ngb-alert [type]="type" [dismissible]="false"><strong>Let op!</strong> {{ message }}</ngb-alert>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <div class="form-group row">
+            <label class="col col-md-3 col-form-label" for="voorraad"><strong>Excel bestand voorraad</strong></label>
+            <div class="col">
+                <input type="file" class="form-control-file" id="voorraad" aria-describedby="voorraadHelp" accept=".csv" (change)="voorraadLijst($event)">
+                <small id="voorraadHelp" class="form-text text-muted">Een voorbeeld bestand kan gedownload worden: <a [href]="exampleFile">voorbeeldlijst</a>.</small>
+            </div>
+        </div>
+        <button type="submit" class="btn btn-secondary" (click)="voorraadUploaden()">Voorraad uploaden</button>
+    </div>
+</div>
